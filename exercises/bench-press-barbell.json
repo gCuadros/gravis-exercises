@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "id": "grv_000000000001",
+  "slug": "bench-press-barbell",
+  "status": "draft",
+  "names": {
+    "en": "Bench press · barbell",
+    "es": "Press de banca · barra"
+  },
+  "aliases": {
+    "en": ["bench press", "flat barbell press"],
+    "es": ["press banca", "press plano"]
+  },
+  "summary": {
+    "en": "Horizontal pressing with a barbell on a flat bench.",
+    "es": "Empuje horizontal con barra sobre un banco plano."
+  },
+  "disciplines": ["strength"],
+  "family": "bench_press",
+  "equipment": ["barbell", "bench"],
+  "muscles": {
+    "primary": ["pectorals"],
+    "secondary": ["triceps", "anterior-deltoids"]
+  },
+  "tracking": {
+    "required": ["load", "repetitions"],
+    "optional": [],
+    "loadConvention": "total_including_bar",
+    "notes": {
+      "en": "Record the combined mass of the bar and plates. Keep grip variants separate when comparing results.",
+      "es": "Registra el peso total de barra y discos. Separa las variantes de agarre al comparar resultados."
+    }
+  },
+  "instructions": {
+    "en": [
+      "Set your feet on the floor and your upper back firmly on the bench. Choose a grip that allows a controlled bar path.",
+      "Unrack the bar, then lower it toward your chest with your wrists stacked over your forearms.",
+      "Press the bar back to the starting position while keeping your feet and upper back supported."
+    ],
+    "es": [
+      "Apoya los pies en el suelo y la parte alta de la espalda en el banco. Elige un agarre que permita controlar la trayectoria.",
+      "Saca la barra del soporte y bájala hacia el pecho, manteniendo las muñecas alineadas con los antebrazos.",
+      "Empuja la barra hasta la posición inicial sin perder el apoyo de los pies y la espalda."
+    ]
+  },
+  "cues": {
+    "en": [
+      "Keep the descent controlled; avoid bouncing the bar.",
+      "Use appropriate rack safeties or assistance for the setup."
+    ],
+    "es": [
+      "Controla la bajada y evita rebotar la barra.",
+      "Prepara los soportes de seguridad o la ayuda adecuada para el montaje."
+    ]
+  },
+  "review": {
+    "technical": "pending",
+    "reviewer": null,
+    "reviewedAt": null
+  },
+  "media": [],
+  "license": "MIT",
+  "provenance": {
+    "kind": "gravis-authored",
+    "note": "Original editorial draft for Gravis. Muscle labels and technique await human review. No competitor media or private account data included."
+  }
+}

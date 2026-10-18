@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "id": "grv_000000000005",
+  "slug": "rowing-ergometer",
+  "status": "draft",
+  "names": {
+    "en": "Rowing ergometer",
+    "es": "Remo en ergómetro"
+  },
+  "aliases": {
+    "en": ["rowing machine", "row erg"],
+    "es": ["máquina de remo", "remo cardio"]
+  },
+  "summary": {
+    "en": "A repeatable rowing cycle measured by an ergometer.",
+    "es": "Ciclo de remo medido por un ergómetro."
+  },
+  "disciplines": ["functional"],
+  "family": "ergometer_row",
+  "equipment": ["rowing-ergometer"],
+  "muscles": {
+    "primary": ["quadriceps", "glutes"],
+    "secondary": ["hamstrings", "lats", "upper-back"]
+  },
+  "tracking": {
+    "required": ["duration"],
+    "optional": ["distance", "machine_calories"],
+    "loadConvention": "none",
+    "notes": {
+      "en": "Store monitor calories separately from any estimate of metabolic energy expenditure. Record equipment identity when comparing machines.",
+      "es": "Separa las calorías del monitor de una estimación de gasto energético. Identifica el equipo al comparar máquinas."
+    }
+  },
+  "instructions": {
+    "en": [
+      "Adjust the foot supports and hold the handle with a relaxed grip. Start with the seat forward and arms extended.",
+      "Drive with the legs, then open the hips and draw the handle toward the torso.",
+      "Return the arms, hinge forward and bend the knees to bring the seat forward for the next stroke."
+    ],
+    "es": [
+      "Ajusta los apoyos de los pies y sujeta el agarre sin tensión excesiva. Empieza con el asiento adelantado y los brazos extendidos.",
+      "Empuja con las piernas, abre la cadera y lleva el agarre hacia el torso.",
+      "Extiende los brazos, inclina el tronco y flexiona las rodillas para adelantar el asiento e iniciar otro ciclo."
+    ]
+  },
+  "cues": {
+    "en": [
+      "Keep each stroke controlled rather than rushing the return.",
+      "Use the same recorded segment for time, distance and monitor calories."
+    ],
+    "es": [
+      "Controla cada ciclo sin precipitar la vuelta.",
+      "Usa el mismo tramo para registrar tiempo, distancia y calorías del monitor."
+    ]
+  },
+  "review": {
+    "technical": "pending",
+    "reviewer": null,
+    "reviewedAt": null
+  },
+  "media": [],
+  "license": "MIT",
+  "provenance": {
+    "kind": "gravis-authored",
+    "note": "Original editorial draft for Gravis. Muscle labels and technique await human review. No competitor media or private account data included."
+  }
+}

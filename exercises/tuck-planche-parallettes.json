@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "id": "grv_000000000008",
+  "slug": "tuck-planche-parallettes",
+  "status": "draft",
+  "names": {
+    "en": "Tuck planche · parallettes",
+    "es": "Planche agrupada · paralelas"
+  },
+  "aliases": {
+    "en": ["tucked planche"],
+    "es": ["tuck planche"]
+  },
+  "summary": {
+    "en": "A straight-arm, tucked support hold with the feet clear of the ground.",
+    "es": "Apoyo con brazos extendidos y piernas agrupadas, sin contacto de los pies con el suelo."
+  },
+  "disciplines": ["calisthenics"],
+  "family": "planche",
+  "equipment": ["parallettes"],
+  "muscles": {
+    "primary": ["anterior-deltoids"],
+    "secondary": ["pectorals", "triceps", "abdominals"]
+  },
+  "tracking": {
+    "required": ["duration"],
+    "optional": [],
+    "loadConvention": "none",
+    "notes": {
+      "en": "Record valid hold time in seconds and the support used. This draft needs specialist technical review before publication.",
+      "es": "Registra segundos de mantenimiento válido y el apoyo utilizado. Este borrador necesita revisión técnica especializada antes de publicarse."
+    }
+  },
+  "instructions": {
+    "en": [
+      "Set the parallettes securely and support yourself with arms straight.",
+      "Lean forward under control while bringing the knees toward the torso and lifting the feet clear of the ground.",
+      "Hold the defined tucked position, then return the feet to the floor under control."
+    ],
+    "es": [
+      "Coloca las paralelas de forma estable y apóyate con los brazos extendidos.",
+      "Inclínate hacia delante con control, acercando las rodillas al torso y separando los pies del suelo.",
+      "Mantén la posición agrupada definida y devuelve los pies al suelo con control."
+    ]
+  },
+  "cues": {
+    "en": [
+      "Record a planche lean separately if the feet remain supported.",
+      "Keep advanced-tuck and straight-leg variations separate."
+    ],
+    "es": [
+      "Registra una inclinación de planche por separado si los pies siguen apoyados.",
+      "Distingue las variantes agrupada avanzada y de piernas extendidas."
+    ]
+  },
+  "review": {
+    "technical": "pending",
+    "reviewer": null,
+    "reviewedAt": null
+  },
+  "media": [],
+  "license": "MIT",
+  "provenance": {
+    "kind": "gravis-authored",
+    "note": "Original editorial draft for Gravis. Muscle labels and technique await human review. No competitor media or private account data included."
+  }
+}

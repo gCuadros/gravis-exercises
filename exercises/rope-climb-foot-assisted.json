@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "id": "grv_000000000007",
+  "slug": "rope-climb-foot-assisted",
+  "status": "draft",
+  "names": {
+    "en": "Rope climb · foot-assisted",
+    "es": "Trepa de cuerda · con pies"
+  },
+  "aliases": {
+    "en": ["rope climb"],
+    "es": ["subida de cuerda"]
+  },
+  "summary": {
+    "en": "A rope ascent using the feet to assist support.",
+    "es": "Ascenso por cuerda utilizando los pies como apoyo."
+  },
+  "disciplines": ["functional"],
+  "family": "rope_climb",
+  "equipment": ["rope"],
+  "muscles": {
+    "primary": ["lats"],
+    "secondary": ["biceps", "forearms", "abdominals"]
+  },
+  "tracking": {
+    "required": ["repetitions", "ascent_height"],
+    "optional": ["duration"],
+    "loadConvention": "none",
+    "notes": {
+      "en": "Record ascent count and height in metres; store foot-lock technique with the session. Do not count descent distance as ascent distance.",
+      "es": "Registra ascensos y altura en metros; guarda la técnica de bloqueo en la sesión. No sumes el descenso a la distancia ascendida."
+    }
+  },
+  "instructions": {
+    "en": [
+      "Use an appropriately anchored rope and establish the foot-lock technique and target height for the attempt.",
+      "Alternate hand advancement with foot support to move upward under control.",
+      "Reach the defined height and descend using controlled hand and foot support."
+    ],
+    "es": [
+      "Utiliza una cuerda con anclaje adecuado y define el bloqueo de pies y la altura del intento.",
+      "Alterna el avance de las manos con el apoyo de los pies para subir con control.",
+      "Alcanza la altura definida y desciende manteniendo el apoyo controlado de manos y pies."
+    ]
+  },
+  "cues": {
+    "en": [
+      "Learn the chosen foot lock before using the full ascent.",
+      "Keep legless climbing as a separate variant."
+    ],
+    "es": [
+      "Aprende el bloqueo de pies elegido antes de realizar el ascenso completo.",
+      "Separa la trepa sin piernas como otra variante."
+    ]
+  },
+  "review": {
+    "technical": "pending",
+    "reviewer": null,
+    "reviewedAt": null
+  },
+  "media": [],
+  "license": "MIT",
+  "provenance": {
+    "kind": "gravis-authored",
+    "note": "Original editorial draft for Gravis. Muscle labels and technique await human review. No competitor media or private account data included."
+  }
+}

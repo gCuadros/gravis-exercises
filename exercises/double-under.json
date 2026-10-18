@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "id": "grv_000000000004",
+  "slug": "double-under",
+  "status": "draft",
+  "names": {
+    "en": "Double-under",
+    "es": "Salto doble de comba"
+  },
+  "aliases": {
+    "en": ["double unders", "DU"],
+    "es": ["dobles de comba", "saltos dobles"]
+  },
+  "summary": {
+    "en": "One jump with two passes of the rope beneath the feet.",
+    "es": "Un salto con dos pasos de la cuerda bajo los pies."
+  },
+  "disciplines": ["functional"],
+  "family": "jump_rope",
+  "equipment": ["jump-rope"],
+  "muscles": {
+    "primary": ["calves"],
+    "secondary": ["quadriceps", "forearms"]
+  },
+  "tracking": {
+    "required": ["repetitions"],
+    "optional": ["duration"],
+    "loadConvention": "none",
+    "notes": {
+      "en": "Record completed repetitions, with optional time. A workout standard can further define how a repetition is counted.",
+      "es": "Registra repeticiones completadas y, opcionalmente, tiempo. El estándar de una sesión puede concretar cómo se cuenta cada repetición."
+    }
+  },
+  "instructions": {
+    "en": [
+      "Choose a clear area and begin turning the rope with a controlled rhythm.",
+      "Create enough clearance for the rope to pass twice beneath the feet during one jump.",
+      "Land with control and continue the rhythm or reset before the next attempt."
+    ],
+    "es": [
+      "Elige una zona despejada y empieza a mover la comba con un ritmo controlado.",
+      "Deja espacio suficiente para que la cuerda pase dos veces bajo los pies durante un salto.",
+      "Aterriza con control y continúa el ritmo o recolócate antes del siguiente intento."
+    ]
+  },
+  "cues": {
+    "en": [
+      "Count completed double passes, not failed attempts.",
+      "Keep single-unders as a different movement."
+    ],
+    "es": [
+      "Cuenta los saltos dobles completados, no los intentos fallidos.",
+      "Registra los saltos simples como un movimiento distinto."
+    ]
+  },
+  "review": {
+    "technical": "pending",
+    "reviewer": null,
+    "reviewedAt": null
+  },
+  "media": [],
+  "license": "MIT",
+  "provenance": {
+    "kind": "gravis-authored",
+    "note": "Original editorial draft for Gravis. Muscle labels and technique await human review. No competitor media or private account data included."
+  }
+}

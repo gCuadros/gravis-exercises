@@ -1,0 +1,366 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Exercise",
+  "description": "Canonical Gravis exercise contract. Publication gates are enforced by this schema; cross-record identity checks run in the catalogue validator.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "slug",
+    "status",
+    "names",
+    "aliases",
+    "summary",
+    "disciplines",
+    "family",
+    "equipment",
+    "muscles",
+    "tracking",
+    "instructions",
+    "cues",
+    "review",
+    "media",
+    "license",
+    "provenance"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^grv_[a-z0-9]{12}$"
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "status": {
+      "enum": ["draft", "published"]
+    },
+    "names": {
+      "$ref": "#/$defs/bilingual"
+    },
+    "aliases": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["en", "es"],
+      "properties": {
+        "en": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        },
+        "es": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        }
+      }
+    },
+    "summary": {
+      "$ref": "#/$defs/bilingual"
+    },
+    "disciplines": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": ["strength", "calisthenics", "functional"]
+      }
+    },
+    "family": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "equipment": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "muscles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primary", "secondary"],
+      "properties": {
+        "primary": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "secondary": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "tracking": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "optional", "loadConvention", "notes"],
+      "properties": {
+        "required": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "repetitions",
+              "load",
+              "duration",
+              "distance",
+              "machine_calories",
+              "assistance",
+              "band",
+              "ascent_height"
+            ]
+          }
+        },
+        "optional": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "repetitions",
+              "load",
+              "duration",
+              "distance",
+              "machine_calories",
+              "assistance",
+              "band",
+              "ascent_height"
+            ]
+          }
+        },
+        "loadConvention": {
+          "enum": ["none", "total_including_bar", "external_load", "assistance_separate"]
+        },
+        "notes": {
+          "$ref": "#/$defs/bilingual"
+        }
+      }
+    },
+    "instructions": {
+      "$ref": "#/$defs/bilingualLists"
+    },
+    "cues": {
+      "$ref": "#/$defs/bilingualLists"
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["technical", "reviewer", "reviewedAt"],
+      "properties": {
+        "technical": {
+          "enum": ["pending", "approved"]
+        },
+        "reviewer": {
+          "type": ["string", "null"],
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "reviewedAt": {
+          "type": ["string", "null"],
+          "format": "date"
+        }
+      }
+    },
+    "media": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "url", "alt", "license", "creator", "reviewStatus"],
+        "properties": {
+          "type": {
+            "enum": ["video", "image", "animation"]
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://"
+          },
+          "alt": {
+            "$ref": "#/$defs/bilingual"
+          },
+          "license": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "creator": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "reviewStatus": {
+            "enum": ["pending", "approved"]
+          }
+        }
+      }
+    },
+    "license": {
+      "const": "MIT"
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "note"],
+      "properties": {
+        "kind": {
+          "const": "gravis-authored"
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "bilingual": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["en", "es"],
+      "properties": {
+        "en": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "es": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      }
+    },
+    "bilingualLists": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["en", "es"],
+      "properties": {
+        "en": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 1
+        },
+        "es": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "minItems": 1
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "review": {
+            "properties": {
+              "technical": {
+                "const": "approved"
+              }
+            },
+            "type": "object"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "review": {
+            "properties": {
+              "reviewer": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "reviewedAt": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "published"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "review": {
+            "properties": {
+              "technical": {
+                "const": "approved"
+              }
+            },
+            "type": "object"
+          },
+          "media": {
+            "minItems": 1,
+            "items": {
+              "properties": {
+                "reviewStatus": {
+                  "const": "approved"
+                }
+              },
+              "type": "object"
+            },
+            "contains": {
+              "properties": {
+                "type": {
+                  "enum": ["video", "animation"]
+                },
+                "reviewStatus": {
+                  "const": "approved"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        }
+      }
+    }
+  ]
+}

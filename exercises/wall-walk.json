@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "id": "grv_000000000006",
+  "slug": "wall-walk",
+  "status": "draft",
+  "names": {
+    "en": "Wall walk",
+    "es": "Caminata por la pared"
+  },
+  "aliases": {
+    "en": ["wall walks"],
+    "es": ["wall walk"]
+  },
+  "summary": {
+    "en": "A controlled transition toward an inverted position using a wall.",
+    "es": "Transición controlada hacia una posición invertida con apoyo en una pared."
+  },
+  "disciplines": ["calisthenics", "functional"],
+  "family": "handstand",
+  "equipment": ["wall", "floor"],
+  "muscles": {
+    "primary": ["shoulders"],
+    "secondary": ["triceps", "abdominals"]
+  },
+  "tracking": {
+    "required": ["repetitions"],
+    "optional": ["duration"],
+    "loadConvention": "none",
+    "notes": {
+      "en": "Record the range or workout standard with the session. A partial wall walk is not automatically comparable with a competition-standard repetition.",
+      "es": "Registra el recorrido o estándar en la sesión. Una versión parcial no es automáticamente comparable con una repetición de competición."
+    }
+  },
+  "instructions": {
+    "en": [
+      "Start facing the floor with your feet close to a clear, stable wall.",
+      "Walk your feet up the wall and your hands toward it until you reach the range defined for this variation.",
+      "Reverse the movement under control and return to the defined starting position."
+    ],
+    "es": [
+      "Empieza mirando al suelo con los pies cerca de una pared estable y despejada.",
+      "Sube los pies por la pared y acerca las manos hasta alcanzar el recorrido definido para esta variante.",
+      "Invierte el movimiento con control y vuelve a la posición inicial definida."
+    ]
+  },
+  "cues": {
+    "en": [
+      "Set a clear range before counting repetitions.",
+      "Do not combine partial and full-range results without recording the difference."
+    ],
+    "es": [
+      "Define el recorrido antes de contar repeticiones.",
+      "Distingue los resultados de recorrido parcial y completo."
+    ]
+  },
+  "review": {
+    "technical": "pending",
+    "reviewer": null,
+    "reviewedAt": null
+  },
+  "media": [],
+  "license": "MIT",
+  "provenance": {
+    "kind": "gravis-authored",
+    "note": "Original editorial draft for Gravis. Muscle labels and technique await human review. No competitor media or private account data included."
+  }
+}

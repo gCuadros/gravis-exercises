@@ -1,0 +1,17 @@
+name: Exercise request or correction
+description: Suggest coverage or correct an existing variation.
+body:
+  - type: textarea
+    id: movement
+    attributes:
+      label: Exact exercise variation
+      description: Include equipment, current ID if any, and what distinguishes this variation.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and proposed change
+      description: Link references and explain the gap. References do not grant rights to copy content or media.
+    validations:
+      required: true

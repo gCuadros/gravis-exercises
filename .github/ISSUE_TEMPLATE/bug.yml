@@ -1,0 +1,16 @@
+name: Bug report
+description: Report a reproducible data, package or website problem.
+body:
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction
+      description: Include the package version, environment and exercise ID if relevant. Do not include private workout exports.
+    validations:
+      required: true

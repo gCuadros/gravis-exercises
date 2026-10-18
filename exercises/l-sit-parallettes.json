@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "id": "grv_000000000003",
+  "slug": "l-sit-parallettes",
+  "status": "draft",
+  "names": {
+    "en": "L-sit · parallettes",
+    "es": "L-sit · paralelas bajas"
+  },
+  "aliases": {
+    "en": ["l sit", "parallel bar l sit"],
+    "es": ["escuadra en paralelas"]
+  },
+  "summary": {
+    "en": "A straight-leg support hold on low parallel bars.",
+    "es": "Apoyo isométrico con las piernas extendidas en paralelas bajas."
+  },
+  "disciplines": ["calisthenics"],
+  "family": "l_sit",
+  "equipment": ["parallettes"],
+  "muscles": {
+    "primary": ["abdominals", "hip-flexors"],
+    "secondary": ["triceps", "shoulders"]
+  },
+  "tracking": {
+    "required": ["duration"],
+    "optional": [],
+    "loadConvention": "none",
+    "notes": {
+      "en": "Record hold duration in seconds. This entry specifically uses parallettes, not rings or floor support.",
+      "es": "Registra segundos de mantenimiento. Esta ficha corresponde a paralelas bajas, no a anillas o al suelo."
+    }
+  },
+  "instructions": {
+    "en": [
+      "Place the parallettes on a stable surface and support your body with your arms straight.",
+      "Lift your feet and extend your legs in front of you to form the defined L position.",
+      "Time the hold while the position is maintained, then lower your feet under control."
+    ],
+    "es": [
+      "Coloca las paralelas sobre una superficie estable y sostén el cuerpo con los brazos extendidos.",
+      "Eleva los pies y extiende las piernas delante del cuerpo para adoptar la posición en L.",
+      "Cronometra el mantenimiento de la posición y después apoya los pies con control."
+    ]
+  },
+  "cues": {
+    "en": [
+      "Keep a tucked version as a separate progression.",
+      "End the timed hold when the defined position is lost."
+    ],
+    "es": [
+      "Registra la versión agrupada como una progresión distinta.",
+      "Termina el tiempo cuando se pierda la posición definida."
+    ]
+  },
+  "review": {
+    "technical": "pending",
+    "reviewer": null,
+    "reviewedAt": null
+  },
+  "media": [],
+  "license": "MIT",
+  "provenance": {
+    "kind": "gravis-authored",
+    "note": "Original editorial draft for Gravis. Muscle labels and technique await human review. No competitor media or private account data included."
+  }
+}
