@@ -1,8 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createCatalogue } from '../src/catalogue.js';
-import { loadCatalogue, validateExercise } from '../scripts/lib.mjs';
-const entries = await loadCatalogue();
+import { validateExercise } from '../scripts/lib.mjs';
+import { searchFixtures } from './fixtures/exercises.mjs';
+const entries = searchFixtures();
 const make = () =>
   createCatalogue({
     schemaVersion: 1,

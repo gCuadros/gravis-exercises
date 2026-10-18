@@ -1,15 +1,15 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { loadCatalogue, validateCatalogue, validateExercise } from '../scripts/lib.mjs';
-import { filterExercises } from '../website/catalogue.js';
+import { exerciseFixture } from './fixtures/exercises.mjs';
 import { escapeHTML, detailPage, cataloguePage } from '../website/render.js';
 const entries = await loadCatalogue();
-const fixture = () => structuredClone(entries[0]);
+const fixture = exerciseFixture;
 test('authored records have unique identities and no private source fields', () => {
   assert(entries.length > 0);
   assert.deepEqual(validateCatalogue(entries), []);
   for (const e of entries) assert.equal(e.provenance.kind, 'gravis-authored');
-  const duplicate = fixture();
+  const duplicate = structuredClone(entries[0]);
   assert(validateCatalogue([...entries, duplicate]).some((e) => e.includes('Duplicate')));
 });
 test('missing translation, duplicate tracking metrics and source injection fail validation', () => {
@@ -55,21 +55,6 @@ test('invalid calendar dates and unsafe slugs fail', () => {
   assert(validateExercise(e).some((x) => x.includes('date')));
   e.slug = '../private';
   assert(validateExercise(e).some((x) => x.includes('slug')));
-});
-test('search supports Spanish accents, English aliases and combined filters', () => {
-  assert.equal(filterExercises(entries, { query: 'dominada' }).length, 1);
-  assert.equal(filterExercises(entries, { query: 'ergometro' }).length, 1);
-  assert(filterExercises(entries, { query: 'dorsales' }).length > 0);
-  assert.equal(
-    filterExercises(entries, { query: 'DU', discipline: 'functional', equipment: 'jump-rope' })
-      .length,
-    1,
-  );
-  assert.equal(
-    filterExercises(entries, { query: 'bench press', discipline: 'calisthenics' }).length,
-    0,
-  );
-  assert.equal(filterExercises(entries, { query: 'missing movement' }).length, 0);
 });
 test('malformed records and media return errors instead of throwing', () => {
   assert(validateCatalogue([null]).length);
