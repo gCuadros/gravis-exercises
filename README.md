@@ -58,6 +58,10 @@ The runtime uses standard ESM and works in Node.js 22.13+ and modern browsers/bu
 
 JSON files can also be extracted from the archive or consumed directly from `dist/package/`, without JavaScript or npm at runtime. Each envelope has `schemaVersion`, `version`, `channel`, `license` and `exercises`. Preserve `id` as the identity; display names and slugs may change under a documented migration.
 
+## Continue this project
+
+Start with [plan.md](plan.md) for the scope, ordered tasks and acceptance criteria, then [status.md](status.md) for the verified baseline, outstanding work and exact next action. [AGENTS.md](AGENTS.md) contains the working rules. These Markdown documents are the portable handoff for any contributor, model or harness; no access to the original chat is required.
+
 ## Develop
 
 Use a branch; never work directly on `main`. Node 22 is the default in `.nvmrc`; CI also exercises Node 24.

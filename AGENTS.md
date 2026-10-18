@@ -1,5 +1,11 @@
 # Repository working agreement
 
+## Portable entry point
+
+Before work, read [plan.md](plan.md) and [status.md](status.md). These are the tool-independent plan and handoff; do not assume access to the original conversation or persistent agent memory. Verify their snapshot against the current checkout. Keep task states, evidence, limitations and the next action current in `status.md`; update `plan.md` when scope, dependencies or acceptance criteria change. Human maintainers and harnesses that do not discover AGENTS automatically should follow the same entry links in README.
+
+## Working rules
+
 - Never implement or commit directly on `main`. Inspect the current branch and working tree before edits. Use a focused feature/fix/chore branch and preserve user changes.
 - Treat the reusable library as the product. The website is one consumer. Keep the runtime independent of UI frameworks, Node-only APIs, network access and runtime dependencies.
 - Keep `schema/exercise.schema.json` as the canonical record contract. Generate consumer types during the build; do not hand-maintain a second model. Document breaking changes and identity migrations.
