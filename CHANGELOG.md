@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Make search and browser regression tests resilient to catalogue growth using isolated synthetic fixtures and explicit exercise selection.
+
 - Add a tool-independent execution plan, status handoff and deferred product context, discoverable from README and AGENTS.
 
 - Establish a framework-independent exercise library with ESM, generated TypeScript declarations and plain JSON exports.

@@ -58,9 +58,9 @@ Task IDs are permanent. The table defines order and dependencies; `status.md` is
 | WEB-001  | Catalogue readiness for broader public use      | TAX-001, actual reviewed entries from CAT-002/MED-001            | Accurate mixed draft/published states, usable mobile/keyboard flows, reviewed media behavior and measured payload/search performance               |
 | REL-001  | First deliberate public distribution            | FND-001–002, TST-001, TAX-001, DATA-001; approved launch content | Maintainer selects name/ownership, release scope and channels; versioned artifacts and license review completed; publication explicitly authorized |
 
-### TST-001 — Recommended next implementation
+### TST-001 — Catalogue growth regression coverage
 
-Inspect `tests/catalogue.test.mjs` and `tests/e2e/catalogue.spec.mjs`: some tests assume that searching `dominada` returns exactly one exercise, and navigation uses the entire matching card locator. That assumption will break as pull-up variations are added.
+Tests must tolerate multiple exercises matching `dominada` and select a deliberate identity when navigating. The original tests assumed one match; this task defines the regression coverage that prevents that assumption from returning. Consult `status.md` for completion and the current next task.
 
 - Test search semantics against small explicit synthetic fixtures in unit tests, including multiple matching variations, accents, aliases and combined filters.
 - Keep a separate validation test over every real source record.
