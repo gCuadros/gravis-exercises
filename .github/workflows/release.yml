@@ -1,0 +1,45 @@
+name: Prepare release
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  checks:
+    uses: ./.github/workflows/ci.yml
+  draft:
+    name: Prepare reviewed release artifacts
+    needs: checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Match tag to package version
+        run: node --input-type=module -e "import p from './package.json' with {type:'json'}; if(process.env.GITHUB_REF_NAME !== 'v'+p.version) process.exit(1)"
+      - run: npm ci
+      - run: npm run build
+      - run: npm run test:package
+      - name: Prepare draft release for maintainer review
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          gh release create "$GITHUB_REF_NAME"
+          --verify-tag --draft --generate-notes
+          artifacts/*.tgz artifacts/*.sha256
+          dist/package/catalogue.published.json
+          dist/package/catalogue.preview.json
+          dist/package/exercise.schema.json

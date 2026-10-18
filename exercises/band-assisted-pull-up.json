@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "id": "grv_000000000002",
+  "slug": "band-assisted-pull-up",
+  "status": "draft",
+  "names": {
+    "en": "Band-assisted pull-up",
+    "es": "Dominada asistida con banda"
+  },
+  "aliases": {
+    "en": ["assisted pull up", "band pull up"],
+    "es": ["dominadas con goma", "dominada con banda"]
+  },
+  "summary": {
+    "en": "A vertical pull with a resistance band providing assistance.",
+    "es": "Tracción vertical con ayuda de una banda elástica."
+  },
+  "disciplines": ["strength", "calisthenics"],
+  "family": "pull_up",
+  "equipment": ["pull-up-bar", "band"],
+  "muscles": {
+    "primary": ["lats"],
+    "secondary": ["biceps", "upper-back"]
+  },
+  "tracking": {
+    "required": ["repetitions", "band"],
+    "optional": [],
+    "loadConvention": "none",
+    "notes": {
+      "en": "Record band identity and foot/knee placement. Band colour does not establish a universal assistance value in kg.",
+      "es": "Registra la banda y el apoyo de pie o rodilla. El color no establece una asistencia universal en kg."
+    }
+  },
+  "instructions": {
+    "en": [
+      "Secure a suitable band to a stable pull-up bar and check the attachment before placing your foot or knee in it.",
+      "Begin from a controlled hanging position and pull your body upward without using a swing.",
+      "Lower under control and repeat with the same band position and range."
+    ],
+    "es": [
+      "Fija una banda adecuada a una barra estable y revisa el anclaje antes de apoyar el pie o la rodilla.",
+      "Parte de una suspensión controlada y eleva el cuerpo sin impulsarte con un balanceo.",
+      "Desciende con control y repite manteniendo la colocación de la banda y el recorrido."
+    ]
+  },
+  "cues": {
+    "en": [
+      "Keep the band setup consistent between sessions.",
+      "Avoid an uncontrolled release of the stretched band."
+    ],
+    "es": [
+      "Mantén el montaje de la banda entre sesiones.",
+      "Evita soltar de golpe la banda estirada."
+    ]
+  },
+  "review": {
+    "technical": "pending",
+    "reviewer": null,
+    "reviewedAt": null
+  },
+  "media": [],
+  "license": "MIT",
+  "provenance": {
+    "kind": "gravis-authored",
+    "note": "Original editorial draft for Gravis. Muscle labels and technique await human review. No competitor media or private account data included."
+  }
+}
