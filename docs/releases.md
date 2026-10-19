@@ -12,6 +12,8 @@ Implement changes on a focused branch and open a pull request against `main`. Ev
 
 The taxonomy JSON shape has its own `schemaVersion` (currently 1); vocabulary contents use the package distribution version. See the [0.2.0 migration](migrations/0.2.0.md).
 
+Version 0.2.1 adds the [catalogue contract](catalogue-contract.md) without changing the existing data shape or record version. Future incompatible envelope or record changes must review the shared contract generation.
+
 Add relevant changes to `CHANGELOG.md`. Include content status and migrations, not only implementation details. Never claim a reviewed catalogue merely because the package's software checks pass.
 
 ## Package availability
@@ -20,12 +22,12 @@ The package is intentionally private to prevent accidental npm registry publicat
 
 ## Draft release workflow
 
-A maintainer may push a version tag such as `v0.2.0` after a reviewed merge and an explicit release decision. The `Prepare release` workflow:
+A maintainer may push a version tag such as `v0.2.1` after a reviewed merge and an explicit release decision. The `Prepare release` workflow:
 
 1. Runs the same reusable CI checks against the tagged commit.
 2. Verifies the tag matches the package version.
 3. Rebuilds and tests the distributable archive in an isolated consumer.
-4. Creates a **draft** GitHub release with the archive, SHA-256 checksum, separate preview/published JSON, exercise schema, vocabulary JSON and its schema.
+4. Creates a **draft** GitHub release with the archive, SHA-256 checksum, separate preview/published JSON, exercise and bundled catalogue schemas, vocabulary JSON and its schema.
 
 It does not publish to npm, deploy the site or publish the draft release automatically. A maintainer reviews release notes, licenses, content status and artifacts before publication. Tags and release publication are not part of ordinary development tasks.
 

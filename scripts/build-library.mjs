@@ -2,9 +2,11 @@ import { mkdir, writeFile, copyFile, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { compile } from 'json-schema-to-typescript';
 import { root, schema } from './lib.mjs';
+import { catalogueSchema, createDistribution } from './catalogue-contract.mjs';
 import { taxonomy } from '../src/taxonomy.js';
 
 export async function buildLibrary(exercises, version) {
+  const distribution = createDistribution(exercises, version);
   const dir = path.join(root, 'dist/package');
   await mkdir(dir, { recursive: true });
   await copyFile(path.join(root, 'src/catalogue.js'), path.join(dir, 'catalogue.js'));
@@ -25,18 +27,18 @@ export async function buildLibrary(exercises, version) {
     additionalProperties: false,
   });
   await writeFile(path.join(dir, 'exercise.generated.d.ts'), generated);
-  for (const channel of ['published', 'preview']) {
-    const entries =
-      channel === 'published'
-        ? exercises.filter((exercise) => exercise.status === 'published')
-        : exercises;
-    const data = {
-      schemaVersion: schema.properties.schemaVersion.const,
-      version,
-      channel,
-      license: 'MIT',
-      exercises: entries,
-    };
+  await writeFile(
+    path.join(dir, 'catalogue.schema.json'),
+    JSON.stringify(catalogueSchema, null, 2) + '\n',
+  );
+  await writeFile(
+    path.join(dir, 'catalogue.generated.d.ts'),
+    await compile(catalogueSchema, 'Catalogue', {
+      bannerComment: '/* Generated from the bundled catalogue schema. Do not edit. */',
+      additionalProperties: false,
+    }),
+  );
+  for (const [channel, data] of Object.entries(distribution)) {
     const name = channel === 'published' ? 'index' : 'preview';
     await writeFile(
       path.join(dir, `catalogue.${channel}.json`),

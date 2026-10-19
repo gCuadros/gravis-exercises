@@ -10,9 +10,9 @@ This repository intentionally remains one package with one reference website. A 
 
 1. Authors maintain records in `exercises/` and the contract in `schema/exercise.schema.json`.
 2. Ajv validates the actual JSON Schema, including review/publication conditions and calendar formats. Additional domain checks cover identity uniqueness, filenames, metric/muscle role overlap and delivery URLs.
-3. The build generates TypeScript record declarations from that same schema and combines them with the small handwritten API declarations. TypeScript describes shapes; the build-time validator enforces constraints that types cannot express, such as calendar validity and review conditions.
-4. The build emits isolated published/preview entry points and JSON envelopes in `dist/package/`. Both use the same dependency-free runtime. The default entry point does not import or load preview data.
-5. The reference website is built into `dist/site/` from the same authored records and runtime. It deliberately displays preview status. Its files never enter the library archive.
+3. The build generates TypeScript record declarations from that same schema and envelope declarations from the bundled catalogue schema and combines them with the small handwritten API declarations. TypeScript describes shapes; the build-time validator enforces constraints that types cannot express, such as calendar validity and review conditions.
+4. The build validates complete preview/published envelopes, then emits isolated entry points and JSON envelopes in `dist/package/`. Both use the same dependency-free runtime. The default entry point does not import or load preview data.
+5. The reference website is built into `dist/site/` from the same authored records and runtime. It deliberately displays preview status. It serves byte-identical copies of the package feeds and exposes the bundled catalogue schema. Its pages/assets never enter the library archive.
 6. Package verification installs the actual archive into a temporary unrelated project, then checks its public exports and declarations. CI retains the verified archive and checksum for inspection.
 
 ## Contract and ownership
@@ -28,3 +28,5 @@ This repository intentionally remains one package with one reference website. A 
 The pilot has eight drafts and no media. The [controlled vocabulary](taxonomy.md) is authored in `src/taxonomy.js`, shared by runtime and website and exported as plain JSON. Its structure has a separate schema; record enums are synchronized explicitly and drift fails validation/build. Vocabulary TypeScript keys reuse generated record types. The data is distributed in full and searched in memory, which suits the current catalogue. Benchmark payload size and search latency before expanding to very large collections.
 
 Build tooling is allowed development dependencies; consumers have zero runtime dependencies. The supported JavaScript API is ESM, with Node 22.13+ and modern browser/bundler consumption tested. JSON is the language-independent interchange format. Other runtimes, CommonJS-only toolchains and assistive technologies are not implied to have been exhaustively tested.
+
+The [catalogue contract](catalogue-contract.md) keeps authored schemas reusable: the envelope references the exercise contract, while the build rebases those references into a single offline schema. Conditional publication requirements are enforced by validation, not assumed from TypeScript types.

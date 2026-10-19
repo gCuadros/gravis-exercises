@@ -51,3 +51,28 @@ if (entry) {
   const family: Exercise['family'] = 'unknown';
   void family;
 }
+
+import type { Catalogue } from 'gravis-exercises';
+const emptyCatalogue: Catalogue = {
+  schemaVersion: 2,
+  version: '0.2.1',
+  channel: 'published',
+  license: 'MIT',
+  exercises: [],
+};
+void emptyCatalogue;
+// @ts-expect-error Catalogue fields derive from the schema; license is fixed.
+const invalidLicense: Catalogue['license'] = 'CC0';
+// @ts-expect-error Unknown channels are not part of the envelope contract.
+const invalidChannel: Catalogue['channel'] = 'draft';
+// @ts-expect-error The record contract version is preserved in the envelope.
+const invalidSchemaVersion: Catalogue['schemaVersion'] = 1;
+// @ts-expect-error Generated envelope fields remain readonly.
+catalogue.channel = 'preview';
+// @ts-expect-error Envelope records are deeply readonly.
+catalogue.exercises[0].names.en = 'changed';
+void invalidLicense;
+void invalidChannel;
+void invalidSchemaVersion;
+const sameRecordType: Exercise | undefined = catalogue.exercises[0];
+void sameRecordType;

@@ -38,8 +38,9 @@ export function validateExercise(exercise) {
   return errors;
 }
 
-export function validateCatalogue(exercises) {
-  if (!Array.isArray(exercises) || !exercises.length) return ['Source catalogue must not be empty'];
+export function validateCatalogue(exercises, { allowEmpty = false } = {}) {
+  if (!Array.isArray(exercises) || (!allowEmpty && !exercises.length))
+    return ['Source catalogue must not be empty'];
   const errors = [],
     ids = new Set(),
     slugs = new Set();
