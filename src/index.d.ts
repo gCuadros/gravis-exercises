@@ -4,17 +4,17 @@ type DeepReadonly<T> = T extends object ? { readonly [K in keyof T]: DeepReadonl
 export type Exercise = DeepReadonly<ExerciseModel>;
 export type Discipline = Exercise['disciplines'][number];
 export interface Catalogue {
-  readonly schemaVersion: 1;
+  readonly schemaVersion: Exercise['schemaVersion'];
   readonly version: string;
   readonly channel: 'published' | 'preview';
   readonly license: 'MIT';
   readonly exercises: readonly Exercise[];
 }
 export interface SearchOptions {
-  /** Matches all query words across both languages, aliases, equipment and muscles. */
+  /** Matches all query words across both languages, aliases, equipment, muscles and families. */
   query?: string;
   discipline?: Discipline | 'all';
-  equipment?: string;
+  equipment?: Exercise['equipment'][number] | 'all';
 }
 export declare const catalogue: Catalogue;
 export declare const exercises: readonly Exercise[];

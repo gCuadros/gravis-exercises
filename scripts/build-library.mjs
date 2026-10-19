@@ -2,6 +2,7 @@ import { mkdir, writeFile, copyFile, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { compile } from 'json-schema-to-typescript';
 import { root, schema } from './lib.mjs';
+import { taxonomy } from '../src/taxonomy.js';
 
 export async function buildLibrary(exercises, version) {
   const dir = path.join(root, 'dist/package');
@@ -11,6 +12,13 @@ export async function buildLibrary(exercises, version) {
     path.join(root, 'schema/exercise.schema.json'),
     path.join(dir, 'exercise.schema.json'),
   );
+  for (const file of ['taxonomy.js', 'taxonomy.d.ts'])
+    await copyFile(path.join(root, 'src', file), path.join(dir, file));
+  await copyFile(
+    path.join(root, 'schema/taxonomy.schema.json'),
+    path.join(dir, 'taxonomy.schema.json'),
+  );
+  await writeFile(path.join(dir, 'taxonomy.json'), JSON.stringify(taxonomy, null, 2) + '\n');
   const types = await readFile(path.join(root, 'src/index.d.ts'), 'utf8');
   const generated = await compile(schema, 'Exercise', {
     bannerComment: '/* Generated from schema/exercise.schema.json. Do not edit. */',
@@ -22,7 +30,13 @@ export async function buildLibrary(exercises, version) {
       channel === 'published'
         ? exercises.filter((exercise) => exercise.status === 'published')
         : exercises;
-    const data = { schemaVersion: 1, version, channel, license: 'MIT', exercises: entries };
+    const data = {
+      schemaVersion: schema.properties.schemaVersion.const,
+      version,
+      channel,
+      license: 'MIT',
+      exercises: entries,
+    };
     const name = channel === 'published' ? 'index' : 'preview';
     await writeFile(
       path.join(dir, `catalogue.${channel}.json`),

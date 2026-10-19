@@ -7,7 +7,7 @@ Never edit or commit on `main`. Start a focused branch, run `npm ci`, and open a
 ## Add or refine an exercise
 
 1. Check for an existing identity and variation. Translate names and add search aliases without creating duplicate movements.
-2. Create `exercises/<slug>.json` using the schema and an existing record as a structural example. Author the content yourself. Preserve stable IDs when editing; new IDs must be unique and match `grv_` followed by 12 lowercase letters or digits.
+2. Select canonical equipment, muscle, family, discipline and metric keys from the [controlled vocabulary](docs/taxonomy.md). Add any genuinely missing terms there first and run `npm run taxonomy:sync`. Create `exercises/<slug>.json` using the schema and an existing record as a structural example. Author the content yourself. Preserve stable IDs when editing; new IDs must be unique and match `grv_` followed by 12 lowercase letters or digits.
 3. Describe the exact variation in English and Spanish: equipment, start position, movement, return, control cues and recording convention. Distinguish load, repetitions, hold time, assistance, distance and machine output.
 4. Set `status: "draft"`, technical review to `pending`, reviewer/date to `null`, and `media: []` until actual evidence is available. Do not invent a reviewer, source license or demonstration URL.
 5. Have a qualified movement professional review technique, muscle assignments, translations and tracking. Record their agreed attribution and review date. Any material movement change requires a new review; set the entry back to draft until completed.

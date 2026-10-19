@@ -1,10 +1,10 @@
-# Exercise data model · v1
+# Exercise data model · v2
 
 The unit is a specific exercise variation, not a workout performed by a user. Sessions, sets, personal loads, recommendations and coach conversations belong in the future application, outside this public dataset.
 
 | Field                         | Meaning                                                                              |
 | ----------------------------- | ------------------------------------------------------------------------------------ |
-| `schemaVersion`               | Record contract version, currently 1                                                 |
+| `schemaVersion`               | Record contract version, currently 2                                                 |
 | `id`                          | Stable identity, independent of names and source apps                                |
 | `slug`                        | Readable URL/file identifier; unique in the catalogue                                |
 | `status`                      | `draft` or `published`                                                               |
@@ -31,14 +31,16 @@ The future app should store canonical units alongside numeric values and convert
 
 A band-assisted pull-up is distinct from a machine-assisted pull-up. A foot-assisted rope climb is distinct from a legless rope climb. These can share a family while retaining separate instructions, demonstrations and metrics. Do not turn a generic research label into a precise canonical variation without an editorial decision.
 
-Current taxonomy labels live in `src/catalogue.js`. When adding a new equipment or muscle key, supply its English and Spanish display labels there as well. A dedicated taxonomy dataset can replace this dictionary as the catalogue expands.
+Equipment, muscles, families, disciplines and metrics use the [controlled bilingual vocabulary](taxonomy.md). Author terms in `src/taxonomy.js` and run `npm run taxonomy:sync` to update the standalone record schema enums. Validation and builds reject unknown keys and schema/vocabulary drift. Exact primary/secondary muscle overlap is rejected; broad and narrow muscle groups remain distinct, pending technical review.
 
 ## Validation and release
 
-Ajv executes the canonical JSON Schema to check record structure, real calendar dates and publication requirements. TypeScript record declarations are generated from the same schema during the build. Additional domain checks handle duplicate IDs/slugs, filename agreement, metric overlap and delivery URLs; these checks supplement the contract rather than duplicating its structural rules.
+Ajv executes the canonical JSON Schema to check record structure, real calendar dates and publication requirements. TypeScript record declarations are generated from the same schema during the build. Additional domain checks handle duplicate IDs/slugs, filename agreement, metric/muscle role overlap and delivery URLs; these checks supplement the contract rather than duplicating its structural rules.
 
 An approved technical review requires reviewer attribution and date. Published records additionally need at least one approved video/animation and cannot contain media awaiting review. Technical approval alone does not publish an entry. Media licensing is recorded per asset; the dataset envelope's MIT license applies to the authored text/data, not an override of asset licensing.
 
 The preview dataset includes drafts; the published dataset does not. The website currently exposes the preview deliberately, with review status visible. Do not substitute this preview feed for the published feed in a consumer application.
 
 Dataset release versions follow `package.json`. Increment the release version when distributing changed data. Breaking record contracts require a new schema version and a migration note. Retain IDs across wording and translation corrections.
+
+Version 1 preview consumers should follow the [0.2.0 migration](migrations/0.2.0.md). The exported catalogue envelope identifies record version 2; its standalone schema remains DATA-001 work.

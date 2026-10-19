@@ -1,16 +1,16 @@
 # Project status — Gravis Exercise Library
 
-Snapshot date: **2026-10-18 (Europe/Madrid)**. This is a handoff snapshot, not a live dashboard. Read [plan.md](plan.md) for acceptance criteria and execution order, and verify the checkout/PR before acting. Newer commits are not automatically covered by older test evidence.
+Snapshot date: **2026-10-19 (Europe/Madrid)**. This is a handoff snapshot, not a live dashboard. Read [plan.md](plan.md) for acceptance criteria and execution order, and verify the checkout/PR before acting. Newer commits are not automatically covered by older test evidence.
 
 ## Current handoff
 
 - **Repository:** [gCuadros/gravis-exercises](https://github.com/gCuadros/gravis-exercises).
 - **Working branch:** `chore/project-foundation`; base: `main`.
 - **PR:** [#1 — Establish reusable exercise library and project quality gates](https://github.com/gCuadros/gravis-exercises/pull/1), open in draft at inspection. Not merged.
-- **Verified parent baseline:** `a91a71fd6965bc1b9f190a4be1a651598b47dad4` (`docs: add portable execution plan and project status`), with successful CI. The foundation implementation is `4feee05e7e45c1b483e888540539057950039c80`.
-- **This handoff change:** implements TST-001 with synthetic unit fixtures, explicit search expectations and browser tests against source/expanded catalogues. No production runtime, schema or exercise records changed. It follows the parent baseline above; use Git history and PR checks to identify the resulting test commit.
-- **Worktree at initial inspection:** clean on the foundation branch. Recheck after reading; this fact is timestamped, not a guarantee for another session.
-- **Next implementation:** TAX-001, inventorying existing taxonomy keys and consolidating a controlled bilingual vocabulary. Concrete steps and acceptance criteria are in `plan.md`.
+- **Verified parent baseline:** `8110b0a5c71121aa7d0a0402250660dcd4fab512` (TST-001), with successful [CI run 39169500102](https://github.com/gCuadros/gravis-exercises/actions/runs/39169500102). The foundation implementation is `4feee05e7e45c1b483e888540539057950039c80`.
+- **This handoff change:** implements TAX-001: shared ES/EN vocabulary, controlled record keys, typed taxonomy/JSON exports, search integration, version 2 records and a 0.2.0 migration guide. Use Git history and PR checks to identify the resulting commit; this document does not claim its own future commit hash.
+- **Worktree at initial inspection:** clean on the foundation branch before TAX-001 authoring. Recheck before continuing; preserve any newer work.
+- **Next implementation:** DATA-001, the standalone catalogue-envelope contract. Define its version/channel/license/exercise constraints, export schema and generated types, and test actual archived JSON against it. Keep published collections empty until content approval.
 
 ## Task states
 
@@ -19,7 +19,7 @@ Snapshot date: **2026-10-18 (Europe/Madrid)**. This is a handoff snapshot, not a
 | FND-001  | implemented_under_review | Foundation commit and successful CI below; PR #1 awaits maintainer review/merge decision                                |
 | FND-002  | implemented_under_review | Handoff documents committed in a91a71f; its Node/browser CI passed                                                      |
 | TST-001  | implemented_under_review | Synthetic search fixtures and identity-based browser navigation pass with extra matching variations; see evidence below |
-| TAX-001  | not_started              | Inventory keys and replace ad hoc label/fallback behavior with a controlled bilingual vocabulary                        |
+| TAX-001  | implemented_under_review | Controlled scoped vocabulary, record enums, public JS/JSON/types and migration; local evidence below                    |
 | DATA-001 | not_started              | Add catalogue-envelope contract; current canonical schema covers records only                                           |
 | CAT-001  | not_started              | Research inventory exists locally on the originating machine; reconciliation and batch plan are not complete            |
 | MED-001  | not_started              | Eight production briefs exist, but no original media or technical approvals exist                                       |
@@ -31,11 +31,11 @@ Snapshot date: **2026-10-18 (Europe/Madrid)**. This is a handoff snapshot, not a
 
 ## What actually exists
 
-- **Package:** version `0.1.0`, ESM, generated TypeScript record declarations and plain JSON; zero runtime dependencies. Consumers can install a verified archive into another project.
-- **Exports:** published default API, explicit `/preview` API, `/data`, `/data/preview`, `/schema`, `/package.json`.
-- **Runtime:** immutable records, stable-ID/slug lookups and bilingual accent-insensitive search with discipline/equipment filters.
+- **Package:** version `0.2.0`, ESM, generated TypeScript record declarations and plain JSON; zero runtime dependencies. Consumers can install a verified archive into another project.
+- **Exports:** published default API, explicit `/preview` API, `/data`, `/data/preview`, `/schema`, `/taxonomy`, `/taxonomy/data`, `/taxonomy/schema`, `/package.json`.
+- **Runtime:** immutable records, stable-ID/slug lookups and bilingual accent-insensitive search over exercise/vocabulary aliases and families, with discipline/equipment filters. Vocabulary lookups return undefined for unknown keys; the site refuses invalid labels.
 - **Content:** eight original ES/EN drafts; zero published records; zero approved media; zero completed technical reviews. Published imports/JSON are intentionally empty.
-- **Contract:** JSON Schema draft 2020-12 executed by Ajv; domain validation adds identity, filename, metric and media-URL checks. Record types are generated from the schema.
+- **Contract:** JSON Schema draft 2020-12 executed by Ajv; domain validation adds identity, filename, metric and media-URL checks. Record types are generated from version 2 of the schema. Taxonomy JSON shape version 1 is independently validated; explicit enum synchronization and drift checks keep the standalone record contract aligned.
 - **Build:** `dist/package/` and `dist/site/` are separate. The archive excludes the website, tests and private research. Verified archives/checksums are generated under `artifacts/`.
 - **Reference site:** bilingual catalogue, search, combined filters, exercise pages, JSON downloads, visible draft/review states and responsive layouts. It has no production demonstrations and remains `noindex,nofollow`.
 - **Repository tooling:** locked development tools, formatting, ESLint, unit/type/package tests, Playwright desktop/mobile tests, Node 22/24 CI, Dependabot configuration, CODEOWNERS, templates and a draft-release workflow.
@@ -55,7 +55,7 @@ Snapshot date: **2026-10-18 (Europe/Madrid)**. This is a handoff snapshot, not a
 
 [CI run 39167952157](https://github.com/gCuadros/gravis-exercises/actions/runs/39167952157) passed the Node 22/24 matrix and browser checks. This verifies the preceding documentation commit, not subsequent test changes.
 
-### TST-001 working-tree validation
+### TST-001 baseline `8110b0a5c71121aa7d0a0402250660dcd4fab512`
 
 On 2026-10-18:
 
@@ -66,7 +66,21 @@ On 2026-10-18:
 - Browser navigation chooses the stable real exercise identity, not an ambiguous set of search results. It also verifies combined filters after reload, clearing and language persistence.
 - Expanded payloads are intercepted only in each test browser. Real source records, generated exports and archive contents stay unchanged; dataset tests assert exact source equality and missing synthetic detail routes.
 
-These results cover the TST-001 change before recording this handoff. Inspect the resulting commit's checks in PR #1 for remote evidence; earlier CI links do not imply this follow-up has passed remotely. The test fixtures under `tests/fixtures/` are not public exercise content and must remain excluded from distribution.
+[CI run 39169500102](https://github.com/gCuadros/gravis-exercises/actions/runs/39169500102) passed Node 22/24 and browser checks for this baseline. Synthetic fixtures are not public exercise content and remain excluded from distribution.
+
+### TAX-001 working-tree validation
+
+On 2026-10-19:
+
+- Locked development tools restored successfully with `npm ci --offline --no-audit --no-fund`.
+- `npm run check`: passed with **23 unit tests**, schema/domain and vocabulary-drift checks, build, consumer types and actual isolated offline archive installation.
+- `PLAYWRIGHT_CHANNEL=chrome npm run test:e2e`: **20 tests passed**, desktop/mobile across source and expanded catalogues. Browser runtime now loads the same taxonomy module as the package.
+- Vocabulary covers the pilot's **43 scoped terms**: 3 disciplines, 10 equipment/surfaces, 14 muscles/groups, 8 families and 8 metrics. All have ES/EN labels, definitions and alias lists. This is a coverage snapshot, not the final catalogue scope or technical approval.
+- Negative tests cover missing translations, blank definitions, ambiguous aliases, invalid keys, unknown references, overlapping muscle roles, schema drift, prototype-property lookup, mutation and version 1 rejection.
+- Public `/taxonomy`, `/taxonomy/data` and `/taxonomy/schema` exports are tested from the real archive, including generated record-key types. Archive allowlisting, channel isolation and deterministic packing still pass.
+- All eight pilot records retain IDs, slugs, instructions and draft/review states; only `schemaVersion` changed from 1 to 2. Package version is 0.2.0 with a [migration guide](docs/migrations/0.2.0.md); no version tag or registry release was created.
+
+This evidence covers the local TAX-001 change. Check the resulting commit's PR checks for remote confirmation; the preceding CI links cover earlier commits only. Updated README, [taxonomy workflow](docs/taxonomy.md), plan and migration documentation are part of this handoff.
 
 ### Repository settings observed
 
@@ -76,7 +90,7 @@ The npm registry publication guard remains `private: true`. Draft-release automa
 
 ## Known gaps and external dependencies
 
-1. **Taxonomy is not fully controlled.** Labels live in `src/catalogue.js`; some stored keys accept arbitrary text. Taxonomy semantics and validation need consolidation before large authoring batches.
+1. **Vocabulary coverage is still a pilot.** The current controlled terms describe the existing records; broader batches need new terms and editorial review through the documented workflow. No anatomical hierarchy or exercise suitability inference is implemented.
 2. **No envelope schema.** JSON consumers have a record schema, but not a full versioned catalogue-envelope contract yet.
 3. **No media production or technical reviewer yet.** Briefs do not count as assets or approval. Models can prepare content; actual technical/licensing evidence must come from the appropriate people.
 4. **Launch checks are incomplete.** The current tests do not establish full accessibility, all browsers, large-catalogue performance or actual video/animation behavior.
@@ -88,7 +102,7 @@ The npm registry publication guard remains `private: true`. Draft-release automa
 1. Read `AGENTS.md` → `plan.md` → this file → `docs/architecture.md`.
 2. Confirm branch, worktree and PR state. If PR #1 is still open, continue the appropriate branch; if it has merged, start a new focused branch for the next task.
 3. Run `npm ci` and inspect the package scripts. Do not depend on this machine's caches or SSH aliases.
-4. Start TAX-001: inventory the equipment, muscle and family keys in real records and the labels in `src/catalogue.js`; define normalization/migration before changing the contract. Preserve TST-001 coverage and keep synthetic fixtures schema-valid as taxonomy rules evolve.
+4. Start DATA-001: add a standalone schema for the generated catalogue envelope, reuse the exercise schema, generate matching types and test both channels (including an empty published collection). Decide compatibility/version impact explicitly. Preserve controlled taxonomy and catalogue-growth coverage.
 5. Run `npm run check` and `npm run test:e2e`; review the diff/package boundary.
 6. Update task states and evidence, then commit/push the relevant branch and inspect its CI. Leave merge/release decisions to the maintainer.
 

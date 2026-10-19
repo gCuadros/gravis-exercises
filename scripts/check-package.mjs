@@ -36,6 +36,10 @@ const expected = [
     'preview.js',
     'preview.d.ts',
     'catalogue.js',
+    'taxonomy.js',
+    'taxonomy.d.ts',
+    'taxonomy.json',
+    'taxonomy.schema.json',
     'exercise.generated.d.ts',
     'exercise.schema.json',
     'catalogue.preview.json',
@@ -76,6 +80,21 @@ try {
     import * as preview from 'gravis-exercises/preview';
     import data from 'gravis-exercises/data' with { type: 'json' };
     import schema from 'gravis-exercises/schema' with { type: 'json' };
+    import { taxonomy, getTerm, getLabel } from 'gravis-exercises/taxonomy';
+    import vocabulary from 'gravis-exercises/taxonomy/data' with { type: 'json' };
+    import vocabularySchema from 'gravis-exercises/taxonomy/schema' with { type: 'json' };
+    assert.deepEqual(taxonomy, vocabulary);
+    assert.equal(vocabularySchema.properties.schemaVersion.const, taxonomy.schemaVersion);
+    assert.equal(getLabel('metrics', 'assistance', 'es'), 'Asistencia');
+    assert.equal(getLabel('equipment', 'band', 'es'), 'Banda elástica');
+    assert.equal(getTerm('equipment', 'missing'), undefined);
+    assert.equal(getTerm('equipment', '__proto__'), undefined);
+    assert.throws(() => { taxonomy.groups.equipment.band.aliases.es.push('changed'); }, TypeError);
+    assert.equal(preview.catalogue.schemaVersion, schema.properties.schemaVersion.const);
+    for (const exercise of preview.exercises) {
+      assert(getTerm('families', exercise.family));
+      assert(exercise.equipment.every(key => getTerm('equipment', key)));
+    }
     assert.equal(preview.exercises.length, ${source.length});
     assert.equal(published.exercises.length, ${source.filter((exercise) => exercise.status === 'published').length});
     assert(published.exercises.every(exercise => exercise.status === 'published'));

@@ -1,7 +1,7 @@
 // Synthetic, schema-valid records for tests only. Never write these into exercises/.
 export function exerciseFixture(overrides = {}) {
   return structuredClone({
-    schemaVersion: 1,
+    schemaVersion: 2,
     id: 'grv_test00000001',
     slug: 'test-band-pull-up',
     status: 'draft',
