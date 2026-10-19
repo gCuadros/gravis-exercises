@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 2,
+  "id": "grv_000000000013",
+  "slug": "pull-up-strict",
+  "status": "draft",
+  "names": {
+    "en": "Strict pronated pull-up",
+    "es": "Dominada pronada estricta"
+  },
+  "aliases": {
+    "en": ["Strict pull-up", "Strict overhand pull-up"],
+    "es": ["Dominada estricta", "Dominada sin impulso con agarre prono"]
+  },
+  "summary": {
+    "en": "An unassisted bodyweight pull-up with palms facing away, without swinging or leg drive.",
+    "es": "Dominada sin asistencia con peso corporal y palmas hacia fuera, sin balanceo ni impulso de piernas."
+  },
+  "disciplines": ["strength", "calisthenics", "functional"],
+  "family": "pull_up",
+  "equipment": ["pull-up-bar"],
+  "muscles": {
+    "primary": ["lats"],
+    "secondary": ["biceps", "upper-back", "forearms", "abdominals"]
+  },
+  "tracking": {
+    "required": ["repetitions"],
+    "optional": [],
+    "loadConvention": "none",
+    "notes": {
+      "en": "Count one pull from an elbows-extended hang to chin above the bar and back to the hang. Do not record body mass or assistance as load. Weighted, band-assisted, supinated, kipping and chest-to-bar variations need distinct records.",
+      "es": "Cuenta una subida desde la suspensión con codos extendidos hasta superar la barra con la barbilla y volver a la suspensión. No registres peso corporal ni asistencia como carga. Las variantes lastrada, con banda, supina, con impulso y al pecho necesitan fichas distintas."
+    }
+  },
+  "instructions": {
+    "en": [
+      "Grip a fixed bar with palms facing away and thumbs around it. Hang with elbows extended, feet clear and body still.",
+      "Pull your body upward until your chin clears the bar, keeping the legs quiet and avoiding a kick or swing.",
+      "Lower under control until elbows are extended again; settle any swing before the next repetition."
+    ],
+    "es": [
+      "Agarra una barra fija con las palmas hacia fuera y los pulgares rodeándola. Cuélgate con codos extendidos, pies sin apoyo y cuerpo quieto.",
+      "Eleva el cuerpo hasta superar la barra con la barbilla, manteniendo las piernas quietas y sin patadas ni balanceos.",
+      "Desciende con control hasta extender de nuevo los codos; detén cualquier balanceo antes de la siguiente repetición."
+    ]
+  },
+  "cues": {
+    "en": [
+      "Lift the body rather than reaching with the chin.",
+      "Keep the same grip and endpoints through the set."
+    ],
+    "es": [
+      "Eleva el cuerpo en vez de alcanzar la barra estirando el cuello.",
+      "Conserva el mismo agarre y recorrido durante la serie."
+    ]
+  },
+  "review": {
+    "technical": "pending",
+    "reviewer": null,
+    "reviewedAt": null
+  },
+  "media": [],
+  "license": "MIT",
+  "provenance": {
+    "kind": "gravis-authored",
+    "note": "Original editorial draft for Gravis. Muscle labels and technique await human review. No competitor media or private account data included. Editorial references and review decisions are documented in docs/batches/001-foundations.md."
+  }
+}

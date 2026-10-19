@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 2,
+  "id": "grv_000000000016",
+  "slug": "single-under",
+  "status": "draft",
+  "names": {
+    "en": "Single-under jump rope",
+    "es": "Salto simple de comba"
+  },
+  "aliases": {
+    "en": ["Single under", "Basic two-foot rope jump"],
+    "es": ["Salto simple de cuerda", "Comba simple con pies juntos"]
+  },
+  "summary": {
+    "en": "A two-foot jump with one rope passage beneath the feet on each jump.",
+    "es": "Salto con ambos pies y un paso de comba por debajo de ellos en cada salto."
+  },
+  "disciplines": ["functional"],
+  "family": "jump_rope",
+  "equipment": ["jump-rope", "floor"],
+  "muscles": {
+    "primary": ["calves"],
+    "secondary": ["quadriceps", "forearms"]
+  },
+  "tracking": {
+    "required": ["repetitions"],
+    "optional": ["duration"],
+    "loadConvention": "none",
+    "notes": {
+      "en": "One jump with one completed rope passage and landing counts once; interrupted attempts do not count. Optional duration is elapsed set time in seconds, from the first rope turn to the final landing, including interruptions. Alternating-foot and double-under counts are not interchangeable.",
+      "es": "Un salto con un paso completo de comba y aterrizaje cuenta una vez; los intentos interrumpidos no cuentan. La duración opcional es el tiempo total de la serie en segundos, desde el primer giro hasta el último aterrizaje, incluidas las interrupciones. Los conteos alternando pies o con doble paso no son equivalentes."
+    }
+  },
+  "instructions": {
+    "en": [
+      "Stand with feet together, one handle in each hand and the rope behind the heels. Leave clear space for the entire rope arc.",
+      "Turn the rope forward with small wrist movements and jump just enough for it to pass once beneath both feet.",
+      "Land softly on both feet with knees slightly bent, then repeat at a steady rhythm."
+    ],
+    "es": [
+      "Colócate con pies juntos, un mango en cada mano y la comba detrás de los talones. Deja espacio libre para todo su giro.",
+      "Gira la comba hacia delante con pequeños movimientos de muñeca y salta lo justo para que pase una vez bajo ambos pies.",
+      "Aterriza suavemente con ambos pies y rodillas ligeramente flexionadas, y repite a un ritmo estable."
+    ]
+  },
+  "cues": {
+    "en": [
+      "Keep hands near the hips rather than making large arm circles.",
+      "Keep each jump to one rope passage."
+    ],
+    "es": [
+      "Mantén las manos cerca de las caderas sin hacer grandes círculos con los brazos.",
+      "Mantén un solo paso de comba en cada salto."
+    ]
+  },
+  "review": {
+    "technical": "pending",
+    "reviewer": null,
+    "reviewedAt": null
+  },
+  "media": [],
+  "license": "MIT",
+  "provenance": {
+    "kind": "gravis-authored",
+    "note": "Original editorial draft for Gravis. Muscle labels and technique await human review. No competitor media or private account data included. Editorial references and review decisions are documented in docs/batches/001-foundations.md."
+  }
+}

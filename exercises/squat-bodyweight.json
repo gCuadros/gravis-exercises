@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 2,
+  "id": "grv_000000000009",
+  "slug": "squat-bodyweight",
+  "status": "draft",
+  "names": {
+    "en": "Bodyweight squat",
+    "es": "Sentadilla con peso corporal"
+  },
+  "aliases": {
+    "en": ["Air squat", "Unloaded squat"],
+    "es": ["Sentadilla sin peso", "Sentadilla libre sin carga"]
+  },
+  "summary": {
+    "en": "A bilateral squat with both feet on the floor and no external load.",
+    "es": "Sentadilla bilateral con ambos pies en el suelo y sin carga externa."
+  },
+  "disciplines": ["strength", "calisthenics", "functional"],
+  "family": "squat",
+  "equipment": ["floor"],
+  "muscles": {
+    "primary": ["quadriceps", "glutes"],
+    "secondary": ["abdominals"]
+  },
+  "tracking": {
+    "required": ["repetitions"],
+    "optional": [],
+    "loadConvention": "none",
+    "notes": {
+      "en": "Count one descent and return to standing as one repetition. This draft uses thighs approximately parallel to the floor as its depth reference. Record any reduced range separately in the session; body mass is not external load.",
+      "es": "Cuenta una bajada y vuelta a la posición de pie como una repetición. Este borrador toma como referencia los muslos aproximadamente paralelos al suelo. Anota cualquier reducción del recorrido por separado en la sesión; el peso corporal no es carga externa."
+    }
+  },
+  "instructions": {
+    "en": [
+      "Stand with feet around shoulder width, toes slightly outward and weight spread across each foot.",
+      "Bend hips and knees to lower until your thighs are approximately parallel to the floor, keeping heels down and your trunk controlled. Do not force a depth that loses these supports.",
+      "Push through both feet to stand again with hips and knees extended, without jumping."
+    ],
+    "es": [
+      "De pie, separa los pies aproximadamente al ancho de hombros, orienta las puntas ligeramente hacia fuera y reparte el peso sobre cada pie.",
+      "Flexiona caderas y rodillas hasta dejar los muslos aproximadamente paralelos al suelo, manteniendo talones apoyados y tronco controlado. No fuerces una profundidad que haga perder estos apoyos.",
+      "Empuja con ambos pies para volver de pie con caderas y rodillas extendidas, sin saltar."
+    ]
+  },
+  "cues": {
+    "en": [
+      "Let knees follow the direction of the toes.",
+      "Keep the same depth reference across the set."
+    ],
+    "es": [
+      "Orienta las rodillas en la dirección de las puntas de los pies.",
+      "Mantén la misma referencia de profundidad durante la serie."
+    ]
+  },
+  "review": {
+    "technical": "pending",
+    "reviewer": null,
+    "reviewedAt": null
+  },
+  "media": [],
+  "license": "MIT",
+  "provenance": {
+    "kind": "gravis-authored",
+    "note": "Original editorial draft for Gravis. Muscle labels and technique await human review. No competitor media or private account data included. Editorial references and review decisions are documented in docs/batches/001-foundations.md."
+  }
+}

@@ -4,15 +4,15 @@ The authored vocabulary lives in `src/taxonomy.js`. It contains stable keys, Eng
 
 ## Namespaces and semantics
 
-| Group         | Pilot terms | Meaning                                                                        |
-| ------------- | ----------- | ------------------------------------------------------------------------------ |
-| `disciplines` | 3           | Nonexclusive training categories; an exercise may belong to several            |
-| `equipment`   | 10          | Equipment and supporting surfaces, including floor/wall                        |
-| `muscles`     | 14          | Editorial muscle/group assignments, still pending technical review             |
-| `families`    | 8           | Related movement variations; never a replacement for a specific exercise ID    |
-| `metrics`     | 8           | Fields a logger can capture; no personal measurements or units are stored here |
+| Group         | Current terms | Meaning                                                                        |
+| ------------- | ------------- | ------------------------------------------------------------------------------ |
+| `disciplines` | 3             | Nonexclusive training categories; an exercise may belong to several            |
+| `equipment`   | 12            | Equipment and supporting surfaces, including floor/wall                        |
+| `muscles`     | 15            | Editorial muscle/group assignments, still pending technical review             |
+| `families`    | 12            | Related movement variations; never a replacement for a specific exercise ID    |
+| `metrics`     | 8             | Fields a logger can capture; no personal measurements or units are stored here |
 
-These counts describe the initial vocabulary, not a cap on coverage. New movements may need new terms. Definitions are available alongside every label. They delimit editorial meaning; they do not certify a record's anatomy, technique or suitability for a person.
+These counts describe the 50 terms in version 0.3.0, not a cap on coverage. B001 Group A adds two equipment terms, four families and spinal erectors; see the [compatibility note](migrations/0.3.0.md). New movements may need new terms. Definitions are available alongside every label. They delimit editorial meaning; they do not certify a record's anatomy, technique or suitability for a person.
 
 Keys are namespaced. `equipment/band` means the elastic equipment; `metrics/band` means the identity/specification of the band used. Band colors are not universal resistance values. `metrics/assistance` is separate numeric assistance, not negative load. Broad groups such as `shoulders` and the narrower `anterior-deltoids` retain separate meanings; there is no implicit parent/child inference or muscle aggregation. Exact duplication across primary/secondary muscles is rejected, but the validator does not decide biomechanical correctness.
 

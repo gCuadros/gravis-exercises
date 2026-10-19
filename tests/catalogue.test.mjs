@@ -3,8 +3,42 @@ import assert from 'node:assert/strict';
 import { loadCatalogue, validateCatalogue, validateExercise } from '../scripts/lib.mjs';
 import { exerciseFixture } from './fixtures/exercises.mjs';
 import { escapeHTML, detailPage, cataloguePage } from '../website/render.js';
+import { createCatalogue, filterExercises } from '../src/catalogue.js';
 const entries = await loadCatalogue();
 const fixture = exerciseFixture;
+test('related authored variations remain distinct through discovery and identity lookup', () => {
+  const api = createCatalogue({ exercises: entries });
+  for (const [query, first, second] of [
+    ['sentadilla', 'squat-bodyweight', 'back-squat-high-bar-barbell'],
+    ['dominada', 'pull-up-strict', 'band-assisted-pull-up'],
+    ['press banca', 'bench-press-dumbbell', 'bench-press-barbell'],
+  ]) {
+    const a = api.getExerciseBySlug(first);
+    const b = api.getExerciseBySlug(second);
+    assert(a && b);
+    assert.notEqual(a.id, b.id);
+    const ids = api.findExercises({ query }).map((entry) => entry.id);
+    assert(ids.includes(a.id) && ids.includes(b.id));
+    assert.equal(api.getExerciseById(a.id), a);
+    assert.notDeepEqual(a.tracking, b.tracking);
+  }
+  const dumbbells = api.findExercises({ query: 'press banca', equipment: 'dumbbell' });
+  assert(dumbbells.some((entry) => entry.slug === 'bench-press-dumbbell'));
+  assert(!dumbbells.some((entry) => entry.slug === 'bench-press-barbell'));
+});
+test('plank and planche discovery preserves their different support families', () => {
+  const matches = filterExercises(entries, { query: 'plancha' });
+  const plank = matches.find((entry) => entry.slug === 'plank-forearms');
+  const planche = matches.find((entry) => entry.slug === 'tuck-planche-parallettes');
+  assert(plank && planche);
+  assert.equal(plank.family, 'plank');
+  assert.equal(planche.family, 'planche');
+  assert(plank.tracking.required.includes('duration'));
+  assert(!plank.tracking.required.includes('repetitions'));
+  const floor = filterExercises(matches, { equipment: 'floor' });
+  assert(floor.includes(plank));
+  assert(!floor.includes(planche));
+});
 test('authored records have unique identities and no private source fields', () => {
   assert(entries.length > 0);
   assert.deepEqual(validateCatalogue(entries), []);

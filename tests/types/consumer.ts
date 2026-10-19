@@ -36,6 +36,12 @@ void term;
 void label;
 void equipmentName;
 findExercises({ equipment: 'band' });
+findExercises({ equipment: 'dumbbell' });
+findExercises({ equipment: 'squat-rack' });
+const plankFamily: Exercise['family'] = 'plank';
+const erectors: string = taxonomy.groups.muscles['spinal-erectors'].labels.es;
+void plankFamily;
+void erectors;
 // @ts-expect-error Unknown equipment is not part of the record contract.
 findExercises({ equipment: 'unknown' });
 // @ts-expect-error Groups are explicit namespaces.
