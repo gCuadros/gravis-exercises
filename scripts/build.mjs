@@ -1,6 +1,6 @@
 import { mkdir, readFile, writeFile, copyFile, rm } from 'node:fs/promises';
 import path from 'node:path';
-import { loadCatalogue, root, schema } from './lib.mjs';
+import { loadCatalogue, root } from './lib.mjs';
 import { taxonomy } from '../src/taxonomy.js';
 import { buildLibrary } from './build-library.mjs';
 import { cataloguePage, detailPage, escapeHTML as E } from '../website/render.js';
@@ -24,21 +24,16 @@ await copyFile(
   path.join(root, 'schema/exercise.schema.json'),
   path.join(dist, 'schema/exercise.schema.json'),
 );
-const envelope = (channel, entries) => ({
-  schemaVersion: schema.properties.schemaVersion.const,
-  version,
-  channel,
-  license: 'MIT',
-  exercises: entries,
-});
-for (const [name, entries] of [
-  ['preview', exercises],
-  ['published', exercises.filter((e) => e.status === 'published')],
-])
-  await writeFile(
-    path.join(dist, `data/catalogue.${name}.json`),
-    JSON.stringify(envelope(name, entries), null, 2) + '\n',
+// Serve the exact library artifacts; the site must not construct a second envelope.
+for (const channel of ['preview', 'published'])
+  await copyFile(
+    path.join(root, `dist/package/catalogue.${channel}.json`),
+    path.join(dist, `data/catalogue.${channel}.json`),
   );
+await copyFile(
+  path.join(root, 'dist/package/catalogue.schema.json'),
+  path.join(dist, 'schema/catalogue.schema.json'),
+);
 await writeFile(
   path.join(dist, 'data/manifest.json'),
   JSON.stringify(

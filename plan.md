@@ -73,7 +73,7 @@ Tests must tolerate multiple exercises matching `dominada` and select a delibera
 
 TAX-001 defines one maintainable vocabulary with ES/EN labels, definitions and search aliases. The runtime, website, record enums and public vocabulary exports must agree. Reject unknown references and exact primary/secondary muscle overlap. Document additions, synonyms and compatibility changes; do not silently rename stored identities or conflate muscle groups. Implementation details and the extension workflow are in [taxonomy](docs/taxonomy.md); `status.md` identifies its verification state.
 
-For DATA-001, the current canonical schema describes an exercise, not the full exported envelope. Specify `schemaVersion`, package version, channel, license and record collection; test an empty published collection and the exclusion of drafts from that channel. Reuse the record schema, document exports and update actual archive-consumer tests. Assess migration/version impact before changing the public contract.
+DATA-001 specifies the full envelope: `schemaVersion`, package version, channel, license and record collection. Its acceptance criteria include empty collections, rejection of drafts in published data, reuse of the canonical exercise schema, generated envelope types and offline validation of actual archive exports. The site and package must serve the same JSON. See the [catalogue contract](docs/catalogue-contract.md) for implementation and compatibility rules; consult `status.md` for verified evidence.
 
 ### CAT-001 and CAT-002 — Coverage and authorship
 

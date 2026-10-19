@@ -4,6 +4,10 @@ import { mkdtemp, mkdir, readFile, writeFile, rm } from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
 import assert from 'node:assert/strict';
+import Ajv2020 from 'ajv/dist/2020.js';
+import addFormats from 'ajv-formats';
+import { createRequire } from 'node:module';
+import { exerciseFixture } from '../tests/fixtures/exercises.mjs';
 import { createHash } from 'node:crypto';
 import { root, loadCatalogue } from './lib.mjs';
 
@@ -41,6 +45,8 @@ const expected = [
     'taxonomy.json',
     'taxonomy.schema.json',
     'exercise.generated.d.ts',
+    'catalogue.generated.d.ts',
+    'catalogue.schema.json',
     'exercise.schema.json',
     'catalogue.preview.json',
     'catalogue.published.json',
@@ -70,6 +76,50 @@ try {
     ['install', '--offline', '--ignore-scripts', '--no-audit', '--no-fund', archive],
     { cwd: consumer, env },
   );
+  // Validate files extracted from the installed archive, with no source-schema
+  // registration or remote resolver. The validator is a development tool only.
+  const installed = createRequire(path.join(consumer, 'check.cjs'));
+  const readExport = async (name) => JSON.parse(await readFile(installed.resolve(name), 'utf8'));
+  const installedSchema = await readExport('gravis-exercises/schema/catalogue');
+  const validator = new Ajv2020({ strict: true, allErrors: true });
+  addFormats(validator);
+  const validate = validator.compile(installedSchema);
+  for (const [channel, name] of [
+    ['published', 'gravis-exercises/data'],
+    ['preview', 'gravis-exercises/data/preview'],
+  ]) {
+    const data = await readExport(name);
+    assert(validate(data), JSON.stringify(validate.errors));
+    assert.equal(data.version, manifest.version);
+    assert.equal(data.channel, channel);
+    const site = await readFile(
+      path.join(root, `dist/site/data/catalogue.${channel}.json`),
+      'utf8',
+    );
+    assert.equal(
+      site,
+      await readFile(installed.resolve(name), 'utf8'),
+      'Site and package feeds must be byte-identical',
+    );
+  }
+  assert.deepEqual(
+    installedSchema,
+    JSON.parse(await readFile(path.join(root, 'dist/site/schema/catalogue.schema.json'), 'utf8')),
+  );
+  const tampered = await readExport('gravis-exercises/data');
+  tampered.exercises = [exerciseFixture()];
+  assert.equal(
+    validate(tampered),
+    false,
+    'The archived schema must reject a draft injected into published data',
+  );
+  tampered.exercises = [];
+  tampered.license = 'unknown';
+  assert.equal(
+    validate(tampered),
+    false,
+    'The archived schema must reject invalid envelope metadata',
+  );
   const source = await loadCatalogue();
   const fixture = source[0];
   await writeFile(
@@ -80,6 +130,8 @@ try {
     import * as preview from 'gravis-exercises/preview';
     import data from 'gravis-exercises/data' with { type: 'json' };
     import schema from 'gravis-exercises/schema' with { type: 'json' };
+    import catalogueSchema from 'gravis-exercises/schema/catalogue' with { type: 'json' };
+    assert.equal(catalogueSchema.title, 'Catalogue');
     import { taxonomy, getTerm, getLabel } from 'gravis-exercises/taxonomy';
     import vocabulary from 'gravis-exercises/taxonomy/data' with { type: 'json' };
     import vocabularySchema from 'gravis-exercises/taxonomy/schema' with { type: 'json' };

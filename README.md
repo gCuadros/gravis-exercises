@@ -19,7 +19,7 @@ npm run build
 npm run test:package
 
 # In a separate project, using the resulting archive
-npm install /path/to/gravis-exercises/artifacts/gravis-exercises-0.2.0.tgz
+npm install /path/to/gravis-exercises/artifacts/gravis-exercises-0.2.1.tgz
 ```
 
 ```js
@@ -48,18 +48,19 @@ const options: SearchOptions = { discipline: 'strength', query: 'press' };
 
 The runtime uses standard ESM and works in Node.js 22.13+ and modern browsers/bundlers without a UI framework or network connection. The catalogue is deeply frozen; copy a record into your own model before modifying it. Lookups return `undefined` for unknown IDs/slugs. Search matches all query words across both languages, exercise/vocabulary aliases, muscles, equipment and families, ignoring case and accents. Discipline and equipment filters are combined.
 
-| Export                             | Contents                                                   |
-| ---------------------------------- | ---------------------------------------------------------- |
-| `gravis-exercises`                 | Published catalogue, exercises and lookup/search functions |
-| `gravis-exercises/preview`         | Same API, with all authored entries including drafts       |
-| `gravis-exercises/data`            | Published JSON envelope                                    |
-| `gravis-exercises/data/preview`    | Preview JSON envelope                                      |
-| `gravis-exercises/schema`          | Canonical exercise JSON Schema, draft 2020-12              |
-| `gravis-exercises/taxonomy`        | Readonly vocabulary, `getTerm` and `getLabel`              |
-| `gravis-exercises/taxonomy/data`   | Portable bilingual vocabulary JSON                         |
-| `gravis-exercises/taxonomy/schema` | Vocabulary structure JSON Schema                           |
+| Export                              | Contents                                                   |
+| ----------------------------------- | ---------------------------------------------------------- |
+| `gravis-exercises`                  | Published catalogue, exercises and lookup/search functions |
+| `gravis-exercises/preview`          | Same API, with all authored entries including drafts       |
+| `gravis-exercises/data`             | Published JSON envelope                                    |
+| `gravis-exercises/data/preview`     | Preview JSON envelope                                      |
+| `gravis-exercises/schema/catalogue` | Self-contained catalogue envelope + record schema          |
+| `gravis-exercises/schema`           | Canonical exercise JSON Schema, draft 2020-12              |
+| `gravis-exercises/taxonomy`         | Readonly vocabulary, `getTerm` and `getLabel`              |
+| `gravis-exercises/taxonomy/data`    | Portable bilingual vocabulary JSON                         |
+| `gravis-exercises/taxonomy/schema`  | Vocabulary structure JSON Schema                           |
 
-JSON files can also be extracted from the archive or consumed directly from `dist/package/`, without JavaScript or npm at runtime. Each envelope has `schemaVersion`, `version`, `channel`, `license` and `exercises`. Preserve `id` as the identity; display names and slugs may change under a documented migration.
+JSON files can also be extracted from the archive or consumed directly from `dist/package/`, without JavaScript or npm at runtime. Each envelope has `schemaVersion`, `version`, `channel`, `license` and `exercises`. The [catalogue contract](docs/catalogue-contract.md) validates the whole document, allows empty distributions and rejects drafts in the published channel. The public `Catalogue` type is generated from it. Preserve `id` as the identity; display names and slugs may change under a documented migration.
 
 The controlled [taxonomy](docs/taxonomy.md) covers equipment, muscles, families, disciplines and metrics. For example, `getLabel('metrics', 'assistance', 'es')` from `/taxonomy` returns `Asistencia`. All keys have English/Spanish labels and definitions; unknown references fail record validation. See the [0.2.0 migration](docs/migrations/0.2.0.md) before using older preview data with record schema version 2.
 
@@ -92,27 +93,27 @@ For local testing with an installed Chrome, use `PLAYWRIGHT_CHANNEL=chrome npm r
 
 ## Structure
 
-| Path            | Purpose                                                                    |
-| --------------- | -------------------------------------------------------------------------- |
-| `exercises/`    | Authored JSON, one precise movement variation per record                   |
-| `schema/`       | Exercise and vocabulary contracts for validation and generated types       |
-| `src/`          | Framework-independent search/catalogue runtime and public API declarations |
-| `website/`      | Reference web catalogue, English/Spanish, filters and exercise pages       |
-| `scripts/`      | Schema/domain checks, builds, package verification and local server        |
-| `tests/`        | Unit, TypeScript consumer and browser tests                                |
-| `docs/`         | Content, architecture, release and production decisions                    |
-| `dist/package/` | Generated distributable library, JSON and schema                           |
-| `dist/site/`    | Generated static website; excluded from the npm archive                    |
-| `.local/`       | Ignored research and local QA; never distributed                           |
-| `artifacts/`    | Verified package archive and SHA-256 checksum; ignored by Git              |
+| Path            | Purpose                                                                         |
+| --------------- | ------------------------------------------------------------------------------- |
+| `exercises/`    | Authored JSON, one precise movement variation per record                        |
+| `schema/`       | Exercise, catalogue and vocabulary contracts for validation and generated types |
+| `src/`          | Framework-independent search/catalogue runtime and public API declarations      |
+| `website/`      | Reference web catalogue, English/Spanish, filters and exercise pages            |
+| `scripts/`      | Schema/domain checks, builds, package verification and local server             |
+| `tests/`        | Unit, TypeScript consumer and browser tests                                     |
+| `docs/`         | Content, architecture, release and production decisions                         |
+| `dist/package/` | Generated distributable library, JSON and schema                                |
+| `dist/site/`    | Generated static website; excluded from the npm archive                         |
+| `.local/`       | Ignored research and local QA; never distributed                                |
+| `artifacts/`    | Verified package archive and SHA-256 checksum; ignored by Git                   |
 
-The site exposes `/data/catalogue.preview.json`, `/data/catalogue.published.json`, `/data/manifest.json` `/data/taxonomy.json`, `/schema/taxonomy.schema.json` and `/schema/exercise.schema.json`. Static hosting uses build command `npm run build` and output `dist/site`, served at the domain root. Pages remain `noindex,nofollow` during editorial preview. No deployment or analytics is configured.
+The site exposes `/data/catalogue.preview.json`, `/data/catalogue.published.json`, `/data/manifest.json` `/data/taxonomy.json`, `/schema/taxonomy.schema.json`, `/schema/catalogue.schema.json` and `/schema/exercise.schema.json`. Static hosting uses build command `npm run build` and output `dist/site`, served at the domain root. Pages remain `noindex,nofollow` during editorial preview. No deployment or analytics is configured.
 
 ## Quality and contribution
 
 CI requires formatting, ESLint, canonical schema validation, unit tests, type checks and isolated package consumption on Node 22/24, plus desktop/mobile browser tests. A single `CI gate` aggregates these results for branch protection. Actions use immutable commit pins and minimal permissions; Dependabot proposes dependency and Action updates weekly.
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md), [architecture](docs/architecture.md), [data model](docs/data-model.md), [taxonomy](docs/taxonomy.md), [release policy](docs/releases.md) and [media production](docs/media-production.md). [The expansion plan](docs/catalogue-expansion.md) explains how the eight-entry pilot grows into the broader library.
+Read [CONTRIBUTING.md](CONTRIBUTING.md), [architecture](docs/architecture.md), [data model](docs/data-model.md), [catalogue contract](docs/catalogue-contract.md), [taxonomy](docs/taxonomy.md), [release policy](docs/releases.md) and [media production](docs/media-production.md). [The expansion plan](docs/catalogue-expansion.md) explains how the eight-entry pilot grows into the broader library.
 
 ## License
 

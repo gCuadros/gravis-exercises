@@ -1,15 +1,10 @@
 import type { Exercise as ExerciseModel } from './exercise.generated.js';
+import type { Catalogue as CatalogueModel } from './catalogue.generated.js';
 
 type DeepReadonly<T> = T extends object ? { readonly [K in keyof T]: DeepReadonly<T[K]> } : T;
 export type Exercise = DeepReadonly<ExerciseModel>;
 export type Discipline = Exercise['disciplines'][number];
-export interface Catalogue {
-  readonly schemaVersion: Exercise['schemaVersion'];
-  readonly version: string;
-  readonly channel: 'published' | 'preview';
-  readonly license: 'MIT';
-  readonly exercises: readonly Exercise[];
-}
+export type Catalogue = DeepReadonly<CatalogueModel>;
 export interface SearchOptions {
   /** Matches all query words across both languages, aliases, equipment, muscles and families. */
   query?: string;

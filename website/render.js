@@ -49,6 +49,8 @@ export const copy = {
       'Stable exercise identities. English and Spanish content. Explicit tracking fields. Versioned JSON, with drafts kept separate from reviewed releases.',
     download: 'Download preview JSON',
     schema: 'Exercise schema',
+    catalogueSchema: 'Catalogue schema',
+    overview: 'Catalogue overview',
     published: 'Reviewed dataset',
     zero: 'No reviewed entries released yet.',
     copy: 'Copy link',
@@ -103,6 +105,8 @@ export const copy = {
       'Identidades estables. Contenido en español e inglés. Campos de registro explícitos. JSON versionado, con borradores separados de las versiones revisadas.',
     download: 'Descargar JSON preliminar',
     schema: 'Formato de las fichas',
+    catalogueSchema: 'Formato del catálogo',
+    overview: 'Resumen del catálogo',
     published: 'Catálogo revisado',
     zero: 'Todavía no hay fichas revisadas publicadas.',
     copy: 'Copiar enlace',
@@ -162,7 +166,7 @@ export function cataloguePage(exercises, state) {
     )
     .join(
       '',
-    )}</select></label><label><span class="sr-only">${t.equipment}</span><select id="equipment" name="equipment"><option value="all">${t.equipment}</option>${equipments.map((d) => `<option value="${E(d)}" ${state.equipment === d ? 'selected' : ''}>${E(label('equipment', d, lang))}</option>`).join('')}</select></label><button type="button" class="clear" data-clear>${t.clear}</button></form><div class="grid" id="results">${result.html}</div></section><section class="developers" id="developers"><div class="wrap developers-inner"><div><p class="eyebrow">OPEN DATA / MIT</p><h2>${t.builderTitle}</h2><p>${t.builderText}</p><div class="dev-actions"><a class="button primary" href="/data/catalogue.preview.json" download>${t.download} ↓</a><a href="https://github.com/gCuadros/gravis-exercises#readme">${t.readDocs} ↗</a></div></div><div class="dev-code"><div class="code-heading"><span>catalogue.preview.json</span><span>${E(state.version || 'development')}</span></div><pre><code>${E(JSON.stringify({ version: state.version || 'development', channel: 'preview', exercises: exercises.length, languages: ['en', 'es'], reviewed: exercises.filter((e) => e.status === 'published').length }, null, 2))}</code></pre><div class="code-links"><a href="/schema/exercise.schema.json">${t.schema} ↗</a><a href="/data/catalogue.published.json">${t.published} ↗</a></div>${exercises.some((e) => e.status === 'published') ? '' : `<p class="code-note">${t.zero}</p>`}</div></div></section></main>${footer(lang)}`;
+    )}</select></label><label><span class="sr-only">${t.equipment}</span><select id="equipment" name="equipment"><option value="all">${t.equipment}</option>${equipments.map((d) => `<option value="${E(d)}" ${state.equipment === d ? 'selected' : ''}>${E(label('equipment', d, lang))}</option>`).join('')}</select></label><button type="button" class="clear" data-clear>${t.clear}</button></form><div class="grid" id="results">${result.html}</div></section><section class="developers" id="developers"><div class="wrap developers-inner"><div><p class="eyebrow">OPEN DATA / MIT</p><h2>${t.builderTitle}</h2><p>${t.builderText}</p><div class="dev-actions"><a class="button primary" href="/data/catalogue.preview.json" download>${t.download} ↓</a><a href="https://github.com/gCuadros/gravis-exercises#readme">${t.readDocs} ↗</a></div></div><div class="dev-code"><div class="code-heading"><span>${t.overview}</span><span>${E(state.version || 'development')}</span></div><pre><code>${E(JSON.stringify({ version: state.version || 'development', channel: 'preview', exerciseCount: exercises.length, languages: ['en', 'es'], publishedCount: exercises.filter((e) => e.status === 'published').length }, null, 2))}</code></pre><div class="code-links"><a href="/schema/catalogue.schema.json">${t.catalogueSchema} ↗</a><a href="/schema/exercise.schema.json">${t.schema} ↗</a><a href="/data/catalogue.published.json">${t.published} ↗</a></div>${exercises.some((e) => e.status === 'published') ? '' : `<p class="code-note">${t.zero}</p>`}</div></div></section></main>${footer(lang)}`;
 }
 function demonstration(e, lang) {
   const t = copy[lang],
