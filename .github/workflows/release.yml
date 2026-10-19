@@ -43,3 +43,5 @@ jobs:
           dist/package/catalogue.published.json
           dist/package/catalogue.preview.json
           dist/package/exercise.schema.json
+          dist/package/taxonomy.json
+          dist/package/taxonomy.schema.json

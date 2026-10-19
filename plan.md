@@ -71,7 +71,7 @@ Tests must tolerate multiple exercises matching `dominada` and select a delibera
 
 ### TAX-001 and DATA-001 — Contracts before scaling
 
-Currently, display labels live in `src/catalogue.js` and several taxonomy fields accept arbitrary strings. Define one maintainable vocabulary with ES/EN labels and a documented policy for additions and synonyms. Inventory existing keys before choosing normalization; do not silently rename stored identities or conflate muscle groups.
+TAX-001 defines one maintainable vocabulary with ES/EN labels, definitions and search aliases. The runtime, website, record enums and public vocabulary exports must agree. Reject unknown references and exact primary/secondary muscle overlap. Document additions, synonyms and compatibility changes; do not silently rename stored identities or conflate muscle groups. Implementation details and the extension workflow are in [taxonomy](docs/taxonomy.md); `status.md` identifies its verification state.
 
 For DATA-001, the current canonical schema describes an exercise, not the full exported envelope. Specify `schemaVersion`, package version, channel, license and record collection; test an empty published collection and the exclusion of drafts from that channel. Reuse the record schema, document exports and update actual archive-consumer tests. Assess migration/version impact before changing the public contract.
 

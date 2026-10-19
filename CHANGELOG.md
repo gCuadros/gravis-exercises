@@ -1,6 +1,11 @@
 # Changelog
 
-## Unreleased
+## Unreleased — 0.2.0 foundation preview
+
+- Introduce a controlled bilingual vocabulary for disciplines, equipment, muscles, families and metrics; share it across search, the reference site and public JS/JSON exports.
+- Reject unknown taxonomy keys, missing vocabulary translations, ambiguous aliases, primary/secondary muscle overlap and schema/vocabulary drift. Add generated filter-key types and isolated-consumer coverage.
+- **Breaking:** exercise schema version 2 replaces free-text category fields with closed keys. Preserve every pilot ID/slug and review state. See [migration instructions](docs/migrations/0.2.0.md).
+- Display the actual package version in the reference site and distinguish band equipment from band tracking metadata. All content remains draft; no release has been published.
 
 - Make search and browser regression tests resilient to catalogue growth using isolated synthetic fixtures and explicit exercise selection.
 

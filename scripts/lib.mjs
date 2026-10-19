@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
+import { assertTaxonomyContract } from './taxonomy-contract.mjs';
 
 export const root = fileURLToPath(new URL('../', import.meta.url));
 export const schema = JSON.parse(
@@ -20,6 +21,8 @@ export function validateExercise(exercise) {
     );
   }
   const errors = [];
+  if (exercise.muscles.primary.some((key) => exercise.muscles.secondary.includes(key)))
+    errors.push('Muscles must not be repeated across primary/secondary');
   const metrics = [...exercise.tracking.required, ...exercise.tracking.optional];
   if (new Set(metrics).size !== metrics.length)
     errors.push('Tracking metrics must not be repeated across required/optional');
@@ -54,6 +57,7 @@ export function validateCatalogue(exercises) {
 }
 
 export async function loadCatalogue() {
+  assertTaxonomyContract(schema);
   const dir = path.join(root, 'exercises');
   const files = (await readdir(dir)).filter((file) => file.endsWith('.json')).sort();
   const entries = await Promise.all(

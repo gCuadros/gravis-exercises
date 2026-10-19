@@ -1,3 +1,10 @@
+import { getTerm, getLabel, taxonomy } from './taxonomy.js';
+export { taxonomy };
+export function label(group, key, language = 'en') {
+  const value = getLabel(group, key, language);
+  if (value === undefined) throw new Error(`Unknown taxonomy label: ${group}/${key}/${language}`);
+  return value;
+}
 export const normalize = (value) =>
   String(value)
     .normalize('NFD')
@@ -10,21 +17,20 @@ export function filterExercises(
 ) {
   const words = normalize(query).split(/\s+/).filter(Boolean);
   return exercises.filter((e) => {
-    const categories = [
-      ...e.equipment,
-      ...e.disciplines,
-      ...e.muscles.primary,
-      ...e.muscles.secondary,
+    const references = [
+      ...e.equipment.map((key) => ['equipment', key]),
+      ...e.disciplines.map((key) => ['disciplines', key]),
+      ...[...e.muscles.primary, ...e.muscles.secondary].map((key) => ['muscles', key]),
+      ['families', e.family],
     ];
+    const terms = references.flatMap(([group, key]) => {
+      const term = getTerm(group, key);
+      return term
+        ? [key, ...Object.values(term.labels), ...term.aliases.en, ...term.aliases.es]
+        : [];
+    });
     const haystack = normalize(
-      [
-        e.names.en,
-        e.names.es,
-        ...e.aliases.en,
-        ...e.aliases.es,
-        ...categories,
-        ...categories.flatMap((k) => [label(k, 'en'), label(k, 'es')]),
-      ].join(' '),
+      [e.names.en, e.names.es, ...e.aliases.en, ...e.aliases.es, ...terms].join(' '),
     );
     return (
       (discipline === 'all' || e.disciplines.includes(discipline)) &&
@@ -33,42 +39,6 @@ export function filterExercises(
     );
   });
 }
-export const labels = {
-  strength: { en: 'Strength', es: 'Fuerza' },
-  calisthenics: { en: 'Calisthenics', es: 'Calistenia' },
-  functional: { en: 'Functional', es: 'Funcional' },
-  barbell: { en: 'Barbell', es: 'Barra' },
-  bench: { en: 'Bench', es: 'Banco' },
-  'pull-up-bar': { en: 'Pull-up bar', es: 'Barra de dominadas' },
-  band: { en: 'Resistance band', es: 'Banda elástica' },
-  parallettes: { en: 'Parallettes', es: 'Paralelas bajas' },
-  rope: { en: 'Climbing rope', es: 'Cuerda de trepa' },
-  'jump-rope': { en: 'Jump rope', es: 'Comba' },
-  wall: { en: 'Wall', es: 'Pared' },
-  floor: { en: 'Floor', es: 'Suelo' },
-  'rowing-ergometer': { en: 'Rowing ergometer', es: 'Ergómetro de remo' },
-  repetitions: { en: 'Repetitions', es: 'Repeticiones' },
-  load: { en: 'Load', es: 'Carga' },
-  duration: { en: 'Time', es: 'Tiempo' },
-  distance: { en: 'Distance', es: 'Distancia' },
-  machine_calories: { en: 'Machine calories', es: 'Calorías del monitor' },
-  ascent_height: { en: 'Ascent height', es: 'Altura de ascenso' },
-  pectorals: { en: 'Chest', es: 'Pectorales' },
-  triceps: { en: 'Triceps', es: 'Tríceps' },
-  'anterior-deltoids': { en: 'Front delts', es: 'Deltoides anterior' },
-  lats: { en: 'Lats', es: 'Dorsales' },
-  biceps: { en: 'Biceps', es: 'Bíceps' },
-  'upper-back': { en: 'Upper back', es: 'Espalda alta' },
-  abdominals: { en: 'Abdominals', es: 'Abdominales' },
-  'hip-flexors': { en: 'Hip flexors', es: 'Flexores de cadera' },
-  calves: { en: 'Calves', es: 'Gemelos' },
-  quadriceps: { en: 'Quadriceps', es: 'Cuádriceps' },
-  glutes: { en: 'Glutes', es: 'Glúteos' },
-  hamstrings: { en: 'Hamstrings', es: 'Isquiosurales' },
-  forearms: { en: 'Forearms', es: 'Antebrazos' },
-  shoulders: { en: 'Shoulders', es: 'Hombros' },
-};
-export const label = (key, lang = 'en') => labels[key]?.[lang] || key.replaceAll('-', ' ');
 
 function freezeDeep(value) {
   if (value && typeof value === 'object') {

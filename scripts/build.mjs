@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile, copyFile, rm } from 'node:fs/promises';
 import path from 'node:path';
-import { loadCatalogue, root } from './lib.mjs';
+import { loadCatalogue, root, schema } from './lib.mjs';
+import { taxonomy } from '../src/taxonomy.js';
 import { buildLibrary } from './build-library.mjs';
 import { cataloguePage, detailPage, escapeHTML as E } from '../website/render.js';
 const exercises = await loadCatalogue();
@@ -11,6 +12,12 @@ const dist = path.join(root, 'dist/site');
 for (const dir of ['assets', 'data', 'schema', 'exercises'])
   await mkdir(path.join(dist, dir), { recursive: true });
 await copyFile(path.join(root, 'src/catalogue.js'), path.join(dist, 'assets/catalogue.js'));
+await copyFile(path.join(root, 'src/taxonomy.js'), path.join(dist, 'assets/taxonomy.js'));
+await copyFile(
+  path.join(root, 'schema/taxonomy.schema.json'),
+  path.join(dist, 'schema/taxonomy.schema.json'),
+);
+await writeFile(path.join(dist, 'data/taxonomy.json'), JSON.stringify(taxonomy, null, 2) + '\n');
 for (const f of ['app.js', 'render.js', 'styles.css'])
   await copyFile(path.join(root, 'website', f), path.join(dist, 'assets', f));
 await copyFile(
@@ -18,7 +25,7 @@ await copyFile(
   path.join(dist, 'schema/exercise.schema.json'),
 );
 const envelope = (channel, entries) => ({
-  schemaVersion: 1,
+  schemaVersion: schema.properties.schemaVersion.const,
   version,
   channel,
   license: 'MIT',
@@ -55,12 +62,21 @@ function page(body, entry = null) {
   const payload = JSON.stringify({
     exercises: entry ? [entry] : exercises,
     slug: entry?.slug || null,
+    version,
   }).replaceAll('<', '\\u003c');
   return `<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="${E(description)}"><meta name="theme-color" content="#1d3428"><meta name="robots" content="noindex,nofollow"><title>${E(title)}</title><link rel="stylesheet" href="/assets/styles.css"></head><body><div id="app">${body}</div><script id="page-data" type="application/json">${payload}</script><script type="module" src="/assets/app.js"></script></body></html>\n`;
 }
 await writeFile(
   path.join(dist, 'index.html'),
-  page(cataloguePage(exercises, { lang: 'en', query: '', discipline: 'all', equipment: 'all' })),
+  page(
+    cataloguePage(exercises, {
+      lang: 'en',
+      query: '',
+      discipline: 'all',
+      equipment: 'all',
+      version,
+    }),
+  ),
 );
 for (const e of exercises) {
   const dir = path.join(dist, 'exercises', e.slug);

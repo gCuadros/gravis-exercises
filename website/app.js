@@ -1,3 +1,4 @@
+import { taxonomy } from './catalogue.js';
 import { cataloguePage, detailPage, resultGrid, copy } from './render.js';
 const payload = JSON.parse(document.getElementById('page-data').textContent);
 const app = document.getElementById('app');
@@ -8,11 +9,12 @@ try {
 const params = new URLSearchParams(location.search);
 let state = {
   lang,
+  version: payload.version,
   query: params.get('q') || '',
   discipline: params.get('discipline') || 'all',
   equipment: params.get('equipment') || 'all',
 };
-if (!['all', 'strength', 'calisthenics', 'functional'].includes(state.discipline))
+if (!['all', ...Object.keys(taxonomy.groups.disciplines)].includes(state.discipline))
   state.discipline = 'all';
 if (!['all', ...payload.exercises.flatMap((e) => e.equipment)].includes(state.equipment))
   state.equipment = 'all';
