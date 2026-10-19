@@ -70,12 +70,23 @@ test('authored strings are escaped in HTML', () => {
   const html = detailPage(e, 'en');
   assert(!html.includes('<img src=x'));
   assert(html.includes('&lt;img'));
-  e.equipment = ['" onfocus="alert(1)'];
   const catalogue = cataloguePage([e], {
     lang: 'en',
     query: '',
     discipline: 'all',
     equipment: 'all',
   });
-  assert(!catalogue.includes('value="" onfocus='));
+  assert(!catalogue.includes('<img src=x'));
+  assert(catalogue.includes('&lt;img'));
+  e.equipment = ['" onfocus="alert(1)'];
+  assert.throws(
+    () =>
+      cataloguePage([e], {
+        lang: 'en',
+        query: '',
+        discipline: 'all',
+        equipment: 'all',
+      }),
+    /Unknown taxonomy/,
+  );
 });

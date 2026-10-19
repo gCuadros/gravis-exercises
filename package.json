@@ -1,6 +1,6 @@
 {
   "name": "gravis-exercises",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "description": "Open, bilingual exercise data and framework-independent utilities for strength, calisthenics and functional training.",
@@ -21,7 +21,8 @@
     "check": "npm run format:check && npm run lint && npm run validate && npm test && npm run build && npm run test:types && npm run test:package",
     "dev": "npm run build && node scripts/serve.mjs",
     "preview": "node scripts/serve.mjs",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "taxonomy:sync": "node scripts/sync-taxonomy.mjs"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
@@ -62,7 +63,13 @@
     "./data": "./dist/package/catalogue.published.json",
     "./data/preview": "./dist/package/catalogue.preview.json",
     "./schema": "./dist/package/exercise.schema.json",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./taxonomy": {
+      "types": "./dist/package/taxonomy.d.ts",
+      "default": "./dist/package/taxonomy.js"
+    },
+    "./taxonomy/data": "./dist/package/taxonomy.json",
+    "./taxonomy/schema": "./dist/package/taxonomy.schema.json"
   },
   "files": [
     "dist/package/",

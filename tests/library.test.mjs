@@ -6,8 +6,8 @@ import { searchFixtures } from './fixtures/exercises.mjs';
 const entries = searchFixtures();
 const make = () =>
   createCatalogue({
-    schemaVersion: 1,
-    version: '0.1.0',
+    schemaVersion: 2,
+    version: '0.2.0',
     channel: 'preview',
     license: 'MIT',
     exercises: structuredClone(entries),

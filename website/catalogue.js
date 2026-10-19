@@ -1,1 +1,1 @@
-export { filterExercises, label } from '../src/catalogue.js';
+export { filterExercises, label, taxonomy } from '../src/catalogue.js';

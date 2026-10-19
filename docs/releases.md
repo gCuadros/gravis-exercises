@@ -8,7 +8,9 @@ Implement changes on a focused branch and open a pull request against `main`. Ev
 
 ## Version policy
 
-`package.json` is the distribution version; update its lockfile metadata together. `schemaVersion` is the data contract version, currently 1. For pre-1.0 releases, use a minor version for incompatible API/schema changes and a patch version for compatible fixes. Every intentionally distributed data change gets a release version. Preserve IDs; record replacements, removals and slug redirects in a migration note.
+`package.json` is the distribution version; update its lockfile metadata together. `schemaVersion` is the data contract version, currently 2. For pre-1.0 releases, use a minor version for incompatible API/schema changes and a patch version for compatible fixes. Every intentionally distributed data change gets a release version. Preserve IDs; record replacements, removals and slug redirects in a migration note.
+
+The taxonomy JSON shape has its own `schemaVersion` (currently 1); vocabulary contents use the package distribution version. See the [0.2.0 migration](migrations/0.2.0.md).
 
 Add relevant changes to `CHANGELOG.md`. Include content status and migrations, not only implementation details. Never claim a reviewed catalogue merely because the package's software checks pass.
 
@@ -18,12 +20,12 @@ The package is intentionally private to prevent accidental npm registry publicat
 
 ## Draft release workflow
 
-A maintainer may push a version tag such as `v0.1.0` after a reviewed merge and an explicit release decision. The `Prepare release` workflow:
+A maintainer may push a version tag such as `v0.2.0` after a reviewed merge and an explicit release decision. The `Prepare release` workflow:
 
 1. Runs the same reusable CI checks against the tagged commit.
 2. Verifies the tag matches the package version.
 3. Rebuilds and tests the distributable archive in an isolated consumer.
-4. Creates a **draft** GitHub release with the archive, SHA-256 checksum, separate preview/published JSON and schema.
+4. Creates a **draft** GitHub release with the archive, SHA-256 checksum, separate preview/published JSON, exercise schema, vocabulary JSON and its schema.
 
 It does not publish to npm, deploy the site or publish the draft release automatically. A maintainer reviews release notes, licenses, content status and artifacts before publication. Tags and release publication are not part of ordinary development tasks.
 
