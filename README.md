@@ -6,7 +6,7 @@ Open exercise data for **any project** building around strength, calisthenics an
 
 The library is independent of Gravis's application and website. Consume it as a dependency-free JavaScript module, with TypeScript declarations, or as plain JSON from another language. The website is a reference consumer of the same data and search utilities.
 
-**Status:** foundation preview. Eight original draft entries; no technically reviewed entries or approved demonstrations yet. The default package and published dataset are intentionally empty until entries meet the publication gate. Preview data must be selected explicitly. The research inventory of 517 candidates is local and excluded from distribution.
+**Status:** foundation preview. Eight original draft entries; no technically reviewed entries or approved demonstrations yet. The default package and published dataset are intentionally empty until entries meet the publication gate. Preview data must be selected explicitly. The research inventory of 517 candidates is local and excluded from distribution. A public [coverage audit](docs/catalogue-coverage.md) and [16-variation authoring batch](docs/batches/001-foundations.md) define the expansion work; those planned variations are not yet exercise records.
 
 ## Use the library
 

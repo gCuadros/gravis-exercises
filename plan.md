@@ -79,6 +79,8 @@ DATA-001 specifies the full envelope: `schemaVersion`, package version, channel,
 
 Use the local inventory only if available. If it is not available, prepare an independently authored coverage proposal and mark source reconciliation pending. Never claim that a fresh clone includes all 517 candidates. Keep source-to-canonical mappings private when they contain account-linked references.
 
+The [CAT-001 coverage audit](docs/catalogue-coverage.md) records every candidate’s planning disposition, equivalence decisions and unresolved evidence. [B001](docs/batches/001-foundations.md) is the first public authoring specification: two groups of eight exact variations. Planning triage does not claim every source identity has been resolved.
+
 Resolve exact variations and duplicates before assigning new stable IDs. Work in reviewable batches; record proposed anatomy as pending until professionally reviewed. Preserve all requested disciplines and the full coverage ambition rather than treating the pilot as the final limit. Detailed workflow: [contributing](CONTRIBUTING.md), [expansion](docs/catalogue-expansion.md), [data model](docs/data-model.md).
 
 ### MED-001 and WEB-001 — Visual assets and real use

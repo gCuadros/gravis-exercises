@@ -2,9 +2,15 @@
 
 The scope remains a broad library covering strength training, calisthenics and functional training. The first eight authored records test the editorial, recording and demonstration workflow; they are not a replacement for the full inventory.
 
-The current internal inventory contains 517 research candidates: 457 reference records and 60 additions proposed during research. These are candidates, not 517 reviewed, distinct, publishable exercises. Personal/custom origins, overlapping labels and some recording modes still need confirmation.
+The current internal inventory contains 517 research candidates: 457 reference records and 60 additions proposed during research. These are candidates, not 517 reviewed, distinct, publishable exercises. Personal/custom origins, overlapping labels and some recording modes still need confirmation. The [CAT-001 coverage audit](catalogue-coverage.md) assigns every candidate a planning area and next action; it does not claim all identities are resolved.
 
 The local research copy, when available, is `.local/research/gravis-catalogue-v0.1.json`. It is deliberately ignored by Git and never copied into `dist/`. Public contributors do not need access to it to contribute an independently authored exercise.
+
+## Current authoring plan
+
+[Coverage reconciliation](catalogue-coverage.md) documents the 517-row snapshot, exclusive planning/disposition counts, 22 equivalence decisions and unresolved evidence. The [B001 specification](batches/001-foundations.md) defines 16 new original variations, split into two groups of eight, with bilingual names, precise scope, recording decisions and required vocabulary work. Start Group A next; no new IDs, technical approvals or demonstrations are implied by this plan.
+
+The audit preserves 19 general activity/session labels outside the single-exercise authoring queue and all six unconfirmed custom origins. They remain follow-up work; they are not silently deleted or presented as already mapped to Gravis identities. Future contributors can execute B001 from its public specification without private account exports.
 
 ## Process each batch
 
@@ -29,4 +35,4 @@ Prioritize frequently used foundational movements and representative recording m
 | Foot-assisted rope climb    | Repetitions plus ascent height                              |
 | Tuck planche on parallettes | Advanced isometric variation with precise body position     |
 
-Remaining work before a public launch includes technical reviewers, original visual production, broader authored coverage, taxonomy consolidation and a deliberate publication decision. The repository already keeps unfinished content distinguishable from approved releases.
+Remaining work before a public launch includes technical reviewers, original visual production, broader authored coverage, vocabulary expansion for new movements and a deliberate publication decision. Controlled taxonomy and envelope validation are already implemented. The repository already keeps unfinished content distinguishable from approved releases.
