@@ -2,6 +2,8 @@
 
 ## Unreleased — 0.2.1 foundation preview
 
+- Complete CAT-001 planning triage: public coverage/disposition matrix, 22 equivalence decisions and a precise 16-variation authoring batch. Keep candidate-level mappings private and all unresolved identities explicit; no exercise records or approvals are added by the plan.
+
 - Add a standalone catalogue JSON Schema and generate the readonly `Catalogue` type from it. Keep existing record/envelope generation 2 and preserve all exercise content.
 - Validate distribution metadata and both channels before building; reject drafts in published data while allowing empty distributions.
 - Serve byte-identical package/site feeds. Validate schemas and data extracted from an installed archive, and expose the catalogue schema through the package, website and draft-release workflow.
