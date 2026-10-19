@@ -43,4 +43,4 @@ The preview dataset includes drafts; the published dataset does not. The website
 
 Dataset release versions follow `package.json`. Increment the release version when distributing changed data. Breaking record contracts require a new schema version and a migration note. Retain IDs across wording and translation corrections.
 
-Version 1 preview consumers should follow the [0.2.0 migration](migrations/0.2.0.md). The exported catalogue envelope identifies record version 2; its standalone schema remains DATA-001 work.
+Version 1 preview consumers should follow the [0.2.0 migration](migrations/0.2.0.md). The [catalogue envelope](catalogue-contract.md) uses the same contract generation 2 and has a bundled schema for offline validation. Its metadata, channel gate and generated types reuse the record contract.

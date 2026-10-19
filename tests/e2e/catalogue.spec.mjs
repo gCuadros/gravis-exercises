@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { loadCatalogue, validateCatalogue } from '../../scripts/lib.mjs';
+import Ajv2020 from 'ajv/dist/2020.js';
+import addFormats from 'ajv-formats';
 import { searchFixtures } from '../fixtures/exercises.mjs';
 const entries = await loadCatalogue();
 // Select a real, stable identity; translations and the number/order of matches can change.
@@ -118,6 +120,15 @@ for (const expanded of [false, true]) {
       await page.goto('/');
       const preview = await (await request.get('/data/catalogue.preview.json')).json();
       const published = await (await request.get('/data/catalogue.published.json')).json();
+      const schemaResponse = await request.get('/schema/catalogue.schema.json');
+      expect(schemaResponse.status()).toBe(200);
+      const ajv = new Ajv2020({ strict: true });
+      addFormats(ajv);
+      const validate = ajv.compile(await schemaResponse.json());
+      expect(validate(preview)).toBe(true);
+      expect(validate(published)).toBe(true);
+      expect(preview.channel).toBe('preview');
+      expect(published.channel).toBe('published');
       expect(preview.exercises).toEqual(entries);
       expect(published.exercises).toEqual(
         entries.filter((exercise) => exercise.status === 'published'),
