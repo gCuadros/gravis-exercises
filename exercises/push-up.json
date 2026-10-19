@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 2,
+  "id": "grv_000000000014",
+  "slug": "push-up",
+  "status": "draft",
+  "names": {
+    "en": "Floor push-up",
+    "es": "Flexión de brazos en suelo"
+  },
+  "aliases": {
+    "en": ["Push-up", "Floor press-up"],
+    "es": ["Flexión en suelo", "Lagartija en suelo"]
+  },
+  "summary": {
+    "en": "A bodyweight press on hands and toes, lowering and raising the trunk and legs together.",
+    "es": "Empuje con peso corporal sobre manos y puntas de los pies, bajando y subiendo tronco y piernas a la vez."
+  },
+  "disciplines": ["strength", "calisthenics", "functional"],
+  "family": "push_up",
+  "equipment": ["floor"],
+  "muscles": {
+    "primary": ["pectorals", "triceps"],
+    "secondary": ["anterior-deltoids", "abdominals"]
+  },
+  "tracking": {
+    "required": ["repetitions"],
+    "optional": [],
+    "loadConvention": "none",
+    "notes": {
+      "en": "Count one descent until the chest is close to the floor and return to extended arms as one repetition. Keep a consistent bottom clearance and record reduced range separately. Knees-down, elevated-hand and weighted versions are distinct; no external load is recorded here.",
+      "es": "Cuenta una bajada hasta acercar el pecho al suelo y vuelta a brazos extendidos como una repetición. Conserva la misma distancia al suelo y anota el recorrido reducido por separado. Las versiones con rodillas apoyadas, manos elevadas o lastre son distintas; aquí no se registra carga externa."
+    }
+  },
+  "instructions": {
+    "en": [
+      "Support yourself on hands and toes with hands slightly wider than shoulders and arms extended. Align head, trunk and legs.",
+      "Bend the elbows to bring the chest close to the floor without resting the torso or knees. Keep elbows angled back rather than spread directly sideways.",
+      "Push the floor away and return to extended arms, raising shoulders and hips together."
+    ],
+    "es": [
+      "Apóyate en manos y puntas de los pies con manos algo más separadas que los hombros y brazos extendidos. Alinea cabeza, tronco y piernas.",
+      "Flexiona los codos para acercar el pecho al suelo sin apoyar tronco ni rodillas. Dirige los codos algo hacia atrás en vez de abrirlos totalmente a los lados.",
+      "Empuja el suelo hasta volver a brazos extendidos, elevando hombros y caderas a la vez."
+    ]
+  },
+  "cues": {
+    "en": [
+      "Keep hips from dropping or rising ahead of the shoulders.",
+      "Use a controlled descent, without bouncing."
+    ],
+    "es": [
+      "Evita que las caderas caigan o suban antes que los hombros.",
+      "Baja con control, sin rebotar."
+    ]
+  },
+  "review": {
+    "technical": "pending",
+    "reviewer": null,
+    "reviewedAt": null
+  },
+  "media": [],
+  "license": "MIT",
+  "provenance": {
+    "kind": "gravis-authored",
+    "note": "Original editorial draft for Gravis. Muscle labels and technique await human review. No competitor media or private account data included. Editorial references and review decisions are documented in docs/batches/001-foundations.md."
+  }
+}

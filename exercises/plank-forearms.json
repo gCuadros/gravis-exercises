@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 2,
+  "id": "grv_000000000015",
+  "slug": "plank-forearms",
+  "status": "draft",
+  "names": {
+    "en": "Forearm plank",
+    "es": "Plancha sobre antebrazos"
+  },
+  "aliases": {
+    "en": ["Front plank", "Elbow plank"],
+    "es": ["Plancha de antebrazos", "Plancha frontal"]
+  },
+  "summary": {
+    "en": "A static trunk hold supported on both forearms and toes.",
+    "es": "Posición estática de tronco con apoyo en ambos antebrazos y puntas de los pies."
+  },
+  "disciplines": ["strength", "calisthenics", "functional"],
+  "family": "plank",
+  "equipment": ["floor"],
+  "muscles": {
+    "primary": ["abdominals"],
+    "secondary": ["glutes", "shoulders"]
+  },
+  "tracking": {
+    "required": ["duration"],
+    "optional": [],
+    "loadConvention": "none",
+    "notes": {
+      "en": "Record held time in seconds, starting only when the aligned position is established. Stop at the first loss of alignment or when a knee or the trunk touches down. Setup, rest and exit do not count. Do not convert seconds into repetitions or confuse this with a high plank or planche.",
+      "es": "Registra segundos de mantenimiento desde que se establece la posición alineada. Detén el tiempo al perderla o cuando una rodilla o el tronco toquen el suelo. No cuentes preparación, descanso ni salida. No conviertas segundos en repeticiones ni confundas esta variante con plancha alta o planche."
+    }
+  },
+  "instructions": {
+    "en": [
+      "Place forearms on the floor with elbows beneath shoulders. Extend the legs and place toes on the floor.",
+      "Lift knees and trunk to form a steady line through shoulders, hips and ankles. Hold while breathing without letting hips sag or rise.",
+      "End the hold by lowering knees and trunk under control."
+    ],
+    "es": [
+      "Apoya los antebrazos en el suelo con codos bajo los hombros. Extiende las piernas y apoya las puntas de los pies.",
+      "Eleva rodillas y tronco hasta mantener alineados hombros, caderas y tobillos. Respira mientras sostienes la posición sin hundir ni elevar la cadera.",
+      "Termina bajando rodillas y tronco con control."
+    ]
+  },
+  "cues": {
+    "en": [
+      "Keep the neck aligned with the trunk.",
+      "End the timed interval when the defined position is lost."
+    ],
+    "es": [
+      "Mantén el cuello alineado con el tronco.",
+      "Termina el intervalo al perder la posición definida."
+    ]
+  },
+  "review": {
+    "technical": "pending",
+    "reviewer": null,
+    "reviewedAt": null
+  },
+  "media": [],
+  "license": "MIT",
+  "provenance": {
+    "kind": "gravis-authored",
+    "note": "Original editorial draft for Gravis. Muscle labels and technique await human review. No competitor media or private account data included. Editorial references and review decisions are documented in docs/batches/001-foundations.md."
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 2,
+  "id": "grv_000000000010",
+  "slug": "back-squat-high-bar-barbell",
+  "status": "draft",
+  "names": {
+    "en": "High-bar barbell back squat",
+    "es": "Sentadilla trasera con barra alta"
+  },
+  "aliases": {
+    "en": ["High bar squat", "High-bar back squat"],
+    "es": ["Sentadilla con barra alta", "Sentadilla trasera high bar"]
+  },
+  "summary": {
+    "en": "A bilateral squat with a free barbell supported high on the upper back, starting from a rack.",
+    "es": "Sentadilla bilateral con barra libre apoyada en la parte alta de la espalda, desde un soporte."
+  },
+  "disciplines": ["strength", "functional"],
+  "family": "squat",
+  "equipment": ["barbell", "squat-rack", "floor"],
+  "muscles": {
+    "primary": ["quadriceps", "glutes"],
+    "secondary": ["spinal-erectors", "abdominals", "upper-back"]
+  },
+  "tracking": {
+    "required": ["load", "repetitions"],
+    "optional": [],
+    "loadConvention": "total_including_bar",
+    "notes": {
+      "en": "Record bar plus plates as total load. One descent and return to standing counts once; unracking does not count. This draft uses the hip crease below the top of the knee as its depth reference. Log reduced range separately; keep high-bar and low-bar results distinct.",
+      "es": "Registra barra más discos como carga total. Una bajada y vuelta de pie cuenta una vez; sacar la barra no cuenta. Este borrador usa el pliegue de la cadera por debajo de la parte superior de la rodilla como referencia de profundidad. Anota el recorrido reducido por separado y distingue barra alta de barra baja."
+    }
+  },
+  "instructions": {
+    "en": [
+      "Set rack hooks and safety supports for your height and range. Rest the bar across the upper trapezius, not the neck; stand and step clear.",
+      "Brace your trunk and bend hips and knees, keeping both feet planted. Lower the hip crease below the top of the knees only while maintaining control.",
+      "Stand with hips and knees extended. At the end, walk forward until the bar meets both rack uprights, then lower onto the hooks."
+    ],
+    "es": [
+      "Ajusta los ganchos y soportes de seguridad a tu altura y recorrido. Apoya la barra sobre el trapecio superior, no sobre el cuello; levántate y aléjate del soporte.",
+      "Estabiliza el tronco y flexiona caderas y rodillas con ambos pies apoyados. Baja el pliegue de la cadera por debajo de la parte superior de las rodillas solo si mantienes el control.",
+      "Vuelve de pie con caderas y rodillas extendidas. Al terminar, avanza hasta que la barra toque ambos montantes y bájala sobre los ganchos."
+    ]
+  },
+  "cues": {
+    "en": [
+      "Keep the bar supported on the same upper-back position.",
+      "Do not force depth by losing trunk control."
+    ],
+    "es": [
+      "Conserva el apoyo de la barra en la misma posición de la espalda alta.",
+      "No fuerces la profundidad perdiendo el control del tronco."
+    ]
+  },
+  "review": {
+    "technical": "pending",
+    "reviewer": null,
+    "reviewedAt": null
+  },
+  "media": [],
+  "license": "MIT",
+  "provenance": {
+    "kind": "gravis-authored",
+    "note": "Original editorial draft for Gravis. Muscle labels and technique await human review. No competitor media or private account data included. Editorial references and review decisions are documented in docs/batches/001-foundations.md."
+  }
+}

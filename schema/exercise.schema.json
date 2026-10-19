@@ -35,14 +35,8 @@
       "additionalProperties": false,
       "required": ["en", "es"],
       "properties": {
-        "en": {
-          "type": "array",
-          "items": { "type": "string", "minLength": 1, "pattern": "\\S" }
-        },
-        "es": {
-          "type": "array",
-          "items": { "type": "string", "minLength": 1, "pattern": "\\S" }
-        }
+        "en": { "type": "array", "items": { "type": "string", "minLength": 1, "pattern": "\\S" } },
+        "es": { "type": "array", "items": { "type": "string", "minLength": 1, "pattern": "\\S" } }
       }
     },
     "summary": { "$ref": "#/$defs/bilingual" },
@@ -70,11 +64,7 @@
           "minItems": 1,
           "uniqueItems": true
         },
-        "secondary": {
-          "type": "array",
-          "items": { "$ref": "#/$defs/muscle" },
-          "uniqueItems": true
-        }
+        "secondary": { "type": "array", "items": { "$ref": "#/$defs/muscle" }, "uniqueItems": true }
       }
     },
     "tracking": {
@@ -88,11 +78,7 @@
           "uniqueItems": true,
           "items": { "$ref": "#/$defs/metric" }
         },
-        "optional": {
-          "type": "array",
-          "uniqueItems": true,
-          "items": { "$ref": "#/$defs/metric" }
-        },
+        "optional": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/metric" } },
         "loadConvention": {
           "enum": ["none", "total_including_bar", "external_load", "assistance_separate"]
         },
@@ -172,12 +158,14 @@
         "band",
         "barbell",
         "bench",
+        "dumbbell",
         "floor",
         "jump-rope",
         "parallettes",
         "pull-up-bar",
         "rope",
         "rowing-ergometer",
+        "squat-rack",
         "wall"
       ]
     },
@@ -196,6 +184,7 @@
         "pectorals",
         "quadriceps",
         "shoulders",
+        "spinal-erectors",
         "triceps",
         "upper-back"
       ]
@@ -204,13 +193,17 @@
       "type": "string",
       "enum": [
         "bench_press",
+        "deadlift",
         "ergometer_row",
         "handstand",
         "jump_rope",
         "l_sit",
         "planche",
+        "plank",
         "pull_up",
-        "rope_climb"
+        "push_up",
+        "rope_climb",
+        "squat"
       ]
     },
     "metric": {
@@ -231,10 +224,7 @@
     {
       "if": {
         "properties": {
-          "review": {
-            "properties": { "technical": { "const": "approved" } },
-            "type": "object"
-          }
+          "review": { "properties": { "technical": { "const": "approved" } }, "type": "object" }
         }
       },
       "then": {
@@ -253,10 +243,7 @@
       "if": { "properties": { "status": { "const": "published" } } },
       "then": {
         "properties": {
-          "review": {
-            "properties": { "technical": { "const": "approved" } },
-            "type": "object"
-          },
+          "review": { "properties": { "technical": { "const": "approved" } }, "type": "object" },
           "media": {
             "minItems": 1,
             "items": {
