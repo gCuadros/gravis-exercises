@@ -1,6 +1,13 @@
 # Changelog
 
-## Unreleased — 0.2.1 foundation preview
+## Unreleased — 0.3.0 foundation preview
+
+- Author B001 Group A: eight original bilingual drafts with stable identities, explicit counting/loading conventions and production briefs. The catalogue now contains 16 drafts, zero published records and no approved media.
+- Add two equipment terms, four movement families and spinal erectors with ES/EN definitions. Preserve all eight pilot records unchanged.
+- Expand closed consumer unions intentionally: use a pre-1.0 minor version and document exhaustive-map/filter updates in [the migration note](docs/migrations/0.3.0.md). Record/envelope generation 2 and taxonomy shape generation 1 remain unchanged.
+- Verify discovery of related variants, plank versus planche support, generated consumer types and bilingual equipment-filter navigation at mobile width. No registry release, deployment or technical approval is implied.
+
+### Earlier foundation work (0.2.1)
 
 - Complete CAT-001 planning triage: public coverage/disposition matrix, 22 equivalence decisions and a precise 16-variation authoring batch. Keep candidate-level mappings private and all unresolved identities explicit; no exercise records or approvals are added by the plan.
 

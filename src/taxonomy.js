@@ -57,6 +57,14 @@ export const taxonomy = freezeDeep({
         'A supporting exercise bench; the variation specifies its angle.',
         'Banco de apoyo; la variante especifica su inclinación.',
       ),
+      dumbbell: term(
+        'Dumbbell',
+        'Mancuerna',
+        'A handheld free weight. The exercise specifies how many are used and how their mass is recorded.',
+        'Peso libre de mano. El ejercicio especifica cuántas se utilizan y cómo se registra su masa.',
+        ['Dumbbells'],
+        ['Mancuernas'],
+      ),
       floor: term(
         'Floor',
         'Suelo',
@@ -98,6 +106,14 @@ export const taxonomy = freezeDeep({
         'Máquina estática que simula el remo.',
         ['Rowing machine', 'Row erg'],
         ['Máquina de remo'],
+      ),
+      'squat-rack': term(
+        'Squat rack',
+        'Soporte de sentadillas',
+        'A structure for supporting and unracking a free barbell; the setup must specify suitable safety supports.',
+        'Estructura para apoyar y sacar una barra libre; el montaje debe especificar los soportes de seguridad adecuados.',
+        ['Power rack'],
+        ['Rack de sentadillas', 'Jaula de potencia'],
       ),
       wall: term(
         'Wall',
@@ -181,6 +197,14 @@ export const taxonomy = freezeDeep({
         'Broad shoulder musculature grouping; not an alias for anterior-deltoids.',
         'Agrupación general de la musculatura del hombro; no es un alias de anterior-deltoids.',
       ),
+      'spinal-erectors': term(
+        'Spinal erectors',
+        'Erectores espinales',
+        'The erector spinae muscle group along the spine; not a synonym for all back muscles.',
+        'Grupo muscular erector de la columna; no es un sinónimo de toda la musculatura de la espalda.',
+        ['Erector spinae'],
+        ['Erectores de la columna'],
+      ),
       triceps: term(
         'Triceps',
         'Tríceps',
@@ -200,6 +224,12 @@ export const taxonomy = freezeDeep({
         'Press de banca',
         'Pressing variations performed while supported on a bench.',
         'Variantes de empuje realizadas con apoyo en un banco.',
+      ),
+      deadlift: term(
+        'Deadlift',
+        'Peso muerto',
+        'Loaded lifting and hip-hinge variations; each record defines the start, endpoints and reset rather than implying floor contact.',
+        'Variantes de levantamiento y bisagra de cadera con carga; cada ficha define el inicio, el recorrido y el reinicio sin presuponer contacto con el suelo.',
       ),
       ergometer_row: term(
         'Ergometer rowing',
@@ -233,17 +263,37 @@ export const taxonomy = freezeDeep({
         'Hand-supported forward-lean balance skills and their progressions; distinct from a floor plank.',
         'Equilibrios sobre las manos con inclinación hacia delante y sus progresiones; distintos de la plancha abdominal.',
       ),
+      plank: term(
+        'Plank',
+        'Plancha abdominal',
+        'Trunk holds supported on the arms and feet or knees; distinct from feet-free calisthenics planche balances.',
+        'Posiciones de tronco con apoyo de brazos y pies o rodillas; distintas de los equilibrios de planche sin apoyo de pies.',
+      ),
       pull_up: term(
         'Pull-up',
         'Dominada',
         'Vertical pulling variations from a suspended position.',
         'Variantes de tracción vertical desde una posición suspendida.',
       ),
+      push_up: term(
+        'Push-up',
+        'Flexión de brazos',
+        'Bodyweight pressing variations with hand support; each record defines other contact points and movement range.',
+        'Variantes de empuje con peso corporal y apoyo de manos; cada ficha define los demás apoyos y el recorrido.',
+        ['Press-up'],
+        ['Lagartija'],
+      ),
       rope_climb: term(
         'Rope climb',
         'Trepa de cuerda',
         'Ascending a suspended rope, with or without leg assistance.',
         'Ascenso por una cuerda suspendida, con o sin ayuda de las piernas.',
+      ),
+      squat: term(
+        'Squat',
+        'Sentadilla',
+        'Lowering and rising through hip and knee flexion and extension; stance, load and depth belong to the exact variation.',
+        'Descenso y ascenso mediante flexión y extensión de cadera y rodilla; la postura, la carga y la profundidad pertenecen a la variante concreta.',
       ),
     },
     metrics: {

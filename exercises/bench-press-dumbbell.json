@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 2,
+  "id": "grv_000000000012",
+  "slug": "bench-press-dumbbell",
+  "status": "draft",
+  "names": {
+    "en": "Flat dumbbell bench press",
+    "es": "Press de banca plano con mancuernas"
+  },
+  "aliases": {
+    "en": ["Dumbbell bench press", "Flat dumbbell chest press"],
+    "es": ["Press plano con mancuernas", "Press banca mancuernas"]
+  },
+  "summary": {
+    "en": "A simultaneous press with two dumbbells while lying on a flat bench.",
+    "es": "Empuje simultáneo con dos mancuernas tumbado sobre un banco plano."
+  },
+  "disciplines": ["strength"],
+  "family": "bench_press",
+  "equipment": ["dumbbell", "bench"],
+  "muscles": {
+    "primary": ["pectorals"],
+    "secondary": ["triceps", "anterior-deltoids"]
+  },
+  "tracking": {
+    "required": ["load", "repetitions"],
+    "optional": [],
+    "loadConvention": "external_load",
+    "notes": {
+      "en": "Record the TOTAL mass of both dumbbells, not the mass of one: two 12 kg dumbbells mean 24 kg. One simultaneous lowering and press counts once, not once per arm. Record grip and range changes in the session; alternating or inclined presses are separate variations.",
+      "es": "Registra la masa TOTAL de ambas mancuernas, no la de una: dos mancuernas de 12 kg son 24 kg. Una bajada y empuje simultáneos cuentan una vez, no una por brazo. Anota cambios de agarre y recorrido en la sesión; el press alterno o inclinado son variantes distintas."
+    }
+  },
+  "instructions": {
+    "en": [
+      "Lie on a flat bench with feet supported, head, upper back and buttocks on the bench. Position both dumbbells above the chest, palms toward the feet.",
+      "Lower both weights together toward the sides of the chest, keeping wrists over forearms. Stop at a controlled, comfortable depth without lifting the shoulders from the bench.",
+      "Press both dumbbells upward to extended arms without striking them together. Finish the set with a controlled transfer of the weights, using assistance if needed."
+    ],
+    "es": [
+      "Túmbate en un banco plano con pies apoyados y cabeza, espalda alta y glúteos sobre el banco. Coloca ambas mancuernas sobre el pecho, con las palmas hacia los pies.",
+      "Baja las dos pesas a la vez hacia los lados del pecho, con muñecas sobre antebrazos. Detente a una profundidad cómoda y controlada sin despegar los hombros del banco.",
+      "Empuja ambas mancuernas hasta extender los brazos sin golpearlas entre sí. Termina colocando las pesas con control y ayuda si la necesitas."
+    ]
+  },
+  "cues": {
+    "en": ["Keep the same range on both sides.", "Arrange the setup and finish before lifting."],
+    "es": [
+      "Mantén el mismo recorrido en ambos lados.",
+      "Prepara la entrada y la salida antes de levantar."
+    ]
+  },
+  "review": {
+    "technical": "pending",
+    "reviewer": null,
+    "reviewedAt": null
+  },
+  "media": [],
+  "license": "MIT",
+  "provenance": {
+    "kind": "gravis-authored",
+    "note": "Original editorial draft for Gravis. Muscle labels and technique await human review. No competitor media or private account data included. Editorial references and review decisions are documented in docs/batches/001-foundations.md."
+  }
+}

@@ -10,6 +10,36 @@ if (!target) throw new Error('The band-assisted pull-up reference identity is mi
 const card = (page, exercise) =>
   page.locator(`.exercise-card[href="/exercises/${exercise.slug}/"]`);
 
+test('new equipment filters lead to the correct bilingual draft at mobile width', async ({
+  page,
+}) => {
+  const squat = entries.find((entry) => entry.slug === 'back-squat-high-bar-barbell');
+  const press = entries.find((entry) => entry.slug === 'bench-press-dumbbell');
+  await page.setViewportSize({ width: 320, height: 812 });
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Cambiar a español' }).click();
+  await page.getByRole('searchbox').fill('sentadilla');
+  await page.locator('#equipment').selectOption('squat-rack');
+  await expect(card(page, squat)).toBeVisible();
+  await expect(page.locator('.exercise-card[href="/exercises/squat-bodyweight/"]')).toHaveCount(0);
+  await card(page, squat).click();
+  await expect(page.getByRole('heading', { name: squat.names.es, exact: true })).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+
+  await page.goto('/?q=press+banca&equipment=dumbbell&lang=es');
+  await page.reload();
+  await expect(card(page, press)).toBeVisible();
+  await expect(page.locator('.exercise-card[href="/exercises/bench-press-barbell/"]')).toHaveCount(
+    0,
+  );
+  await card(page, press).click();
+  await expect(page.getByText(press.tracking.notes.es, { exact: true })).toBeVisible();
+  await expect(page.locator('video')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Switch to English' }).click();
+  await expect(page.getByText(press.tracking.notes.en, { exact: true })).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
 for (const expanded of [false, true]) {
   test.describe(expanded ? 'expanded catalogue' : 'source catalogue', () => {
     const additions = expanded ? searchFixtures() : [];

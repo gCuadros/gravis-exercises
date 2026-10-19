@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 2,
+  "id": "grv_000000000011",
+  "slug": "deadlift-conventional-barbell",
+  "status": "draft",
+  "names": {
+    "en": "Conventional barbell deadlift",
+    "es": "Peso muerto convencional con barra"
+  },
+  "aliases": {
+    "en": ["Conventional deadlift", "Floor-reset deadlift"],
+    "es": ["Peso muerto convencional", "Peso muerto desde el suelo"]
+  },
+  "summary": {
+    "en": "A barbell lift from the floor using a conventional stance, with a controlled return and reset for each repetition.",
+    "es": "Levantamiento de barra desde el suelo con postura convencional, bajada controlada y reinicio en cada repetición."
+  },
+  "disciplines": ["strength", "functional"],
+  "family": "deadlift",
+  "equipment": ["barbell", "floor"],
+  "muscles": {
+    "primary": ["glutes", "quadriceps", "hamstrings"],
+    "secondary": ["spinal-erectors", "lats", "forearms", "abdominals"]
+  },
+  "tracking": {
+    "required": ["load", "repetitions"],
+    "optional": [],
+    "loadConvention": "total_including_bar",
+    "notes": {
+      "en": "Record the combined mass of bar and plates. Count one floor-to-standing lift and controlled return to the floor as one repetition. Reset between repetitions; touch-and-go, sumo, Romanian and raised-start lifts are separate variations. Note plate diameter if it changes the starting height.",
+      "es": "Registra el peso conjunto de barra y discos. Cuenta un levantamiento desde el suelo hasta quedar de pie y su bajada controlada como una repetición. Reinicia entre repeticiones; las variantes con rebote continuo, sumo, rumana o desde altura son distintas. Anota el diámetro de los discos si cambia la altura inicial."
+    }
+  },
+  "instructions": {
+    "en": [
+      "Place the bar over midfoot with feet around hip width. Bend hips and knees to grip outside the legs, keeping arms straight and your trunk braced.",
+      "Press the floor away and keep the bar close as hips and shoulders rise together. Finish standing with hips and knees extended, without leaning backward.",
+      "Move hips back, then bend knees as the bar clears them. Set the plates down under control and reset before lifting again."
+    ],
+    "es": [
+      "Sitúa la barra sobre la mitad del pie, con los pies al ancho aproximado de caderas. Flexiona caderas y rodillas para agarrar por fuera de las piernas, con brazos extendidos y tronco firme.",
+      "Empuja el suelo y mantén la barra cerca mientras caderas y hombros suben juntos. Termina de pie con caderas y rodillas extendidas, sin inclinarte hacia atrás.",
+      "Lleva la cadera atrás y flexiona las rodillas cuando la barra las sobrepase. Apoya los discos con control y recolócate antes de levantar de nuevo."
+    ]
+  },
+  "cues": {
+    "en": [
+      "Build tension before the bar leaves the floor.",
+      "Keep elbows extended; avoid bouncing the plates."
+    ],
+    "es": [
+      "Genera tensión antes de despegar la barra.",
+      "Mantén los codos extendidos y evita rebotar los discos."
+    ]
+  },
+  "review": {
+    "technical": "pending",
+    "reviewer": null,
+    "reviewedAt": null
+  },
+  "media": [],
+  "license": "MIT",
+  "provenance": {
+    "kind": "gravis-authored",
+    "note": "Original editorial draft for Gravis. Muscle labels and technique await human review. No competitor media or private account data included. Editorial references and review decisions are documented in docs/batches/001-foundations.md."
+  }
+}
