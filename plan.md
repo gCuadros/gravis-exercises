@@ -12,7 +12,7 @@ The fitness application, accounts, user sessions, subscriptions, AI coaching and
 
 ## 2. Invariants
 
-- Work on a branch, with a reviewable PR; never implement directly on `main`.
+- Give every logical change or authoring batch its own branch, PR and changelog update; never implement directly on `main` or append a later task to an earlier PR.
 - Keep the public runtime framework-independent and free of runtime dependencies, Node-only APIs and network requirements.
 - Use the exercise JSON Schema as the record contract. Generate record types from it; add domain checks only for constraints outside that schema.
 - Default imports and published JSON expose approved entries only. Preview imports are explicit. An empty published dataset is correct while review is incomplete.
@@ -24,12 +24,12 @@ The fitness application, accounts, user sessions, subscriptions, AI coaching and
 ## 3. Start or resume in any harness
 
 1. Open the repository root. Read `AGENTS.md`, `plan.md`, `status.md`, then the documents linked by the selected task.
-2. Inspect `git status --short`, `git branch --show-current` and `git log -5 --oneline`. Preserve uncommitted work. If continuing an open task, use its existing branch after checking the PR; otherwise create a focused branch from the appropriate reviewed base. Never reset, overwrite or merge another person's changes to make the setup convenient.
+2. Inspect `git status --short`, `git branch --show-current` and `git log -5 --oneline`. Preserve uncommitted work. Reuse an existing branch only for corrections inside that PR's exact scope. Start every new task or authoring batch on a new focused branch, normally from updated `main`. For an unmerged dependency, explicitly document it and use its branch as the PR base so the diff includes only the new change. Never reset, overwrite or merge another person's changes to make the setup convenient.
 3. Compare the checkout with the evidence in `status.md`. If there are newer commits, recheck the relevant facts rather than treating the snapshot as live state.
 4. Use Node from `.nvmrc` (minimum package version is in `package.json`) and run `npm ci`. Keep `package-lock.json`; do not substitute unpinned tools.
 5. Select the first ready task in dependency order below. Mark it `in_progress` in `status.md`, describing the intended outcome. Do not reopen completed work without a concrete defect or requirement.
 6. Implement a bounded change and its meaningful checks. Run `npm run check`. For website/browser-runtime changes, also run `npm run test:e2e` after installing Chromium with `npx playwright install chromium`.
-7. Inspect the diff and package boundary. Update the status, relevant documentation and changelog; commit on the working branch. Update the existing PR or open a new PR as appropriate. Recheck CI on the resulting commit.
+7. Inspect the diff and package boundary. Update the status, relevant documentation and changelog; commit on the working branch. Open the new task's own PR, including its `CHANGELOG.md` update. Update an existing PR only for corrections within that PR's scope. Verify base/head and changed files against the declared scope. Recheck CI on the resulting commit.
 8. Leave a handoff with completed work, evidence, remaining risks and the exact next action. Do not merge, tag, publish or deploy without a release/merge decision from the maintainer.
 
 ### Tool independence and unavailable capabilities

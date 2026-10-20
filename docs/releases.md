@@ -2,7 +2,7 @@
 
 ## Branch workflow
 
-Implement changes on a focused branch and open a pull request against `main`. Every PR runs the `CI` workflow. Configure branch protection to require pull requests, the successful `CI gate`, resolved conversations and no force pushes/deletions. With one maintainer, requiring another approving reviewer would block every PR; automated checks remain mandatory.
+Implement each logical change or authoring batch on a new focused branch and open its own PR, normally against updated `main`. Every PR updates `CHANGELOG.md`, including documentation/test-only changes. Corrections within an existing PR's scope can stay on that branch. If work depends on an unmerged PR, target its branch and name the dependency explicitly so reviewers see only the incremental change. See [PR workflow and split index](pr-workflow.md). Every PR runs the `CI` workflow. Configure branch protection to require pull requests, the successful `CI gate`, resolved conversations and no force pushes/deletions. With one maintainer, requiring another approving reviewer would block every PR; automated checks remain mandatory.
 
 `AGENTS.md` records the working rules for coding agents. The PR template and CODEOWNERS make expected validation and ownership visible. They supplement branch protection; a file alone cannot enforce repository settings.
 
