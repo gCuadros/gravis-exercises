@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 2,
+  "id": "grv_000000000024",
+  "slug": "suitcase-carry-dumbbell",
+  "status": "draft",
+  "names": {
+    "en": "Dumbbell suitcase carry",
+    "es": "Paseo de maleta con mancuerna"
+  },
+  "aliases": {
+    "en": ["One-arm dumbbell carry"],
+    "es": ["Transporte unilateral con mancuerna"]
+  },
+  "summary": {
+    "en": "Walking with one dumbbell beside the body in the same hand throughout the set.",
+    "es": "Caminata con una mancuerna al lado del cuerpo, en la misma mano durante toda la serie."
+  },
+  "disciplines": ["strength", "functional"],
+  "family": "carry",
+  "equipment": ["dumbbell", "floor"],
+  "muscles": {
+    "primary": ["abdominals", "forearms"],
+    "secondary": ["glutes", "upper-back", "spinal-erectors"]
+  },
+  "tracking": {
+    "required": ["load", "distance"],
+    "optional": ["duration"],
+    "loadConvention": "external_load",
+    "notes": {
+      "en": "Record the single dumbbell mass and actual distance walked. Keep left and right sets separate in the consuming app; do not switch hands within a set. Optional duration starts with walking and ends when walking stops, excluding pickup and set-down. Do not convert steps into distance or count repetitions.",
+      "es": "Registra el peso de una sola mancuerna y la distancia real recorrida. Separa las series izquierda y derecha en la app; no cambies de mano dentro de una serie. La duración opcional empieza al caminar y acaba al detenerte, excluyendo recogida y apoyo. No conviertas pasos en distancia ni cuentes repeticiones."
+    }
+  },
+  "instructions": {
+    "en": [
+      "Clear a walking route and lift one dumbbell to your side. Stand upright with a firm grip and the loaded arm extended beside the hip.",
+      "Walk with controlled steps, keeping the torso upright without leaning toward or away from the load. Keep the same hand throughout the measured route.",
+      "Stop at the endpoint and lower the dumbbell under control. Treat a walk with the other hand as a separate set."
+    ],
+    "es": [
+      "Despeja el recorrido y levanta una mancuerna hasta tu costado. Colócate erguido con agarre firme y el brazo cargado extendido junto a la cadera.",
+      "Camina con pasos controlados manteniendo el tronco erguido, sin inclinarte hacia la carga ni alejarte de ella. Conserva la misma mano durante el recorrido medido.",
+      "Detente al final y deposita la mancuerna con control. Registra la caminata con la otra mano como otra serie."
+    ]
+  },
+  "cues": {
+    "en": [
+      "Keep the shoulders level.",
+      "Use measured distance, not an estimated repetition count."
+    ],
+    "es": [
+      "Mantén los hombros nivelados.",
+      "Utiliza distancia medida, no un recuento estimado de repeticiones."
+    ]
+  },
+  "review": {
+    "technical": "pending",
+    "reviewer": null,
+    "reviewedAt": null
+  },
+  "media": [],
+  "license": "MIT",
+  "provenance": {
+    "kind": "gravis-authored",
+    "note": "Original editorial draft for Gravis. Muscle labels and technique await human review. No competitor media or private account data included. Editorial references and review decisions are documented in docs/batches/001-foundations.md."
+  }
+}

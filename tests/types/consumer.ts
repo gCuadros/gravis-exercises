@@ -82,3 +82,17 @@ void invalidChannel;
 void invalidSchemaVersion;
 const sameRecordType: Exercise | undefined = catalogue.exercises[0];
 void sameRecordType;
+
+// B001 Group B: additions must flow through generated records and consumer filters.
+findExercises({ equipment: 'rings' });
+findExercises({ equipment: 'kettlebell' });
+const batchBFamilies: readonly Exercise['family'][] = [
+  'overhead_press',
+  'horizontal_row',
+  'kettlebell_swing',
+  'lunge',
+  'carry',
+];
+const ringsLabel: string = taxonomy.groups.equipment.rings.labels.es;
+void batchBFamilies;
+void ringsLabel;

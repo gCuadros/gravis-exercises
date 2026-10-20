@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 2,
+  "id": "grv_000000000018",
+  "slug": "overhead-press-standing-barbell",
+  "status": "draft",
+  "names": {
+    "en": "Standing strict barbell press",
+    "es": "Press estricto de pie con barra"
+  },
+  "aliases": {
+    "en": ["Standing barbell shoulder press", "Strict overhead press"],
+    "es": ["Press de hombros de pie con barra"]
+  },
+  "summary": {
+    "en": "A standing barbell press from the shoulders to overhead without a leg impulse.",
+    "es": "Empuje de barra desde los hombros por encima de la cabeza, de pie y sin impulso de piernas."
+  },
+  "disciplines": ["strength", "functional"],
+  "family": "overhead_press",
+  "equipment": ["barbell", "squat-rack", "floor"],
+  "muscles": {
+    "primary": ["shoulders", "triceps"],
+    "secondary": ["abdominals", "upper-back"]
+  },
+  "tracking": {
+    "required": ["load", "repetitions"],
+    "optional": [],
+    "loadConvention": "total_including_bar",
+    "notes": {
+      "en": "Record bar plus plates. One press from the shoulders to extended arms overhead and return counts once. Unracking is setup. Seated presses, push presses and jerks are separate variations.",
+      "es": "Registra barra y discos. Un empuje desde los hombros hasta extender los brazos sobre la cabeza y volver cuenta una vez. Sacar la barra del rack es preparación. El press sentado, el push press y el jerk son variantes distintas."
+    }
+  },
+  "instructions": {
+    "en": [
+      "Take the bar from shoulder-height rack hooks with hands just outside the shoulders. Step clear and establish a stable stance with the bar at the shoulders.",
+      "Brace the trunk and press upward, moving the head slightly out of the bar path. Keep hips and knees extended without a dip or leg drive.",
+      "Finish with arms extended and the bar balanced above your base of support. Lower to the shoulders under control; return the bar to both hooks after the set."
+    ],
+    "es": [
+      "Saca la barra de los soportes a la altura de los hombros, con las manos por fuera de estos. Sepárate del rack y estabilízate con la barra en los hombros.",
+      "Afirma el tronco y empuja hacia arriba, apartando ligeramente la cabeza de la trayectoria. Mantén caderas y rodillas extendidas sin flexión previa ni impulso.",
+      "Termina con los brazos extendidos y la barra equilibrada sobre la base de apoyo. Baja con control a los hombros y devuelve la barra a ambos soportes al acabar."
+    ]
+  },
+  "cues": {
+    "en": [
+      "Keep the ribs controlled rather than leaning back.",
+      "Let the bar clear your face before bringing the head through."
+    ],
+    "es": [
+      "Controla las costillas sin inclinarte hacia atrás.",
+      "Deja pasar la barra antes de colocar la cabeza debajo."
+    ]
+  },
+  "review": {
+    "technical": "pending",
+    "reviewer": null,
+    "reviewedAt": null
+  },
+  "media": [],
+  "license": "MIT",
+  "provenance": {
+    "kind": "gravis-authored",
+    "note": "Original editorial draft for Gravis. Muscle labels and technique await human review. No competitor media or private account data included. Editorial references and review decisions are documented in docs/batches/001-foundations.md."
+  }
+}

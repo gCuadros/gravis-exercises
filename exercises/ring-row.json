@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 2,
+  "id": "grv_000000000021",
+  "slug": "ring-row",
+  "status": "draft",
+  "names": {
+    "en": "Ring row",
+    "es": "Remo en anillas"
+  },
+  "aliases": {
+    "en": ["Bodyweight ring row"],
+    "es": ["Remo corporal en anillas"]
+  },
+  "summary": {
+    "en": "A bodyweight row on two suspended rings with heels on the floor and a straight body line.",
+    "es": "Remo corporal en dos anillas suspendidas con talones en el suelo y cuerpo alineado."
+  },
+  "disciplines": ["strength", "calisthenics", "functional"],
+  "family": "horizontal_row",
+  "equipment": ["rings", "floor"],
+  "muscles": {
+    "primary": ["lats", "upper-back"],
+    "secondary": ["biceps", "forearms", "abdominals"]
+  },
+  "tracking": {
+    "required": ["repetitions"],
+    "optional": [],
+    "loadConvention": "none",
+    "notes": {
+      "en": "Count extended arms to rings beside the ribs and back to extended arms as one repetition. Record ring height, foot position and body angle in session notes for comparison. These setup variables are not kilograms of assistance or external load. Feet remain on the floor.",
+      "es": "Cuenta desde brazos extendidos hasta anillas junto a las costillas y vuelta a brazos extendidos como una repetición. Anota altura de anillas, posición de pies e inclinación corporal para comparar sesiones. Esas variables no son kilos de asistencia ni carga externa. Los pies permanecen en el suelo."
+    }
+  },
+  "instructions": {
+    "en": [
+      "Check the ring anchors and set both rings at equal height. Hold them with palms facing each other, walk the feet forward and lean back onto the heels with arms extended.",
+      "Keep legs and trunk aligned as you draw the rings toward the sides of the ribs. Keep both heels in place.",
+      "Extend the arms under control without dropping the hips. Walk back to upright to finish."
+    ],
+    "es": [
+      "Comprueba los anclajes y coloca ambas anillas a la misma altura. Agárralas con las palmas enfrentadas, adelanta los pies e inclínate atrás sobre los talones con brazos extendidos.",
+      "Mantén piernas y tronco alineados al llevar las anillas hacia los lados de las costillas. Conserva ambos talones en su sitio.",
+      "Extiende los brazos con control sin dejar caer la cadera. Camina hacia atrás hasta quedar de pie para terminar."
+    ]
+  },
+  "cues": {
+    "en": [
+      "Move shoulders and hips together.",
+      "Choose a body angle that lets you complete both endpoints."
+    ],
+    "es": [
+      "Mueve hombros y caderas juntos.",
+      "Elige una inclinación que permita completar ambos extremos."
+    ]
+  },
+  "review": {
+    "technical": "pending",
+    "reviewer": null,
+    "reviewedAt": null
+  },
+  "media": [],
+  "license": "MIT",
+  "provenance": {
+    "kind": "gravis-authored",
+    "note": "Original editorial draft for Gravis. Muscle labels and technique await human review. No competitor media or private account data included. Editorial references and review decisions are documented in docs/batches/001-foundations.md."
+  }
+}

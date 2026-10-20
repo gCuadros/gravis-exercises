@@ -1,6 +1,13 @@
 # Changelog
 
-## Unreleased — 0.3.0 foundation preview
+## Unreleased — 0.4.0 foundation preview
+
+- Author B001 Group B: eight original ES/EN drafts with IDs 17–24, explicit variant boundaries and counting/loading/distance conventions. The catalogue now has 24 drafts; published exports remain empty.
+- Add rings and kettlebell equipment plus overhead press, resistance row, kettlebell swing, lunge and carry families. Synchronize record enums without changing the original 16 records.
+- Document the expanded closed unions in [the 0.4.0 migration](docs/migrations/0.4.0.md). Record/envelope generation 2 and taxonomy shape generation 1 are unchanged; no release is published.
+- Add regression coverage for row and chin-up identities, distance-based carries, generated types and bilingual mobile discovery. Add eight production briefs and update the portable handoff; all technique and media review remains pending.
+
+### Earlier foundation work (0.3.0)
 
 - Split the accumulated foundation work into seven scoped branches/PRs, preserving the original commits and each change's changelog. Track dependencies and integration order in `docs/pr-workflow.md`.
 - Require a separate branch/PR for every new logical change or authoring batch. Add a PR changelog CI gate and explicit scope/base/dependency checks to the working agreement, handoff and PR template.

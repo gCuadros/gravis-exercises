@@ -50,3 +50,20 @@ Record actual creator, permission, license and reviewer evidence after productio
 Each media object needs `type`, `url`, `alt.en`, `alt.es`, `creator`, `license` and `reviewStatus`. Use `pending` during production. An approved still image alone does not satisfy publication: a reviewed video or animation is required. The initial website embeds video and links to animation assets; it does not generate or host them.
 
 Review approval is a recorded human decision, not something the build can independently certify. Replace media URLs with versioned assets when changes affect technique, and return the exercise to draft while re-review is pending.
+
+## B001 Group B briefs
+
+Eight further specifications bring the total to 24; none is an existing or approved asset. Use [the stable record map](batches/001-foundations.md#group-b-delivery-and-review-handoff). Capture setup, two uninterrupted cycles and finish where applicable. For the carry, show pickup, a measured walk and set-down; label the hand and demonstrate the other side as a separate set. Keep a normal-speed continuous take; slow motion is supplementary. Review anatomy, contact points, written endpoints, loading overlays and ES/EN descriptions against the actual clip before approval.
+
+| Record                            | Framing and action                                                                            | Technical review before approval                                                                                                 |
+| --------------------------------- | --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `romanian-deadlift-barbell`       | Side/oblique view of full bar, feet, knee bend and hip hinge from standing                    | Lower endpoint before lost alignment; no forced floor contact or floor reset; initial pickup excluded from count                 |
+| `overhead-press-standing-barbell` | Full bar, rack, head clearance, knees and overhead endpoint visible throughout                | No knee dip or hip impulse; trunk alignment, shoulder-level return and secure rerack                                             |
+| `bent-over-row-barbell`           | Side plus grip view showing pronation, torso angle, bar suspension and upper-abdomen endpoint | No standing impulse, floor reset or hidden chest support; repeatable angle and extended-arm return                               |
+| `chin-up-strict`                  | Oblique full-body view with palms, chin, elbows and feet unobstructed                         | Supinated grip, chin clearance, extended-elbow return and absence of leg drive, assistance or weight                             |
+| `ring-row`                        | Side/oblique view showing anchors, both rings, heels, body line and full pull/return          | Equal ring height, stable foot placement, neutral grip and rings reaching ribs without hip sag                                   |
+| `kettlebell-swing-chest-height`   | Side/oblique view of both hands, bell path, hips, feet and chest-height apex                  | Hip impulse and return timing; no overhead or front-raise substitution; demonstrate count boundaries and controlled parking      |
+| `reverse-lunge-bodyweight`        | Both legs and floor visible through one left/right pair and standing returns                  | Rear knee approaches without impact; stable front foot and alternation; overlay counts pair as two                               |
+| `suitcase-carry-dumbbell`         | Full-body frontal/oblique walk with route markers and the one loaded hand visible             | No side changes within a set, leaning or hidden second weight; overlay single-bell mass, measured distance and walking-only time |
+
+Creator, performer permission, asset license, delivery URLs and technical reviewer remain unassigned. These briefs provide a production starting point, not an approval or a media-rights claim.
