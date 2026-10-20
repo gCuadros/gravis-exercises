@@ -6,7 +6,7 @@ This is the portable implementation plan. It requires only this repository, Git 
 
 Build an open, reusable exercise library for third-party projects as well as Gravis. Ship original English/Spanish exercise records, stable identities, explicit recording conventions, reviewed demonstrations and clear reuse rights. Consumers can use JavaScript/TypeScript or plain JSON. The public website is a reference consumer and discovery surface, not the boundary of the product.
 
-Coverage must grow across strength, calisthenics and functional/CrossFit-style training. The first eight draft entries form the production pilot; B001 Group A adds eight more, for 16 authored drafts. This is not the intended catalogue size. A local research inventory contains 517 candidates; this is not a verified unique exercise count or approved content. See [expansion](docs/catalogue-expansion.md).
+Coverage must grow across strength, calisthenics and functional/CrossFit-style training. The first eight draft entries form the production pilot; B001 Groups A and B add sixteen more, for 24 authored drafts. This is not the intended catalogue size. A local research inventory contains 517 candidates; this is not a verified unique exercise count or approved content. See [expansion](docs/catalogue-expansion.md).
 
 The fitness application, accounts, user sessions, subscriptions, AI coaching and the future nutrition product are outside this repository. Preserve relevant context in [product context](docs/product-context.md); do not implement application history in the public dataset.
 

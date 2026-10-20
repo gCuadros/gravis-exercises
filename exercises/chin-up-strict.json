@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 2,
+  "id": "grv_000000000020",
+  "slug": "chin-up-strict",
+  "status": "draft",
+  "names": {
+    "en": "Strict chin-up",
+    "es": "Dominada supina estricta"
+  },
+  "aliases": {
+    "en": ["Supinated chin-up", "Underhand chin-up"],
+    "es": ["Dominada con agarre supino"]
+  },
+  "summary": {
+    "en": "A strict bodyweight pull on a fixed bar with palms facing toward you.",
+    "es": "Tracción estricta con peso corporal en barra fija y palmas orientadas hacia ti."
+  },
+  "disciplines": ["strength", "calisthenics"],
+  "family": "pull_up",
+  "equipment": ["pull-up-bar"],
+  "muscles": {
+    "primary": ["lats", "biceps"],
+    "secondary": ["upper-back", "forearms", "abdominals"]
+  },
+  "tracking": {
+    "required": ["repetitions"],
+    "optional": [],
+    "loadConvention": "none",
+    "notes": {
+      "en": "Count one extended-elbow hang, pull until the chin clears the bar, and controlled return as one repetition. No added load, assistance or kip is included. Do not record body mass as external load or merge with pronated pull-up history.",
+      "es": "Cuenta una suspensión con codos extendidos, subida hasta superar la barra con la barbilla y bajada controlada como una repetición. No incluye lastre, asistencia ni balanceo. No registres el peso corporal como carga externa ni lo mezcles con el historial de dominadas pronadas."
+    }
+  },
+  "instructions": {
+    "en": [
+      "Hold a reachable fixed bar with palms toward you, around shoulder width. Establish a still hang with elbows extended and feet clear.",
+      "Pull upward without kicking until the chin clears the bar, keeping the neck aligned rather than reaching with the chin.",
+      "Lower smoothly to the starting hang. End the set with a controlled dismount."
+    ],
+    "es": [
+      "Agarra una barra fija accesible con las palmas hacia ti, al ancho aproximado de hombros. Estabiliza la suspensión con codos extendidos y pies sin apoyo.",
+      "Sube sin patadas hasta superar la barra con la barbilla, manteniendo el cuello alineado en lugar de estirarlo para llegar.",
+      "Baja suavemente a la suspensión inicial. Termina la serie con una salida controlada."
+    ]
+  },
+  "cues": {
+    "en": ["Start each pull without a swing.", "Control the whole descent."],
+    "es": ["Inicia cada subida sin balanceo.", "Controla toda la bajada."]
+  },
+  "review": {
+    "technical": "pending",
+    "reviewer": null,
+    "reviewedAt": null
+  },
+  "media": [],
+  "license": "MIT",
+  "provenance": {
+    "kind": "gravis-authored",
+    "note": "Original editorial draft for Gravis. Muscle labels and technique await human review. No competitor media or private account data included. Editorial references and review decisions are documented in docs/batches/001-foundations.md."
+  }
+}

@@ -6,7 +6,7 @@ Open exercise data for **any project** building around strength, calisthenics an
 
 The library is independent of Gravis's application and website. Consume it as a dependency-free JavaScript module, with TypeScript declarations, or as plain JSON from another language. The website is a reference consumer of the same data and search utilities.
 
-**Status:** foundation preview. Sixteen original draft entries; no technically reviewed entries or approved demonstrations yet. The default package and published dataset are intentionally empty until entries meet the publication gate. Preview data must be selected explicitly. The research inventory of 517 candidates is local and excluded from distribution. A public [coverage audit](docs/catalogue-coverage.md) and [16-variation authoring batch](docs/batches/001-foundations.md) define the expansion work; Group A adds eight authored drafts; Group B remains planned.
+**Status:** foundation preview. Twenty-four original draft entries; no technically reviewed entries or approved demonstrations yet. The default package and published dataset are intentionally empty until entries meet the publication gate. Preview data must be selected explicitly. The research inventory of 517 candidates is local and excluded from distribution. A public [coverage audit](docs/catalogue-coverage.md) and [16-variation authoring batch](docs/batches/001-foundations.md) define the expansion work; Groups A and B are authored as drafts; technical review and demonstrations remain pending.
 
 ## Use the library
 
@@ -19,7 +19,7 @@ npm run build
 npm run test:package
 
 # In a separate project, using the resulting archive
-npm install /path/to/gravis-exercises/artifacts/gravis-exercises-0.3.0.tgz
+npm install /path/to/gravis-exercises/artifacts/gravis-exercises-0.4.0.tgz
 ```
 
 ```js
@@ -62,7 +62,7 @@ The runtime uses standard ESM and works in Node.js 22.13+ and modern browsers/bu
 
 JSON files can also be extracted from the archive or consumed directly from `dist/package/`, without JavaScript or npm at runtime. Each envelope has `schemaVersion`, `version`, `channel`, `license` and `exercises`. The [catalogue contract](docs/catalogue-contract.md) validates the whole document, allows empty distributions and rejects drafts in the published channel. The public `Catalogue` type is generated from it. Preserve `id` as the identity; display names and slugs may change under a documented migration.
 
-The controlled [taxonomy](docs/taxonomy.md) covers equipment, muscles, families, disciplines and metrics. For example, `getLabel('metrics', 'assistance', 'es')` from `/taxonomy` returns `Asistencia`. All keys have English/Spanish labels and definitions; unknown references fail record validation. See the [0.2.0 migration](docs/migrations/0.2.0.md) before using older preview data with record schema version 2.
+The controlled [taxonomy](docs/taxonomy.md) covers equipment, muscles, families, disciplines and metrics. For example, `getLabel('metrics', 'assistance', 'es')` from `/taxonomy` returns `Asistencia`. All keys have English/Spanish labels and definitions; unknown references fail record validation. For the latest vocabulary additions, see the [0.4.0 compatibility note](docs/migrations/0.4.0.md). See the [0.2.0 migration](docs/migrations/0.2.0.md) before using older preview data with record schema version 2.
 
 ## Continue this project
 

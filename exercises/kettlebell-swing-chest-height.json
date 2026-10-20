@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 2,
+  "id": "grv_000000000022",
+  "slug": "kettlebell-swing-chest-height",
+  "status": "draft",
+  "names": {
+    "en": "Two-hand chest-height kettlebell swing",
+    "es": "Balanceo de kettlebell a la altura del pecho con dos manos"
+  },
+  "aliases": {
+    "en": ["Two-hand Russian kettlebell swing"],
+    "es": ["Swing ruso con kettlebell a dos manos"]
+  },
+  "summary": {
+    "en": "A two-hand hip-driven swing of one kettlebell to around chest height.",
+    "es": "Balanceo de una kettlebell con ambas manos e impulso de cadera hasta aproximadamente el pecho."
+  },
+  "disciplines": ["strength", "functional"],
+  "family": "kettlebell_swing",
+  "equipment": ["kettlebell", "floor"],
+  "muscles": {
+    "primary": ["glutes", "hamstrings"],
+    "secondary": ["abdominals", "spinal-erectors", "forearms"]
+  },
+  "tracking": {
+    "required": ["load", "repetitions"],
+    "optional": [],
+    "loadConvention": "external_load",
+    "notes": {
+      "en": "Record the mass of the single bell. One backswing, rise to chest height and return to backswing counts once. Initial pickup and final parking do not count. Overhead, one-arm and alternating-hand swings are separate variations.",
+      "es": "Registra el peso de una sola kettlebell. Un balanceo atrás, subida al pecho y vuelta atrás cuenta una vez. La recogida inicial y el apoyo final no cuentan. Los swings por encima de la cabeza, a una mano o cambiando de mano son variantes distintas."
+    }
+  },
+  "instructions": {
+    "en": [
+      "Place the bell slightly ahead of your feet. With a stable stance, hinge at the hips and grasp the handle with both hands; draw it back between the thighs.",
+      "Extend the hips to stand tall and let that impulse send the bell forward to about chest height. Guide it with long arms rather than lifting it with the shoulders.",
+      "Let the bell descend and hinge as it returns between the thighs. Repeat the cycle; after the final backswing, guide it forward onto the floor under control."
+    ],
+    "es": [
+      "Coloca la kettlebell algo por delante de los pies. Con apoyo estable, flexiona desde la cadera y agarra el asa con ambas manos; llévala atrás entre los muslos.",
+      "Extiende la cadera hasta quedar erguido y deja que ese impulso lleve la pesa hacia delante hasta aproximadamente el pecho. Guíala con brazos largos sin elevarla con los hombros.",
+      "Deja descender la pesa y lleva la cadera atrás cuando vuelva entre los muslos. Repite el ciclo; tras el último balanceo atrás, guíala hacia delante y apóyala con control."
+    ]
+  },
+  "cues": {
+    "en": [
+      "Finish tall without leaning backward.",
+      "Keep the backswing close rather than squatting beneath the bell."
+    ],
+    "es": [
+      "Termina erguido sin inclinarte hacia atrás.",
+      "Mantén el balanceo posterior cerca sin agacharte debajo de la pesa."
+    ]
+  },
+  "review": {
+    "technical": "pending",
+    "reviewer": null,
+    "reviewedAt": null
+  },
+  "media": [],
+  "license": "MIT",
+  "provenance": {
+    "kind": "gravis-authored",
+    "note": "Original editorial draft for Gravis. Muscle labels and technique await human review. No competitor media or private account data included. Editorial references and review decisions are documented in docs/batches/001-foundations.md."
+  }
+}

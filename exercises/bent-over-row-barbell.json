@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 2,
+  "id": "grv_000000000019",
+  "slug": "bent-over-row-barbell",
+  "status": "draft",
+  "names": {
+    "en": "Pronated bent-over barbell row",
+    "es": "Remo inclinado con barra y agarre prono"
+  },
+  "aliases": {
+    "en": ["Overhand barbell row"],
+    "es": ["Remo con barra prono"]
+  },
+  "summary": {
+    "en": "A two-arm row with a pronated grip, a hinged torso and a bar suspended between repetitions.",
+    "es": "Remo con ambas manos en pronación, tronco inclinado y barra suspendida entre repeticiones."
+  },
+  "disciplines": ["strength"],
+  "family": "horizontal_row",
+  "equipment": ["barbell", "floor"],
+  "muscles": {
+    "primary": ["lats", "upper-back"],
+    "secondary": ["biceps", "forearms", "spinal-erectors", "abdominals"]
+  },
+  "tracking": {
+    "required": ["load", "repetitions"],
+    "optional": [],
+    "loadConvention": "total_including_bar",
+    "notes": {
+      "en": "Record bar plus plates. Count a pull from extended arms to the upper abdomen and controlled return as one repetition. Keep the bar off the floor between repetitions. Note torso angle and grip width; floor-reset Pendlay, upright and supported rows are different variations.",
+      "es": "Registra barra y discos. Cuenta como una repetición la tracción desde brazos extendidos al abdomen superior y la vuelta controlada. Mantén la barra sin tocar el suelo entre repeticiones. Anota inclinación del tronco y anchura del agarre; el remo Pendlay desde el suelo, al mentón o con apoyo son variantes distintas."
+    }
+  },
+  "instructions": {
+    "en": [
+      "Lift the bar into a standing position with an overhand grip. Hinge forward with knees slightly bent until you can hold the torso steady and let the arms extend.",
+      "Pull the bar toward the upper abdomen, moving the elbows behind you without standing up or jerking the torso.",
+      "Lower until the elbows extend while retaining the hinge. After the set, stand and place the bar down with control."
+    ],
+    "es": [
+      "Levanta la barra hasta estar de pie con agarre prono. Inclina el tronco desde la cadera con rodillas algo flexionadas hasta poder mantenerlo estable y extender los brazos.",
+      "Acerca la barra al abdomen superior llevando los codos atrás, sin incorporarte ni dar tirones con el tronco.",
+      "Baja hasta extender los codos manteniendo la inclinación. Al terminar, incorpórate y deposita la barra con control."
+    ]
+  },
+  "cues": {
+    "en": [
+      "Keep the torso angle consistent.",
+      "Move the elbows; avoid bouncing the bar off your body."
+    ],
+    "es": [
+      "Mantén constante la inclinación del tronco.",
+      "Lleva los codos atrás sin rebotar la barra contra el cuerpo."
+    ]
+  },
+  "review": {
+    "technical": "pending",
+    "reviewer": null,
+    "reviewedAt": null
+  },
+  "media": [],
+  "license": "MIT",
+  "provenance": {
+    "kind": "gravis-authored",
+    "note": "Original editorial draft for Gravis. Muscle labels and technique await human review. No competitor media or private account data included. Editorial references and review decisions are documented in docs/batches/001-foundations.md."
+  }
+}

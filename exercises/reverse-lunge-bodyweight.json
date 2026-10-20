@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 2,
+  "id": "grv_000000000023",
+  "slug": "reverse-lunge-bodyweight",
+  "status": "draft",
+  "names": {
+    "en": "Alternating bodyweight reverse lunge",
+    "es": "Zancada inversa alterna con peso corporal"
+  },
+  "aliases": {
+    "en": ["Alternating backward lunge"],
+    "es": ["Zancada atrás alterna"]
+  },
+  "summary": {
+    "en": "Alternating backward steps into a lunge, returning to standing after each side, without external load.",
+    "es": "Pasos alternos hacia atrás en zancada, volviendo de pie tras cada lado y sin carga externa."
+  },
+  "disciplines": ["strength", "calisthenics", "functional"],
+  "family": "lunge",
+  "equipment": ["floor"],
+  "muscles": {
+    "primary": ["quadriceps", "glutes"],
+    "secondary": ["hamstrings", "calves", "abdominals"]
+  },
+  "tracking": {
+    "required": ["repetitions"],
+    "optional": [],
+    "loadConvention": "none",
+    "notes": {
+      "en": "Record the total across both legs: one backward step and return is one repetition; a left/right pair is two. Alternate sides after each return. Note any reduced depth; loaded, forward and walking lunges are separate variations.",
+      "es": "Registra el total de ambas piernas: un paso atrás y regreso es una repetición; una pareja izquierda/derecha son dos. Alterna tras cada regreso. Anota si reduces la profundidad; las zancadas con carga, hacia delante o caminando son variantes distintas."
+    }
+  },
+  "instructions": {
+    "en": [
+      "Stand with feet about hip width and arms free for balance. Step one foot backward onto the forefoot, keeping the front foot planted.",
+      "Bend both knees to bring the rear knee close to the floor without impact. Keep the trunk controlled and the front knee aligned with the foot.",
+      "Push through the front foot to return to standing. Repeat with the other leg stepping back."
+    ],
+    "es": [
+      "Colócate de pie con los pies al ancho aproximado de caderas y brazos libres para equilibrarte. Da un paso atrás apoyando el antepié y mantén el pie delantero apoyado.",
+      "Flexiona ambas rodillas hasta acercar la posterior al suelo sin golpearlo. Controla el tronco y orienta la rodilla delantera en la dirección del pie.",
+      "Empuja con el pie delantero para volver de pie. Repite dando el paso atrás con la otra pierna."
+    ]
+  },
+  "cues": {
+    "en": [
+      "Keep enough width between the feet to balance.",
+      "Complete the return before changing sides."
+    ],
+    "es": [
+      "Conserva suficiente separación lateral para equilibrarte.",
+      "Completa el regreso antes de cambiar de lado."
+    ]
+  },
+  "review": {
+    "technical": "pending",
+    "reviewer": null,
+    "reviewedAt": null
+  },
+  "media": [],
+  "license": "MIT",
+  "provenance": {
+    "kind": "gravis-authored",
+    "note": "Original editorial draft for Gravis. Muscle labels and technique await human review. No competitor media or private account data included. Editorial references and review decisions are documented in docs/batches/001-foundations.md."
+  }
+}
