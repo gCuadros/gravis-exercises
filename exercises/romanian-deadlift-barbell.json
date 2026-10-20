@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 2,
+  "id": "grv_000000000017",
+  "slug": "romanian-deadlift-barbell",
+  "status": "draft",
+  "names": {
+    "en": "Barbell Romanian deadlift",
+    "es": "Peso muerto rumano con barra"
+  },
+  "aliases": {
+    "en": ["Barbell RDL"],
+    "es": ["Peso muerto rumano"]
+  },
+  "summary": {
+    "en": "A standing-start barbell hinge with softly bent knees and a controlled return to upright.",
+    "es": "Bisagra de cadera con barra desde la posición de pie, rodillas ligeramente flexionadas y vuelta controlada."
+  },
+  "disciplines": ["strength"],
+  "family": "deadlift",
+  "equipment": ["barbell", "floor"],
+  "muscles": {
+    "primary": ["hamstrings", "glutes"],
+    "secondary": ["spinal-erectors", "forearms", "abdominals"]
+  },
+  "tracking": {
+    "required": ["load", "repetitions"],
+    "optional": [],
+    "loadConvention": "total_including_bar",
+    "notes": {
+      "en": "Record bar plus plates. One standing-to-lowered-to-standing cycle counts once; the initial pickup does not count. Note the lower endpoint used: floor contact is not required. Do not combine this history with conventional or straight-leg deadlifts.",
+      "es": "Registra barra y discos. Un ciclo de pie, descenso y vuelta a estar de pie cuenta una vez; levantar la barra para colocarte no cuenta. Anota el punto inferior utilizado: no es necesario tocar el suelo. No mezcles este historial con el peso muerto convencional o con piernas rígidas."
+    }
+  },
+  "instructions": {
+    "en": [
+      "Begin standing with the bar in front of your thighs, an overhand grip and feet about hip width. Soften the knees and brace the trunk.",
+      "Send the hips back while the bar stays near the legs. End the descent before further depth would change your back alignment; keep the knee bend small.",
+      "Bring the hips forward to finish upright without leaning back. Repeat from standing, then lower the bar safely after the set."
+    ],
+    "es": [
+      "Empieza de pie con la barra delante de los muslos, agarre prono y pies al ancho aproximado de caderas. Flexiona ligeramente las rodillas y estabiliza el tronco.",
+      "Lleva la cadera atrás con la barra cerca de las piernas. Termina el descenso antes de que bajar más cambie la alineación de la espalda; mantén una pequeña flexión de rodillas.",
+      "Lleva la cadera adelante hasta quedar erguido sin inclinarte hacia atrás. Repite desde esa posición y deposita la barra con control al terminar."
+    ]
+  },
+  "cues": {
+    "en": [
+      "Move through the hips rather than reaching for the floor.",
+      "Use the same controlled lower endpoint across repetitions."
+    ],
+    "es": [
+      "Mueve la cadera en lugar de buscar el suelo.",
+      "Repite el mismo punto inferior con control."
+    ]
+  },
+  "review": {
+    "technical": "pending",
+    "reviewer": null,
+    "reviewedAt": null
+  },
+  "media": [],
+  "license": "MIT",
+  "provenance": {
+    "kind": "gravis-authored",
+    "note": "Original editorial draft for Gravis. Muscle labels and technique await human review. No competitor media or private account data included. Editorial references and review decisions are documented in docs/batches/001-foundations.md."
+  }
+}

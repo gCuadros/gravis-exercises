@@ -37,6 +37,20 @@ export const taxonomy = freezeDeep({
       ),
     },
     equipment: {
+      rings: term(
+        'Gymnastics rings',
+        'Anillas',
+        'Two suspended rings with adjustable straps; the exercise defines support and body position.',
+        'Dos anillas suspendidas con correas ajustables; el ejercicio define apoyos y posición corporal.',
+      ),
+      kettlebell: term(
+        'Kettlebell',
+        'Kettlebell',
+        'A free weight with an arched handle; the exercise specifies quantity and grip.',
+        'Peso libre con asa arqueada; el ejercicio especifica cantidad y agarre.',
+        ['Kettlebells'],
+        ['Pesa rusa', 'Pesas rusas'],
+      ),
       band: term(
         'Resistance band',
         'Banda elástica',
@@ -219,6 +233,36 @@ export const taxonomy = freezeDeep({
       ),
     },
     families: {
+      overhead_press: term(
+        'Overhead press',
+        'Press sobre la cabeza',
+        'Pressing a load from shoulder level to overhead; stance and leg assistance are variation-specific.',
+        'Empuje de una carga desde los hombros por encima de la cabeza; postura y ayuda de piernas dependen de la variante.',
+      ),
+      horizontal_row: term(
+        'Resistance row',
+        'Remo de fuerza',
+        'Pulling resistance toward the torso or the body toward a support; distinct from rowing an ergometer.',
+        'Tracción de una resistencia hacia el tronco o del cuerpo hacia un apoyo; distinta del remo en ergómetro.',
+      ),
+      kettlebell_swing: term(
+        'Kettlebell swing',
+        'Balanceo de kettlebell',
+        'Hip-driven swings of a kettlebell; hand arrangement and endpoint belong to the exact variation.',
+        'Balanceos de kettlebell impulsados por la cadera; el agarre y el punto final pertenecen a la variante concreta.',
+      ),
+      lunge: term(
+        'Lunge',
+        'Zancada',
+        'Stepping into a split stance and bending the legs; direction, return and load are variation-specific.',
+        'Paso hacia una postura dividida y flexión de piernas; dirección, regreso y carga dependen de la variante.',
+      ),
+      carry: term(
+        'Loaded carry',
+        'Transporte de carga',
+        'Walking while supporting an external load; hand arrangement and load position define the variation.',
+        'Caminata sosteniendo carga externa; disposición de manos y posición de carga definen la variante.',
+      ),
       bench_press: term(
         'Bench press',
         'Press de banca',

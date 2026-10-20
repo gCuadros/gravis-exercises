@@ -194,3 +194,40 @@ for (const expanded of [false, true]) {
     });
   });
 }
+
+test('Group B filters and tracking remain usable in both languages at narrow width', async ({
+  page,
+}) => {
+  const ring = entries.find((e) => e.slug === 'ring-row');
+  const swing = entries.find((e) => e.slug === 'kettlebell-swing-chest-height');
+  const carry = entries.find((e) => e.slug === 'suitcase-carry-dumbbell');
+  await page.setViewportSize({ width: 320, height: 812 });
+  await page.goto('/?q=remo&equipment=rings');
+  await page.getByRole('button', { name: 'Cambiar a español' }).click();
+  await page.reload();
+  await expect(card(page, ring)).toBeVisible();
+  for (const slug of ['bent-over-row-barbell', 'rowing-ergometer'])
+    await expect(page.locator(`.exercise-card[href="/exercises/${slug}/"]`)).toHaveCount(0);
+  await card(page, ring).click();
+  await expect(page.getByRole('heading', { name: ring.names.es, exact: true })).toBeVisible();
+  await expect(page.getByText(ring.tracking.notes.es, { exact: true })).toBeVisible();
+  for (const [query, equipment, entry] of [
+    ['swing', 'kettlebell', swing],
+    ['maleta', 'dumbbell', carry],
+  ]) {
+    await page.goto(`/?q=${query}&equipment=${equipment}`);
+    await card(page, entry).click();
+    await expect(page.getByRole('heading', { name: entry.names.es, exact: true })).toBeVisible();
+    await expect(page.getByText(entry.tracking.notes.es, { exact: true })).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
+    await page.getByRole('button', { name: 'Switch to English' }).click();
+    await expect(page.getByText(entry.tracking.notes.en, { exact: true })).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+      true,
+    );
+    await expect(page.locator('video')).toHaveCount(0);
+    await page.getByRole('button', { name: 'Cambiar a español' }).click();
+  }
+});

@@ -5,41 +5,41 @@ Snapshot date: **2026-10-20 (Europe/Madrid)**. This is a handoff snapshot, not a
 ## Current handoff
 
 - **Repository:** [gCuadros/gravis-exercises](https://github.com/gCuadros/gravis-exercises).
-- **Working branch:** `chore/scoped-change-workflow`; base: `feat/exercise-batch-a`.
-- **Current scope:** repair PR boundaries and require one logical change per branch/PR with its own changelog. This change adds no exercises or runtime features.
-- **Split:** the seven implementation commits are preserved in PRs [#2](https://github.com/gCuadros/gravis-exercises/pull/2) through [#8](https://github.com/gCuadros/gravis-exercises/pull/8), each with its own changelog and an explicit dependency/base. See [the split index](docs/pr-workflow.md). PR #1 is superseded; its branch is retained for traceability and must not receive new tasks.
-- **Verified implementation baseline:** `b3d6c3e1df2dba0fe2395b179dd62779b196073b`, with successful [CI run 39308052219](https://github.com/gCuadros/gravis-exercises/actions/runs/39308052219). New PR checks must be verified separately; older evidence does not cover changes to workflow policy.
-- **Worktree at initial inspection:** clean at the implementation baseline. The repair creates new branches without resetting or rewriting the original branch or modifying `main`.
-- **Next action:** review/integrate the scoped PRs in dependency order after checking their current CI. Begin B001 Group B only on a **new** branch and its own PR/changelog; use updated `main` if prerequisites are integrated, or explicitly target the required unmerged dependency. Never append Group B to the foundation, Group A or workflow-repair PR.
+- **Working branch:** `feat/exercise-batch-b`; base: `main` at `5b3068e39925839ac1f1807bc5a5c3c6da3a3bbd`.
+- **Scope:** CAT-002 / B001 Group B only: eight original bilingual drafts, their required vocabulary, production briefs, compatibility documentation and regression coverage. This is a separate branch/PR with its own changelog.
+- **Integrated prerequisites:** PRs #2–#9 were merged sequentially on 2026-10-20. PR #1 is closed and superseded; do not resume it or its old branch. The [split index](docs/pr-workflow.md) records the historical dependency chain, not an outstanding merge queue.
+- **Baseline CI:** [main run 39411749793](https://github.com/gCuadros/gravis-exercises/actions/runs/39411749793) succeeded for `5b3068e`; it does not cover this new batch.
+- **Worktree at initial inspection:** clean and equal to remote main. New work is confined to the Group B branch.
+- **Next action:** review Group B's own PR against main, checking CI on its current commit. Locate it by head branch `feat/exercise-batch-b`; remote evidence is recorded in the PR description. Human technical review and original media production remain open. No merge, release tag, registry publication or deployment is part of this implementation task.
 
 ## Task states
 
-| ID       | State                    | Evidence / next action                                                                                                         |
-| -------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
-| FND-001  | implemented_under_review | Foundation commit and CI below; scoped PR #2 awaits maintainer review/merge decision                                           |
-| FND-002  | implemented_under_review | Handoff documents committed in a91a71f; its Node/browser CI passed                                                             |
-| TST-001  | implemented_under_review | Synthetic search fixtures and identity-based browser navigation pass with extra matching variations; see evidence below        |
-| TAX-001  | implemented_under_review | Controlled scoped vocabulary, record enums, public JS/JSON/types and migration; local evidence below                           |
-| DATA-001 | implemented_under_review | Bundled schema, generated envelope types, offline archive validation and shared site/package feeds; evidence below             |
-| CAT-001  | implemented_under_review | All 517 candidates triaged; public coverage/decisions and B001 specification; source equivalences remain explicitly unresolved |
-| MED-001  | not_started              | Sixteen production briefs exist, but no original media or technical approvals exist                                            |
-| CAT-002  | in_progress              | B001 Group A implemented under review as drafts; Group B next; technical review and media remain pending                       |
-| WEB-001  | not_started              | Initial responsive preview works; broader launch validation and actual reviewed-media behavior remain                          |
-| REL-001  | deferred                 | No release decision, npm publication, domain setup or hosted deployment performed                                              |
+| ID       | State       | Evidence / next action                                                                                              |
+| -------- | ----------- | ------------------------------------------------------------------------------------------------------------------- |
+| FND-001  | done        | Foundation integrated through PR #2; package and CI evidence below                                                  |
+| FND-002  | done        | Portable handoff integrated through PR #3                                                                           |
+| TST-001  | done        | Growth regression coverage integrated through PR #4                                                                 |
+| TAX-001  | done        | Controlled vocabulary and exports integrated through PR #5; Group B adds scoped terms                               |
+| DATA-001 | done        | Versioned envelope integrated through PR #6                                                                         |
+| CAT-001  | done        | Planning audit and B001 specification integrated through PR #7; source-equivalence holds remain                     |
+| MED-001  | not_started | Twenty-four briefs exist; no original media or technical approval                                                   |
+| CAT-002  | in_progress | Group A drafts merged via PR #8; Group B implemented under review; local checks passed (36 unit / 24 browser tests) |
+| WEB-001  | not_started | Responsive preview exists; reviewed-media and wider launch validation remain                                        |
+| REL-001  | deferred    | No publication or deployment decision                                                                               |
 
-`implemented_under_review` means the code/documents exist and are reviewable; it does not mean merged, content-approved or published.
+`done` above refers to the named software/planning work, not content approval or release. The scoped-PR/changelog workflow was integrated through PR #9. Historical evidence below retains original pre-rebase commit IDs; use the current baseline above to resume.
 
 ## What actually exists
 
-- **Package:** version `0.3.0`, ESM, generated TypeScript record declarations and plain JSON; zero runtime dependencies. Consumers can install a verified archive into another project.
+- **Package:** version `0.4.0`, ESM, generated TypeScript record declarations and plain JSON; zero runtime dependencies. Consumers can install a verified archive into another project.
 - **Exports:** published default API, explicit `/preview` API, `/data`, `/data/preview`, `/schema`, `/schema/catalogue`, `/taxonomy`, `/taxonomy/data`, `/taxonomy/schema`, `/package.json`.
 - **Runtime:** immutable records, stable-ID/slug lookups and bilingual accent-insensitive search over exercise/vocabulary aliases and families, with discipline/equipment filters. Vocabulary lookups return undefined for unknown keys; the site refuses invalid labels.
-- **Content:** 16 original ES/EN drafts; zero published records; zero approved media; zero completed technical reviews. Published imports/JSON are intentionally empty.
+- **Content:** 24 original ES/EN drafts; zero published records; zero approved media; zero completed technical reviews. Published imports/JSON are intentionally empty.
 - **Contract:** JSON Schema draft 2020-12 executed by Ajv; domain validation adds identity, filename, metric and media-URL checks. Record types are generated from version 2 of the schema. The catalogue envelope schema reuses that record contract and is bundled without external refs; its generated readonly type replaces the handwritten model. Empty distributions are valid and published-channel drafts are rejected. Taxonomy JSON shape version 1 is independently validated; explicit enum synchronization and drift checks keep the standalone record contract aligned.
 - **Build:** `dist/package/` and `dist/site/` are separate. The archive excludes the website, tests and private research. Verified archives/checksums are generated under `artifacts/`.
 - **Reference site:** bilingual catalogue, search, combined filters, exercise pages, JSON downloads, visible draft/review states and responsive layouts. It has no production demonstrations and remains `noindex,nofollow`.
 - **Repository tooling:** locked development tools, formatting, ESLint, unit/type/package tests, Playwright desktop/mobile tests, Node 22/24 CI, Dependabot configuration, CODEOWNERS, templates and a draft-release workflow.
-- **Coverage planning:** [CAT-001 matrix](docs/catalogue-coverage.md) accounts for all 517 candidates, 22 review groups and explicit unresolved evidence. [B001](docs/batches/001-foundations.md) specifies 16 new variations in two groups of eight; Group A is authored as drafts, Group B remains planned. The 517-candidate audit is a historical planning snapshot, not a live content count.
+- **Coverage planning:** [CAT-001 matrix](docs/catalogue-coverage.md) accounts for all 517 candidates, 22 review groups and explicit unresolved evidence. [B001](docs/batches/001-foundations.md) specifies 16 new variations in two groups of eight; both groups are authored as drafts. The 517-candidate audit is a historical planning snapshot, not a live content count.
 - **Private research:** the optional `.local/research/gravis-catalogue-v0.1.json` contains 517 candidates (457 references plus 60 proposals). `.local/research/reconciliation-2026-10-19.json` records per-row planning dispositions, flags, proposed batch scope links and a source checksum; `.local/research/reconcile-cat001.py` reproduces that local audit. These are ignored and not distributed. No source identities were merged or verified as equivalent; a fresh clone will not contain these files.
 
 ## Verification evidence and its limits
@@ -136,6 +136,18 @@ Remote evidence for this change must match its resulting commit; older CI above 
 - All seven split PRs passed fresh CI on their preserved commit heads, including Node 22/24, browser tests and the final gate; run links are recorded in `docs/pr-workflow.md`. The process-correction PR needs its own current-head CI result.
 - No merge, force push, release, registry publication or deployment is part of the repair.
 
+### CAT-002 / B001 Group B working-tree evidence — 2026-10-20
+
+The following checks cover this Group B change from baseline `5b3068e`; they are local evidence, not a claim about a future commit's CI. Use the PR checks for its exact remote head.
+
+- Eight original ES/EN drafts, IDs `grv_000000000017`–`grv_000000000024`; 24 total, zero published, zero media and zero completed technical reviews. Both B001 groups are authored, not approved for launch.
+- Seven new vocabulary keys: rings/kettlebell equipment and five families, totaling **57 terms** (3 disciplines, 14 equipment, 15 muscles, 17 families, 8 metrics). Existing 16 exercise files are byte-identical to main; the schema changes only equipment/family enums.
+- Package version 0.4.0 and matching lockfile metadata; [migration note](docs/migrations/0.4.0.md) explains closed-union additions. No dependencies, runtime APIs or schema generations changed.
+- Eight new production briefs and primary editorial references/review decisions in [B001](docs/batches/001-foundations.md#group-b-delivery-and-review-handoff). All review and asset-rights decisions remain pending.
+- `npm ci --offline --no-audit --no-fund` succeeded. `npm run check` passed: **36 unit tests**, format/lint, record/taxonomy/envelope validation, 25 generated pages, consumer types and isolated archive installation (`gravis-exercises-0.4.0.tgz`).
+- `PLAYWRIGHT_CHANNEL=chrome npm run test:e2e`: **24 passed** across desktop/mobile, including rings/kettlebell filters, bilingual notes and headings at 320 px. The first run caught an incorrect test assumption that `lang=es` selected language; the test now uses the actual language control and verifies persistence through reload. No website behavior was changed.
+- Audit passed for existing-record preservation, unique IDs, draft/review/media states, changed-document relative links and clean diff whitespace. Package checks verify channel isolation, the allowlist, offline consumption and site/package feed equality; private research stays excluded.
+
 ### Repository settings observed
 
 `main` was protected on 2026-10-18: PR required, up-to-date `CI gate` required from GitHub Actions, resolved conversations and linear history required, force pushes/deletion blocked, rules enforced for administrators. Required external approvals are zero because there is one maintainer. These are server-side settings, not guarantees supplied by CODEOWNERS or a clone; recheck if access is available.
@@ -144,7 +156,7 @@ The npm registry publication guard remains `private: true`. Draft-release automa
 
 ## Known gaps and external dependencies
 
-1. **Content coverage remains early.** The catalogue contains the eight pilot drafts and B001 Group A. Group B and subsequent records still need authorship; all current records need technical/media review; 369 other candidates remain in the specification backlog and the explicit holds need evidence. No anatomical hierarchy or exercise suitability inference is implemented.
+1. **Content coverage remains early.** The catalogue contains the eight pilot drafts and both B001 groups. Subsequent batches still need specification and authorship; all current records need technical/media review; 369 other candidates remain in the specification backlog and the explicit holds need evidence. No anatomical hierarchy or exercise suitability inference is implemented.
 2. **Schema checks have explicit limits.** The bundled schema enforces metadata, record structure and channel gates. Duplicate identities, muscle/metric overlap and media delivery constraints also require the documented domain checks when consumers edit their own catalogues. Automated validation never certifies technique or licensing.
 3. **No media production or technical reviewer yet.** Briefs do not count as assets or approval. Models can prepare content; actual technical/licensing evidence must come from the appropriate people.
 4. **Launch checks are incomplete.** The current tests do not establish full accessibility, all browsers, large-catalogue performance or actual video/animation behavior.
@@ -156,7 +168,7 @@ The npm registry publication guard remains `private: true`. Draft-release automa
 1. Read `AGENTS.md` → `plan.md` → this file → `docs/architecture.md`.
 2. Confirm branch, worktree and actual PR base/head. Use `docs/pr-workflow.md` to locate the scoped change. PR #1 is superseded. Start a new branch and PR for a new task; only corrections within the same declared scope reuse a PR.
 3. Run `npm ci` and inspect the package scripts. Do not depend on this machine's caches or SSH aliases.
-4. Continue CAT-002 / B001 Group B using `docs/batches/001-foundations.md`. Reuse Group A vocabulary where appropriate, add only the missing terms, and author eight original drafts without changing existing IDs. Keep review pending and add media briefs. Confirm Group A software checks first. Private source mappings are optional and do not authorize automatic identity equivalence.
+4. Verify Group B delivery and its current CI before any integration. Both B001 groups are authored. Next, prepare pilot review/production with the maintainer and a qualified reviewer; independently, specify a bounded B002 before starting another authoring branch. Do not invent review approval or resolve private source identities by guessing.
 5. Run `npm run check` and `npm run test:e2e`; review the diff/package boundary.
 6. Update task states and evidence, then commit/push the relevant branch and inspect its CI. Leave merge/release decisions to the maintainer.
 

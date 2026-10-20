@@ -16,6 +16,8 @@ Version 0.2.1 adds the [catalogue contract](catalogue-contract.md) without chang
 
 Version 0.3.0 adds B001 Group A and seven vocabulary keys. The pre-1.0 minor increment flags expanded closed unions for exhaustive consumer maps and validators; record/envelope generation 2 and taxonomy shape generation 1 stay unchanged. See the [0.3.0 compatibility note](migrations/0.3.0.md).
 
+Version 0.4.0 adds B001 Group B and seven vocabulary keys, with the same closed-union compatibility consideration. Record/envelope generation 2 and taxonomy shape generation 1 remain unchanged. See the [0.4.0 compatibility note](migrations/0.4.0.md).
+
 Add relevant changes to `CHANGELOG.md`. Include content status and migrations, not only implementation details. Never claim a reviewed catalogue merely because the package's software checks pass.
 
 ## Package availability
@@ -24,7 +26,7 @@ The package is intentionally private to prevent accidental npm registry publicat
 
 ## Draft release workflow
 
-A maintainer may push a version tag such as `v0.3.0` after a reviewed merge and an explicit release decision. The `Prepare release` workflow:
+A maintainer may push a version tag such as `v0.4.0` after a reviewed merge and an explicit release decision. The `Prepare release` workflow:
 
 1. Runs the same reusable CI checks against the tagged commit.
 2. Verifies the tag matches the package version.

@@ -124,3 +124,54 @@ test('authored strings are escaped in HTML', () => {
     /Unknown taxonomy/,
   );
 });
+
+test('rowing discovery separates resistance variants from the ergometer', () => {
+  const api = createCatalogue({ exercises: entries });
+  const rows = api.findExercises({ query: 'remo' });
+  const ring = api.getExerciseBySlug('ring-row');
+  const bar = api.getExerciseBySlug('bent-over-row-barbell');
+  const erg = api.getExerciseBySlug('rowing-ergometer');
+  for (const e of [ring, bar, erg]) assert(rows.includes(e));
+  assert.equal(new Set([ring.id, bar.id, erg.id]).size, 3);
+  assert.equal(ring.family, 'horizontal_row');
+  assert.equal(bar.family, 'horizontal_row');
+  assert.equal(erg.family, 'ergometer_row');
+  const filtered = api.findExercises({ query: 'remo', equipment: 'rings' });
+  assert(filtered.includes(ring));
+  assert(!filtered.includes(bar) && !filtered.includes(erg));
+});
+
+test('chin-up discovery preserves supinated, pronated and assisted identities', () => {
+  const api = createCatalogue({ exercises: entries });
+  const matches = api.findExercises({ query: 'dominada' });
+  const variations = ['chin-up-strict', 'pull-up-strict', 'band-assisted-pull-up'].map((slug) =>
+    api.getExerciseBySlug(slug),
+  );
+  assert.equal(new Set(variations.map((e) => e.id)).size, 3);
+  for (const e of variations) {
+    assert(matches.includes(e));
+    assert.equal(api.getExerciseById(e.id), e);
+  }
+  const supinated = api.findExercises({ query: 'dominada supina' });
+  assert(supinated.includes(variations[0]));
+  assert(!supinated.includes(variations[1]) && !supinated.includes(variations[2]));
+});
+
+test('carry consumers receive distance and single-load conventions instead of repetitions', () => {
+  const api = createCatalogue({ exercises: entries });
+  const carry = api
+    .findExercises({ query: 'maleta', equipment: 'dumbbell' })
+    .find((e) => e.slug === 'suitcase-carry-dumbbell');
+  assert(carry);
+  assert.deepEqual(carry.tracking.required, ['load', 'distance']);
+  assert.deepEqual(carry.tracking.optional, ['duration']);
+  assert.equal(carry.tracking.loadConvention, 'external_load');
+  const press = api.getExerciseBySlug('bench-press-dumbbell');
+  assert(press.tracking.required.includes('repetitions'));
+  assert(!press.tracking.required.includes('distance'));
+  for (const lang of ['en', 'es']) {
+    const html = detailPage(carry, lang);
+    assert(html.includes(escapeHTML(carry.tracking.notes[lang])));
+    assert(!html.includes('<video'));
+  }
+});
