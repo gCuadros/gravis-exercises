@@ -14,6 +14,26 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  change-policy:
+    name: Change policy
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Require this PR to update its changelog
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          if ! git diff --name-only --diff-filter=AM "$BASE_SHA...$HEAD_SHA" -- CHANGELOG.md | grep -Fxq CHANGELOG.md; then
+            echo '::error::Every PR must add or modify CHANGELOG.md in its own diff.'
+            exit 1
+          fi
+
   quality:
     name: Quality (Node ${{ matrix.node }})
     runs-on: ubuntu-latest
@@ -67,12 +87,19 @@ jobs:
   gate:
     name: CI gate
     if: always()
-    needs: [quality, browser]
+    needs: [change-policy, quality, browser]
     runs-on: ubuntu-latest
     timeout-minutes: 2
     steps:
       - name: Require every check to pass
         env:
+          EVENT_NAME: ${{ github.event_name }}
+          POLICY_RESULT: ${{ needs.change-policy.result }}
           QUALITY_RESULT: ${{ needs.quality.result }}
           BROWSER_RESULT: ${{ needs.browser.result }}
-        run: test "$QUALITY_RESULT" = success && test "$BROWSER_RESULT" = success
+        run: |
+          test "$QUALITY_RESULT" = success
+          test "$BROWSER_RESULT" = success
+          if [ "$EVENT_NAME" = pull_request ]; then
+            test "$POLICY_RESULT" = success
+          fi

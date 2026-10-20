@@ -2,6 +2,9 @@
 
 ## Unreleased — 0.3.0 foundation preview
 
+- Split the accumulated foundation work into seven scoped branches/PRs, preserving the original commits and each change's changelog. Track dependencies and integration order in `docs/pr-workflow.md`.
+- Require a separate branch/PR for every new logical change or authoring batch. Add a PR changelog CI gate and explicit scope/base/dependency checks to the working agreement, handoff and PR template.
+
 - Author B001 Group A: eight original bilingual drafts with stable identities, explicit counting/loading conventions and production briefs. The catalogue now contains 16 drafts, zero published records and no approved media.
 - Add two equipment terms, four movement families and spinal erectors with ES/EN definitions. Preserve all eight pilot records unchanged.
 - Expand closed consumer unions intentionally: use a pre-1.0 minor version and document exhaustive-map/filter updates in [the migration note](docs/migrations/0.3.0.md). Record/envelope generation 2 and taxonomy shape generation 1 remain unchanged.

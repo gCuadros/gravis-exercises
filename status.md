@@ -1,22 +1,22 @@
 # Project status — Gravis Exercise Library
 
-Snapshot date: **2026-10-19 (Europe/Madrid)**. This is a handoff snapshot, not a live dashboard. Read [plan.md](plan.md) for acceptance criteria and execution order, and verify the checkout/PR before acting. Newer commits are not automatically covered by older test evidence.
+Snapshot date: **2026-10-20 (Europe/Madrid)**. This is a handoff snapshot, not a live dashboard. Read [plan.md](plan.md) for acceptance criteria and execution order, and verify the checkout/PR before acting. Newer commits are not automatically covered by older test evidence.
 
 ## Current handoff
 
 - **Repository:** [gCuadros/gravis-exercises](https://github.com/gCuadros/gravis-exercises).
-- **Working branch:** `chore/project-foundation`; base: `main`.
-- **PR:** [#1 — Establish reusable exercise library and project quality gates](https://github.com/gCuadros/gravis-exercises/pull/1), open in draft at inspection. Not merged.
-- **Verified parent baseline:** `b275950473e70ff98672d42c4c5b171737b09864` (CAT-001), with successful [CI run 39301560223](https://github.com/gCuadros/gravis-exercises/actions/runs/39301560223). The foundation implementation is `4feee05e7e45c1b483e888540539057950039c80`.
-- **This handoff change:** CAT-002 / B001 Group A adds eight original ES/EN drafts and seven vocabulary terms. Version 0.3.0 has 16 drafts, zero published records and no media or technical approvals. Existing pilot JSON and private source inventory remain unchanged.
-- **Worktree at initial inspection:** clean on the foundation branch at CAT-001. Recheck before continuing; preserve newer work.
-- **Next implementation:** CAT-002 / B001 Group B, after confirming this change's checks. Follow `docs/batches/001-foundations.md`: add only the missing vocabulary and author the next eight original bilingual drafts with distinct stable IDs, tracking conventions and media briefs. Keep review pending and media empty. In parallel with authoring, the maintainer can select the production method and a qualified technical reviewer for MED-001.
+- **Working branch:** `chore/scoped-change-workflow`; base: `feat/exercise-batch-a`.
+- **Current scope:** repair PR boundaries and require one logical change per branch/PR with its own changelog. This change adds no exercises or runtime features.
+- **Split:** the seven implementation commits are preserved in PRs [#2](https://github.com/gCuadros/gravis-exercises/pull/2) through [#8](https://github.com/gCuadros/gravis-exercises/pull/8), each with its own changelog and an explicit dependency/base. See [the split index](docs/pr-workflow.md). PR #1 is superseded; its branch is retained for traceability and must not receive new tasks.
+- **Verified implementation baseline:** `b3d6c3e1df2dba0fe2395b179dd62779b196073b`, with successful [CI run 39308052219](https://github.com/gCuadros/gravis-exercises/actions/runs/39308052219). New PR checks must be verified separately; older evidence does not cover changes to workflow policy.
+- **Worktree at initial inspection:** clean at the implementation baseline. The repair creates new branches without resetting or rewriting the original branch or modifying `main`.
+- **Next action:** review/integrate the scoped PRs in dependency order after checking their current CI. Begin B001 Group B only on a **new** branch and its own PR/changelog; use updated `main` if prerequisites are integrated, or explicitly target the required unmerged dependency. Never append Group B to the foundation, Group A or workflow-repair PR.
 
 ## Task states
 
 | ID       | State                    | Evidence / next action                                                                                                         |
 | -------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
-| FND-001  | implemented_under_review | Foundation commit and successful CI below; PR #1 awaits maintainer review/merge decision                                       |
+| FND-001  | implemented_under_review | Foundation commit and CI below; scoped PR #2 awaits maintainer review/merge decision                                           |
 | FND-002  | implemented_under_review | Handoff documents committed in a91a71f; its Node/browser CI passed                                                             |
 | TST-001  | implemented_under_review | Synthetic search fixtures and identity-based browser navigation pass with extra matching variations; see evidence below        |
 | TAX-001  | implemented_under_review | Controlled scoped vocabulary, record enums, public JS/JSON/types and migration; local evidence below                           |
@@ -128,6 +128,14 @@ On 2026-10-19:
 
 Remote evidence for this change must match its resulting commit; older CI above is not evidence for these new records. No merge, tag, registry publication or deployment is authorized by this handoff.
 
+### PR boundary repair — 2026-10-20
+
+- Seven original implementation commits were assigned separate branch/PR boundaries; each incremental diff includes `CHANGELOG.md`. The cumulative implementation remains byte-for-byte the same at the Group A tip.
+- Updated `AGENTS.md`, `plan.md`, the PR template and release guidance to require one logical change per branch/PR and its own changelog update. Historical evidence retains original commit IDs; old branch/PR instructions are superseded by this handoff.
+- Added a PR-only changelog check to CI and included its outcome in the required gate. Policy checks passed on five temporary Git histories (added/modified pass; unchanged/deleted/inherited-only fail), and six event/job-result combinations verified that the final gate blocks software or PR-policy failures. `npm ci --offline --no-audit --no-fund` and `npm run check` passed with 33 unit tests, generated types and isolated package installation. Browser/runtime source is unchanged in this process correction.
+- All seven split PRs passed fresh CI on their preserved commit heads, including Node 22/24, browser tests and the final gate; run links are recorded in `docs/pr-workflow.md`. The process-correction PR needs its own current-head CI result.
+- No merge, force push, release, registry publication or deployment is part of the repair.
+
 ### Repository settings observed
 
 `main` was protected on 2026-10-18: PR required, up-to-date `CI gate` required from GitHub Actions, resolved conversations and linear history required, force pushes/deletion blocked, rules enforced for administrators. Required external approvals are zero because there is one maintainer. These are server-side settings, not guarantees supplied by CODEOWNERS or a clone; recheck if access is available.
@@ -146,7 +154,7 @@ The npm registry publication guard remains `private: true`. Draft-release automa
 ## Resume checklist
 
 1. Read `AGENTS.md` → `plan.md` → this file → `docs/architecture.md`.
-2. Confirm branch, worktree and PR state. If PR #1 is still open, continue the appropriate branch; if it has merged, start a new focused branch for the next task.
+2. Confirm branch, worktree and actual PR base/head. Use `docs/pr-workflow.md` to locate the scoped change. PR #1 is superseded. Start a new branch and PR for a new task; only corrections within the same declared scope reuse a PR.
 3. Run `npm ci` and inspect the package scripts. Do not depend on this machine's caches or SSH aliases.
 4. Continue CAT-002 / B001 Group B using `docs/batches/001-foundations.md`. Reuse Group A vocabulary where appropriate, add only the missing terms, and author eight original drafts without changing existing IDs. Keep review pending and add media briefs. Confirm Group A software checks first. Private source mappings are optional and do not authorize automatic identity equivalence.
 5. Run `npm run check` and `npm run test:e2e`; review the diff/package boundary.

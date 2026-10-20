@@ -6,7 +6,10 @@ Before work, read [plan.md](plan.md) and [status.md](status.md). These are the t
 
 ## Working rules
 
-- Never implement or commit directly on `main`. Inspect the current branch and working tree before edits. Use a focused feature/fix/chore branch and preserve user changes.
+- One logical change per branch and PR. Create a new focused branch before starting each new task or authoring batch, even when the previous PR remains open. Reuse a PR only for corrections within its existing scope; tests, docs and fixes necessary for that scope stay together. Never accumulate later roadmap tasks in a foundation PR.
+- Never implement or commit directly on `main`. Inspect the current branch, working tree and PR base/head before edits. Preserve user changes. Default to a branch from updated `main`; if an unmerged dependency is necessary, explicitly name the dependency and target its branch so the PR diff remains scoped.
+- Every PR must update `CHANGELOG.md` with its own result and relevant compatibility/review impact, including documentation and test-only changes. CI checks for an added or modified changelog in the PR diff. A changelog file merely existing on the branch is insufficient.
+- Verify PR base/head, changed files, changelog and current-commit CI before handoff. Use the split index in `docs/pr-workflow.md` for the initial repair; historical mentions of PR #1 do not authorize continuing that branch.
 - Treat the reusable library as the product. The website is one consumer. Keep the runtime independent of UI frameworks, Node-only APIs, network access and runtime dependencies.
 - Keep `schema/exercise.schema.json` as the canonical record contract. Generate consumer types during the build; do not hand-maintain a second model. Document breaking changes and identity migrations.
 - Never expose drafts through the default package entry point. Preview content requires the explicit preview entry point. Keep dataset identities stable.
