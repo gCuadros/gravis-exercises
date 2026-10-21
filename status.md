@@ -1,16 +1,17 @@
 # Project status — Gravis Exercise Library
 
-Snapshot date: **2026-10-20 (Europe/Madrid)**. This is a handoff snapshot, not a live dashboard. Read [plan.md](plan.md) for acceptance criteria and execution order, and verify the checkout/PR before acting. Newer commits are not automatically covered by older test evidence.
+Snapshot date: **2026-10-21 (Europe/Madrid)**. This is a handoff snapshot, not a live dashboard. Read [plan.md](plan.md) for acceptance criteria and execution order, and verify the checkout/PR before acting. Newer commits are not automatically covered by older test evidence.
 
 ## Current handoff
 
 - **Repository:** [gCuadros/gravis-exercises](https://github.com/gCuadros/gravis-exercises).
-- **Working branch:** `feat/exercise-batch-b`; base: `main` at `5b3068e39925839ac1f1807bc5a5c3c6da3a3bbd`.
-- **Scope:** CAT-002 / B001 Group B only: eight original bilingual drafts, their required vocabulary, production briefs, compatibility documentation and regression coverage. This is a separate branch/PR with its own changelog.
-- **Integrated prerequisites:** PRs #2–#9 were merged sequentially on 2026-10-20. PR #1 is closed and superseded; do not resume it or its old branch. The [split index](docs/pr-workflow.md) records the historical dependency chain, not an outstanding merge queue.
-- **Baseline CI:** [main run 39411749793](https://github.com/gCuadros/gravis-exercises/actions/runs/39411749793) succeeded for `5b3068e`; it does not cover this new batch.
-- **Worktree at initial inspection:** clean and equal to remote main. New work is confined to the Group B branch.
-- **Next action:** review Group B's own PR against main, checking CI on its current commit. Locate it by head branch `feat/exercise-batch-b`; remote evidence is recorded in the PR description. Human technical review and original media production remain open. No merge, release tag, registry publication or deployment is part of this implementation task.
+- **Working branch:** `feat/review-production-packets`; base: `feat/exercise-batch-b` at `3112b770ae01cad26274414fc0df00c603bdb82d`.
+- **Scope:** MED-001 preparation: portable review packets with source/context drift verification, plus the maintainer-selected uniform 3D pilot. No exercise content, approval, schema or consumer API changes.
+- **Dependency:** [PR #10](https://github.com/gCuadros/gravis-exercises/pull/10) is still open as of this snapshot. This PR targets its branch so the diff contains only review/production preparation. The 3D cohort includes Group B's ring row. Integrate #10 first, then retarget this PR to main and recheck its diff and CI; do not merge this work into the Group B branch.
+- **Verified baseline:** #10 head `3112b77` passed [CI run 39463226886](https://github.com/gCuadros/gravis-exercises/actions/runs/39463226886), including Node 22/24, browser checks and changelog policy. That evidence covers the prerequisite, not this new change.
+- **Worktree at initial inspection:** clean on the Group B head, matching its remote branch. Main remains `5b3068e`; PRs #2–#9 are integrated and PR #1 is superseded.
+- **Production decision:** maintainer chose uniform 3D animation on 2026-10-21. Proposed initial visual cohort: bodyweight squat, floor push-up and ring row. No character/rig, animator or technical reviewer has been selected; no assets exist.
+- **Next action:** review the preparation PR (head `feat/review-production-packets`) and verify its current CI; then use its generated pilot packet to select/create the rig and review three prototypes. Record actual human and asset evidence before any approval. No purchases, commissioning, publication or deployment are included in this task.
 
 ## Task states
 
@@ -22,7 +23,7 @@ Snapshot date: **2026-10-20 (Europe/Madrid)**. This is a handoff snapshot, not a
 | TAX-001  | done        | Controlled vocabulary and exports integrated through PR #5; Group B adds scoped terms                               |
 | DATA-001 | done        | Versioned envelope integrated through PR #6                                                                         |
 | CAT-001  | done        | Planning audit and B001 specification integrated through PR #7; source-equivalence holds remain                     |
-| MED-001  | not_started | Twenty-four briefs exist; no original media or technical approval                                                   |
+| MED-001  | in_progress | Uniform 3D pilot and review tools prepared; no original assets or human approval                                    |
 | CAT-002  | in_progress | Group A drafts merged via PR #8; Group B implemented under review; local checks passed (36 unit / 24 browser tests) |
 | WEB-001  | not_started | Responsive preview exists; reviewed-media and wider launch validation remain                                        |
 | REL-001  | deferred    | No publication or deployment decision                                                                               |
@@ -148,6 +149,17 @@ The following checks cover this Group B change from baseline `5b3068e`; they are
 - `PLAYWRIGHT_CHANNEL=chrome npm run test:e2e`: **24 passed** across desktop/mobile, including rings/kettlebell filters, bilingual notes and headings at 320 px. The first run caught an incorrect test assumption that `lang=es` selected language; the test now uses the actual language control and verifies persistence through reload. No website behavior was changed.
 - Audit passed for existing-record preservation, unique IDs, draft/review/media states, changed-document relative links and clean diff whitespace. Package checks verify channel isolation, the allowlist, offline consumption and site/package feed equality; private research stays excluded.
 
+### MED-001 review and 3D preparation — 2026-10-21
+
+Local evidence covers this change from Group B baseline `3112b77`; use the new PR's checks for its final remote commit.
+
+- Added `review:prepare` and `review:verify`, repository-only Node tooling. Selected IDs/slugs produce complete JSON and readable EN/ES snapshots, preserved taxonomy/schema/production documents, SHA-256 fingerprints and separate pending human forms. The generator never writes exercise source or imports approval decisions.
+- Uniform 3D is the maintainer's selected direction. `docs/animation-pilot.md` specifies bodyweight squat, floor push-up and ring row as the initial visual cohort, with common art direction, full-sequence/loop deliverables and explicit review criteria. No animation has been created or approved.
+- Generated and verified a real three-exercise packet at `.local/reviews/3d-pilot-2026-10-21-v1/`. It is ignored and not distributed; a fresh clone can reproduce it using `docs/review-packets.md`. No private research or account data was read into it.
+- `npm ci --offline --no-audit --no-fund` and `npm run check` passed: **43 unit tests**, including seven preparation/verification regressions, schema validation, build, types and isolated archive installation. Tests cover stale text/tracking/context, tampered or missing snapshots, preserved reviewer notes, deterministic selection, markup escaping, packet links and CLI use outside the repository working directory.
+- All 24 exercise files, schema, taxonomy, runtime and website source are unchanged from the dependency branch. Existing package allowlist checks exclude the tooling and generated review data. No new dependency, package version or consumer export is needed.
+- Local browser tests were not repeated for this tooling-only change. The PR's CI still runs the full browser suite. Automated verification checks source/context consistency only; it does not inspect assets, review decisions or rights evidence.
+
 ### Repository settings observed
 
 `main` was protected on 2026-10-18: PR required, up-to-date `CI gate` required from GitHub Actions, resolved conversations and linear history required, force pushes/deletion blocked, rules enforced for administrators. Required external approvals are zero because there is one maintainer. These are server-side settings, not guarantees supplied by CODEOWNERS or a clone; recheck if access is available.
@@ -158,7 +170,7 @@ The npm registry publication guard remains `private: true`. Draft-release automa
 
 1. **Content coverage remains early.** The catalogue contains the eight pilot drafts and both B001 groups. Subsequent batches still need specification and authorship; all current records need technical/media review; 369 other candidates remain in the specification backlog and the explicit holds need evidence. No anatomical hierarchy or exercise suitability inference is implemented.
 2. **Schema checks have explicit limits.** The bundled schema enforces metadata, record structure and channel gates. Duplicate identities, muscle/metric overlap and media delivery constraints also require the documented domain checks when consumers edit their own catalogues. Automated validation never certifies technique or licensing.
-3. **No media production or technical reviewer yet.** Briefs do not count as assets or approval. Models can prepare content; actual technical/licensing evidence must come from the appropriate people.
+3. **No media production or technical reviewer yet.** Uniform 3D is selected and preparation tooling exists, but briefs and packets do not count as assets or approval. Models can prepare content; actual technical/licensing evidence must come from the appropriate people.
 4. **Launch checks are incomplete.** The current tests do not establish full accessibility, all browsers, large-catalogue performance or actual video/animation behavior.
 5. **External distribution decisions remain.** Confirm registry name/scope ownership and publication method, media delivery and website hosting before launch. No paid service or credential setup is implied.
 6. **Source inventory is optional/private.** Its absence blocks reconciliation of those particular references, not build/test work or independent research and authorship.
@@ -168,7 +180,7 @@ The npm registry publication guard remains `private: true`. Draft-release automa
 1. Read `AGENTS.md` → `plan.md` → this file → `docs/architecture.md`.
 2. Confirm branch, worktree and actual PR base/head. Use `docs/pr-workflow.md` to locate the scoped change. PR #1 is superseded. Start a new branch and PR for a new task; only corrections within the same declared scope reuse a PR.
 3. Run `npm ci` and inspect the package scripts. Do not depend on this machine's caches or SSH aliases.
-4. Verify Group B delivery and its current CI before any integration. Both B001 groups are authored. Next, prepare pilot review/production with the maintainer and a qualified reviewer; independently, specify a bounded B002 before starting another authoring branch. Do not invent review approval or resolve private source identities by guessing.
+4. Verify the PR dependency/base and current CI. Both B001 groups are authored. Use `docs/animation-pilot.md` and `docs/review-packets.md` to prepare the three selected 3D prototypes with a qualified reviewer. Regenerate stale packets in a new destination; never copy approval across changed content by assumption. A later B002 needs its own bounded specification and PR.
 5. Run `npm run check` and `npm run test:e2e`; review the diff/package boundary.
 6. Update task states and evidence, then commit/push the relevant branch and inspect its CI. Leave merge/release decisions to the maintainer.
 
