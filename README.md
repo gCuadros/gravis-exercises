@@ -109,6 +109,10 @@ For local testing with an installed Chrome, use `PLAYWRIGHT_CHANNEL=chrome npm r
 
 The site exposes `/data/catalogue.preview.json`, `/data/catalogue.published.json`, `/data/manifest.json` `/data/taxonomy.json`, `/schema/taxonomy.schema.json`, `/schema/catalogue.schema.json` and `/schema/exercise.schema.json`. Static hosting uses build command `npm run build` and output `dist/site`, served at the domain root. Pages remain `noindex,nofollow` during editorial preview. No deployment or analytics is configured.
 
+## Prepare technical review and 3D production
+
+Use `npm run review:prepare -- --exercise push-up --output .local/reviews/push-up-v1` to create a portable bilingual packet with preserved source/context and a pending human review form. Run `npm run review:verify -- --packet .local/reviews/push-up-v1` before recording a decision. See [review packets](docs/review-packets.md) and the [uniform 3D pilot](docs/animation-pilot.md). Generation and verification do not approve content or produce media.
+
 ## Quality and contribution
 
 CI requires formatting, ESLint, canonical schema validation, unit tests, type checks and isolated package consumption on Node 22/24, plus desktop/mobile browser tests. A single `CI gate` aggregates these results for branch protection. Actions use immutable commit pins and minimal permissions; Dependabot proposes dependency and Action updates weekly.

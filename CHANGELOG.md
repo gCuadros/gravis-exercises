@@ -2,6 +2,9 @@
 
 ## Unreleased — 0.4.0 foundation preview
 
+- Add offline review-packet preparation and drift verification for selected exercise identities, with complete bilingual snapshots, preserved schema/vocabulary/production context and separate pending human review forms. No source approvals or consumer APIs change.
+- Define the maintainer-selected uniform 3D direction and a three-movement visual pilot, with full-sequence/loop deliverables and distinct visual, technical and rights decisions. No animation assets are included.
+
 - Author B001 Group B: eight original ES/EN drafts with IDs 17–24, explicit variant boundaries and counting/loading/distance conventions. The catalogue now has 24 drafts; published exports remain empty.
 - Add rings and kettlebell equipment plus overhead press, resistance row, kettlebell swing, lunge and carry families. Synchronize record enums without changing the original 16 records.
 - Document the expanded closed unions in [the 0.4.0 migration](docs/migrations/0.4.0.md). Record/envelope generation 2 and taxonomy shape generation 1 are unchanged; no release is published.
