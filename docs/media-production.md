@@ -2,6 +2,10 @@
 
 No demonstration assets are included in this version. Empty media arrays and visible placeholders are intentional. Do not copy competitor GIFs or publish generated movement imagery without frame-by-frame technical review.
 
+## Selected production direction
+
+On 2026-10-21 the maintainer selected **uniform 3D animation**. The [pilot specification](animation-pilot.md) defines shared art direction and the first three prototype variations; those assets have not been produced. Prepare [versioned review packets](review-packets.md) so technical and visual decisions refer to the exact source and actual asset version.
+
 ## Production standard
 
 - Produce a short, clear demonstration of the exact named variation. Use consistent framing, lighting, background and wardrobe; keep the whole relevant movement and equipment visible.
