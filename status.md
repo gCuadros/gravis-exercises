@@ -48,10 +48,11 @@ Snapshot date: **2026-10-25 (Europe/Madrid)**. This is a handoff snapshot, not a
 
 ### PKG-001 — pnpm migration, 2026-10-25
 
-Local evidence covers this change from `4af5758`; the new PR requires its own exact-head CI.
+Local evidence covers this change from `4af5758`; [PR #13](https://github.com/gCuadros/gravis-exercises/pull/13) requires its own exact-head CI.
 
 - Pinned pnpm 12.15.0, imported the lockfile and removed `package-lock.json`. All **67 prior dependency versions and integrity values** remain in the imported lockfile; pnpm/platform pins are additional tool-manager metadata.
 - Fresh dependency directory restored with `pnpm install --offline --frozen-lockfile`: 30 platform-relevant packages reused, zero downloads. `pnpm run check` then passed with **43 unit tests**, strict types, lint/format, schema checks, builds and consumer type checks.
+- The first CI run exposed an offline-test dependency on locally cached pnpm manager metadata. The test now invokes the exact pinned executable, disables manager auto-resolution only inside the temporary consumer, and uses empty package/metadata caches for each consumer. Both cold-cache offline consumers passed locally; the correction requires a fresh CI run.
 - Archive verification packs with pnpm, hashes each tarball, checks the allowlist, then installs offline into **two independent consumers (pnpm and npm)**. Both passed runtime, JSON, types, immutability and channel checks. No runtime dependency or public API change.
 - Deliberately changed TypeScript's manifest version in an isolated fixture: frozen installation failed with `ERR_PNPM_OUTDATED_LOCKFILE`, and the lockfile remained byte-identical.
 - `PLAYWRIGHT_CHANNEL=chrome pnpm run test:e2e`: **24 passed**. Compared 40 generated JSON/HTML/CSS files with the pre-TypeScript baseline: all byte-identical.

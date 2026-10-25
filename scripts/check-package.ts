@@ -21,7 +21,13 @@ const manifest = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf
 assert(!manifest.dependencies, 'The consumer package must have no runtime dependencies');
 const destination = path.join(root, 'artifacts');
 await mkdir(destination, { recursive: true });
-const pnpm = process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm';
+// Reuse the exact invoking pnpm; a global shim may select a different version outside this repository.
+const pnpm = process.env.npm_execpath;
+assert(
+  pnpm &&
+    process.env.npm_config_user_agent?.startsWith(`${manifest.packageManager.replace('@', '/')} `),
+  'Run this check through the pinned pnpm version.',
+);
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 const env = { ...process.env, npm_config_cache: path.join(root, '.local/npm-cache') };
 const pack = async () => {
@@ -87,15 +93,23 @@ for (const manager of ['pnpm', 'npm'] as const) {
       JSON.stringify({
         private: true,
         type: 'module',
-        ...(manager === 'pnpm' ? { packageManager: manifest.packageManager } : {}),
       }),
     );
     await exec(
       manager === 'pnpm' ? pnpm : npm,
       manager === 'pnpm'
-        ? ['add', '--offline', '--ignore-scripts', archive]
+        ? [
+            'add',
+            '--offline',
+            '--ignore-scripts',
+            '--config.managePackageManagerVersions=false',
+            '--store-dir',
+            path.join(consumer, '.store'),
+            `--config.cacheDir=${path.join(consumer, '.cache')}`,
+            archive,
+          ]
         : ['install', '--offline', '--ignore-scripts', '--no-audit', '--no-fund', archive],
-      { cwd: consumer, env },
+      { cwd: consumer, env: { ...env, npm_config_cache: path.join(consumer, '.npm-cache') } },
     );
     // Validate files extracted from the installed archive, with no source-schema
     // registration or remote resolver. The validator is a development tool only.
