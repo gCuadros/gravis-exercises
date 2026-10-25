@@ -49,7 +49,7 @@ getLabel('unknown', 'band');
 // @ts-expect-error The vocabulary has no language fallback.
 getLabel('equipment', 'band', 'fr');
 // @ts-expect-error Taxonomy keys derive from the record schema.
-taxonomy.groups.equipment.unknown;
+void taxonomy.groups.equipment.unknown;
 // @ts-expect-error Vocabulary aliases are deeply readonly.
 taxonomy.groups.equipment.band.aliases.es.push('changed');
 if (entry) {

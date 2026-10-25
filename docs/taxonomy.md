@@ -1,6 +1,6 @@
 # Controlled vocabulary
 
-The authored vocabulary lives in `src/taxonomy.js`. It contains stable keys, English/Spanish labels, definitions and search aliases, grouped by meaning. The dependency-free runtime and reference website use this same source. The build exports its plain JSON representation for consumers in any language; JavaScript is not required to read the distributed data.
+The authored vocabulary lives in `src/taxonomy.ts`. It contains stable keys, English/Spanish labels, definitions and search aliases, grouped by meaning. The dependency-free runtime and reference website use this same source. The build exports its plain JSON representation for consumers in any language; JavaScript is not required to read the distributed data.
 
 ## Namespaces and semantics
 
@@ -36,7 +36,7 @@ Search includes equipment, muscle, discipline and family keys, labels and aliase
 ## Extending the vocabulary
 
 1. Look for an existing term and read its definition before proposing another. A wording synonym normally belongs in aliases, not a new key.
-2. Add a term in `src/taxonomy.js`, including both labels, both definitions and explicit bilingual alias lists (empty lists are valid).
+2. Add a term in `src/taxonomy.ts`, including both labels, both definitions and explicit bilingual alias lists (empty lists are valid).
 3. Preserve existing keys. Equipment/muscle keys use hyphens; existing family/metric compound keys use underscores. Continue each group's convention. Do not silently normalize persisted keys or translate them.
 4. Run `npm run taxonomy:sync` to update only the vocabulary-controlled parts of `schema/exercise.schema.json`. Review and commit the schema diff. Builds and validation fail on drift; they do not rewrite source files.
 5. Update records with canonical keys, check migration/version impact and document it. IDs and slugs must not change just because a term's wording changes. Unknown legacy terms require an explicit editorial mapping or a new reviewed term, never a guessed substitution.

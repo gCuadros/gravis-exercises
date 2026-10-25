@@ -1,7 +1,9 @@
 import type { Exercise as ExerciseModel } from './exercise.generated.js';
 import type { Catalogue as CatalogueModel } from './catalogue.generated.js';
 
-type DeepReadonly<T> = T extends object ? { readonly [K in keyof T]: DeepReadonly<T[K]> } : T;
+export type DeepReadonly<T> = T extends object
+  ? { readonly [K in keyof T]: DeepReadonly<T[K]> }
+  : T;
 export type Exercise = DeepReadonly<ExerciseModel>;
 export type Discipline = Exercise['disciplines'][number];
 export type Catalogue = DeepReadonly<CatalogueModel>;

@@ -1,17 +1,16 @@
 # Project status — Gravis Exercise Library
 
-Snapshot date: **2026-10-21 (Europe/Madrid)**. This is a handoff snapshot, not a live dashboard. Read [plan.md](plan.md) for acceptance criteria and execution order, and verify the checkout/PR before acting. Newer commits are not automatically covered by older test evidence.
+Snapshot date: **2026-10-25 (Europe/Madrid)**. This is a handoff snapshot, not a live dashboard. Read [plan.md](plan.md) for acceptance criteria and execution order, and verify the checkout/PR before acting. Newer commits are not automatically covered by older test evidence.
 
 ## Current handoff
 
 - **Repository:** [gCuadros/gravis-exercises](https://github.com/gCuadros/gravis-exercises).
-- **Working branch:** `feat/review-production-packets`; base: `feat/exercise-batch-b` at `3112b770ae01cad26274414fc0df00c603bdb82d`.
-- **Scope:** MED-001 preparation: portable review packets with source/context drift verification, plus the maintainer-selected uniform 3D pilot. No exercise content, approval, schema or consumer API changes.
-- **Dependency:** [PR #10](https://github.com/gCuadros/gravis-exercises/pull/10) is still open as of this snapshot. This PR targets its branch so the diff contains only review/production preparation. The 3D cohort includes Group B's ring row. Integrate #10 first, then retarget this PR to main and recheck its diff and CI; do not merge this work into the Group B branch.
-- **Verified baseline:** #10 head `3112b77` passed [CI run 39463226886](https://github.com/gCuadros/gravis-exercises/actions/runs/39463226886), including Node 22/24, browser checks and changelog policy. That evidence covers the prerequisite, not this new change.
-- **Worktree at initial inspection:** clean on the Group B head, matching its remote branch. Main remains `5b3068e`; PRs #2–#9 are integrated and PR #1 is superseded.
+- **Working branch:** `refactor/typescript-native`; base: `feat/review-production-packets` at `54e0077aaa0ad2dcdc570462d4099119b12d4a1c`.
+- **Scope:** TYP-001: strict TypeScript runtime, scripts, website and tests; Go-native compiler and Rust linting. Schema/content and consumer API remain unchanged.
+- **Dependency:** [PR #11](https://github.com/gCuadros/gravis-exercises/pull/11) targets [PR #10](https://github.com/gCuadros/gravis-exercises/pull/10). Integrate #10 then #11 before this migration, retargeting each dependent PR to main and rechecking its diff/CI. Do not merge child work into prerequisite branches.
+- **Verified prerequisite:** #11 head `54e0077` passed [CI run 39666557565](https://github.com/gCuadros/gravis-exercises/actions/runs/39666557565). This is prerequisite evidence, not migration evidence. Main remains `5b3068e`; PRs #2–#9 are integrated.
 - **Production decision:** maintainer chose uniform 3D animation on 2026-10-21. Proposed initial visual cohort: bodyweight squat, floor push-up and ring row. No character/rig, animator or technical reviewer has been selected; no assets exist.
-- **Next action:** review the preparation PR (head `feat/review-production-packets`) and verify its current CI; then use its generated pilot packet to select/create the rig and review three prototypes. Record actual human and asset evidence before any approval. No purchases, commissioning, publication or deployment are included in this task.
+- **Next action:** finish and verify TYP-001's scoped PR, then execute PKG-001 (pnpm) in a new branch/PR. The maintainer made toolchain quality the priority; resume media work afterwards.
 
 ## Task states
 
@@ -23,6 +22,8 @@ Snapshot date: **2026-10-21 (Europe/Madrid)**. This is a handoff snapshot, not a
 | TAX-001  | done        | Controlled vocabulary and exports integrated through PR #5; Group B adds scoped terms                               |
 | DATA-001 | done        | Versioned envelope integrated through PR #6                                                                         |
 | CAT-001  | done        | Planning audit and B001 specification integrated through PR #7; source-equivalence holds remain                     |
+| TYP-001  | in_progress | Strict TypeScript migration; verify this branch and exact remote-head checks                                        |
+| PKG-001  | planned     | Approved pnpm migration; separate branch/PR after TYP-001                                                           |
 | MED-001  | in_progress | Uniform 3D pilot and review tools prepared; no original assets or human approval                                    |
 | CAT-002  | in_progress | Group A drafts merged via PR #8; Group B implemented under review; local checks passed (36 unit / 24 browser tests) |
 | WEB-001  | not_started | Responsive preview exists; reviewed-media and wider launch validation remain                                        |
@@ -39,11 +40,22 @@ Snapshot date: **2026-10-21 (Europe/Madrid)**. This is a handoff snapshot, not a
 - **Contract:** JSON Schema draft 2020-12 executed by Ajv; domain validation adds identity, filename, metric and media-URL checks. Record types are generated from version 2 of the schema. The catalogue envelope schema reuses that record contract and is bundled without external refs; its generated readonly type replaces the handwritten model. Empty distributions are valid and published-channel drafts are rejected. Taxonomy JSON shape version 1 is independently validated; explicit enum synchronization and drift checks keep the standalone record contract aligned.
 - **Build:** `dist/package/` and `dist/site/` are separate. The archive excludes the website, tests and private research. Verified archives/checksums are generated under `artifacts/`.
 - **Reference site:** bilingual catalogue, search, combined filters, exercise pages, JSON downloads, visible draft/review states and responsive layouts. It has no production demonstrations and remains `noindex,nofollow`.
-- **Repository tooling:** locked development tools, formatting, ESLint, unit/type/package tests, Playwright desktop/mobile tests, Node 22/24 CI, Dependabot configuration, CODEOWNERS, templates and a draft-release workflow.
+- **Repository tooling:** locked development tools, formatting, Oxlint, strict TypeScript implementation checking, unit/type/package tests, Playwright desktop/mobile tests, Node 22/24 CI, Dependabot configuration, CODEOWNERS, templates and a draft-release workflow.
 - **Coverage planning:** [CAT-001 matrix](docs/catalogue-coverage.md) accounts for all 517 candidates, 22 review groups and explicit unresolved evidence. [B001](docs/batches/001-foundations.md) specifies 16 new variations in two groups of eight; both groups are authored as drafts. The 517-candidate audit is a historical planning snapshot, not a live content count.
 - **Private research:** the optional `.local/research/gravis-catalogue-v0.1.json` contains 517 candidates (457 references plus 60 proposals). `.local/research/reconciliation-2026-10-19.json` records per-row planning dispositions, flags, proposed batch scope links and a source checksum; `.local/research/reconcile-cat001.py` reproduces that local audit. These are ignored and not distributed. No source identities were merged or verified as equivalent; a fresh clone will not contain these files.
 
 ## Verification evidence and its limits
+
+### TYP-001 — strict implementation migration, 2026-10-25
+
+Local evidence covers this change from prerequisite `54e0077`; remote CI must match the resulting PR head.
+
+- `npm ci --no-audit --no-fund` restored the exact toolchain. TypeScript 7.0.2 and Oxlint 1.89.0 executable versions were checked against current registry versions.
+- `npm run check` passed: formatting, Rust linting, strict source/config/test checking, **43 unit tests**, data validation, emitted runtime/site, public declarations and actual isolated offline archive installation. A compile-only bridge checks the runtime against its public declarations.
+- `PLAYWRIGHT_CHANNEL=chrome npm run test:e2e`: **24 passed**, desktop/mobile, including browser import of emitted ESM, expanded catalogues, filters and bilingual detail pages.
+- Compared **40 generated JSON, HTML and CSS files** with the pre-migration build: all byte-identical. All 24 authored records and schema files are unchanged; no approval/media state changes.
+- Source is TypeScript; distributed runtime remains JavaScript plus declarations/JSON and has zero runtime dependencies. Generated intermediate files are ignored. No public release or deployment occurred.
+- pnpm migration is the approved next task, kept in a separate PR; this prerequisite still uses its npm lockfile and CI baseline.
 
 ### Foundation baseline `4feee05e7e45c1b483e888540539057950039c80`
 
@@ -180,7 +192,7 @@ The npm registry publication guard remains `private: true`. Draft-release automa
 1. Read `AGENTS.md` → `plan.md` → this file → `docs/architecture.md`.
 2. Confirm branch, worktree and actual PR base/head. Use `docs/pr-workflow.md` to locate the scoped change. PR #1 is superseded. Start a new branch and PR for a new task; only corrections within the same declared scope reuse a PR.
 3. Run `npm ci` and inspect the package scripts. Do not depend on this machine's caches or SSH aliases.
-4. Verify the PR dependency/base and current CI. Both B001 groups are authored. Use `docs/animation-pilot.md` and `docs/review-packets.md` to prepare the three selected 3D prototypes with a qualified reviewer. Regenerate stale packets in a new destination; never copy approval across changed content by assumption. A later B002 needs its own bounded specification and PR.
+4. Verify the PR dependency/base and current CI. Complete TYP-001 then PKG-001 before resuming media. Both B001 groups are authored. Use `docs/animation-pilot.md` and `docs/review-packets.md` to prepare the three selected 3D prototypes with a qualified reviewer. Regenerate stale packets in a new destination; never copy approval across changed content by assumption. A later B002 needs its own bounded specification and PR.
 5. Run `npm run check` and `npm run test:e2e`; review the diff/package boundary.
 6. Update task states and evidence, then commit/push the relevant branch and inspect its CI. Leave merge/release decisions to the maintainer.
 

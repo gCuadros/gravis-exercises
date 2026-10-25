@@ -1,13 +1,29 @@
+import type { Exercise } from '../src/index.js';
+import type { TaxonomyGroup, Term } from '../src/taxonomy.types.ts';
+interface ReviewContext {
+  version: string;
+  files: Record<string, string>;
+}
+interface ReviewPacket {
+  files: Map<string, string>;
+  forms: Map<string, string>;
+}
+interface ReviewManifest {
+  packetVersion: 1;
+  packageVersion: string;
+  context: Record<string, string>;
+  exercises: { id: string; slug: string; sourceSha256: string; reportSha256: string }[];
+}
 import { createHash } from 'node:crypto';
 import { mkdir, readFile, writeFile, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { loadCatalogue, root, validateCatalogue } from './lib.mjs';
-import { taxonomy } from '../src/taxonomy.js';
+import { loadCatalogue, root, validateCatalogue } from './lib.ts';
+import { taxonomy } from '../src/taxonomy.ts';
 
-const json = (value) => `${JSON.stringify(value, null, 2)}\n`;
-const digest = (value) => createHash('sha256').update(value).digest('hex');
-const escape = (text) =>
+const json = (value: unknown) => `${JSON.stringify(value, null, 2)}\n`;
+const digest = (value: string) => createHash('sha256').update(value).digest('hex');
+const escape = (text: string) =>
   text.replace(/[\\`*_{}[\]()<>#!|~&]/g, (char) => `&#${char.codePointAt(0)};`);
 const contextPaths = [
   'schema/exercise.schema.json',
@@ -17,7 +33,7 @@ const contextPaths = [
   'docs/batches/001-foundations.md',
 ];
 
-function renderRecord(e) {
+function renderRecord(e: Exercise) {
   const lines = [
     `# ${escape(e.names.en)} / ${escape(e.names.es)}`,
     '',
@@ -26,8 +42,9 @@ function renderRecord(e) {
     `Source status: ${e.status}; technical review: ${e.review.technical}.`,
     'This snapshot is not an approval. Record the human assessment in review.md.',
   ];
-  for (const lang of ['en', 'es']) {
-    const label = (group, key) => escape(taxonomy.groups[group][key].labels[lang]);
+  for (const lang of ['en', 'es'] as const) {
+    const label = (group: TaxonomyGroup, key: string) =>
+      escape((taxonomy.groups[group] as Readonly<Record<string, Term>>)[key].labels[lang]);
     lines.push(
       '',
       `## ${lang === 'en' ? 'English' : 'Español'}`,
@@ -69,12 +86,16 @@ function renderRecord(e) {
   return lines.join('\n');
 }
 
-function reviewForm(e) {
+function reviewForm(e: Exercise) {
   return `# Human review — ${e.id}\n\nStatus: pending. This editable form does not update exercise data or authorize publication.\n\n- Public reviewer attribution: unassigned\n- Relevant expertise / scope: unassigned\n- Review date (YYYY-MM-DD): pending\n- Exercise ID: ${e.id}\n- Source SHA-256: see manifest.json\n- Text / anatomy / recording decision: pending\n- English / Spanish terminology decision: pending\n- Animation asset filename and version: not supplied\n- SHA-256 of the actual reviewed asset bytes: not supplied\n- Full clip / frame review decision: pending\n- Creator and proposed reuse license: unverified\n- Rights evidence reference (keep private documents outside this packet): pending\n\n## Observations to complete\n\n- Exact variation, starting position and endpoints:\n- Main and supporting muscle proposals:\n- Counting, load, duration, distance or side conventions:\n- Rig anatomy, joints, grip and equipment contact:\n- Foot/hand support, balance, load path and full cycle:\n- Loop seam versus real start/finish; camera occlusion:\n- Agreement of the full clip with both languages:\n- Corrections, with frame/time references:\n- Outstanding questions and explicit scope of any decision:\n\nLeave unresolved items pending. An automated check, unchecked box or elapsed time is not a review.\n`;
 }
 
 // Development tooling only; none of these Node APIs enter the consumer runtime.
-export function buildReviewPacket(entries, context, selectors) {
+export function buildReviewPacket(
+  entries: readonly Exercise[],
+  context: ReviewContext,
+  selectors: readonly string[],
+): ReviewPacket {
   const errors = validateCatalogue(entries);
   if (errors.length) throw new Error(errors.join('\n'));
   if (!Array.isArray(selectors) || !selectors.length)
@@ -88,7 +109,7 @@ export function buildReviewPacket(entries, context, selectors) {
     throw new Error('Duplicate exercise selection');
   selected.sort((a, b) => a.id.localeCompare(b.id, 'en'));
   const files = new Map();
-  const manifest = {
+  const manifest: ReviewManifest = {
     packetVersion: 1,
     packageVersion: context.version,
     context: {},
@@ -131,7 +152,7 @@ export function buildReviewPacket(entries, context, selectors) {
   };
 }
 
-export async function writeReviewPacket(destination, packet) {
+export async function writeReviewPacket(destination: string, packet: ReviewPacket) {
   // Never overwrite a previous packet or a reviewer's notes, including empty existing dirs.
   await mkdir(path.dirname(destination), { recursive: true });
   await mkdir(destination);
@@ -147,12 +168,24 @@ export async function writeReviewPacket(destination, packet) {
   }
 }
 
-export async function verifyReviewPacket(destination, entries, context) {
-  const manifest = JSON.parse(await readFile(path.join(destination, 'manifest.json'), 'utf8'));
+export async function verifyReviewPacket(
+  destination: string,
+  entries: readonly Exercise[],
+  context: ReviewContext,
+) {
+  const manifest: unknown = JSON.parse(
+    await readFile(path.join(destination, 'manifest.json'), 'utf8'),
+  );
   if (
+    !manifest ||
+    typeof manifest !== 'object' ||
+    !('packetVersion' in manifest) ||
+    !('exercises' in manifest) ||
     manifest.packetVersion !== 1 ||
     !Array.isArray(manifest.exercises) ||
-    !manifest.exercises.every((e) => e && typeof e.id === 'string')
+    !manifest.exercises.every(
+      (e) => e && typeof e === 'object' && 'id' in e && typeof e.id === 'string',
+    )
   )
     throw new Error('Invalid review manifest');
   // Only current validated IDs choose paths. Never read a path supplied by a manifest.
@@ -168,7 +201,7 @@ export async function verifyReviewPacket(destination, entries, context) {
   return expected.forms.size;
 }
 
-export function parseReviewArgs(args) {
+export function parseReviewArgs(args: string[]) {
   const [mode, ...rest] = args;
   if (!['prepare', 'verify'].includes(mode)) throw new Error('Expected prepare or verify');
   const selectors = [];
@@ -216,7 +249,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.ar
       );
     }
   } catch (error) {
-    console.error(error.message);
+    console.error(error instanceof Error ? error.message : String(error));
     process.exitCode = 1;
   }
 }

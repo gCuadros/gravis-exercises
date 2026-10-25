@@ -1,11 +1,19 @@
+import type { Language, Taxonomy, TaxonomyGroup, Term } from './taxonomy.types.ts';
 // Authored vocabulary. Record enums and consumer types are derived from these keys.
-const term = (en, es, definitionEn, definitionEs, aliasesEn = [], aliasesEs = []) => ({
+const term = (
+  en: string,
+  es: string,
+  definitionEn: string,
+  definitionEs: string,
+  aliasesEn: string[] = [],
+  aliasesEs: string[] = [],
+): Term => ({
   labels: { en, es },
   definition: { en: definitionEn, es: definitionEs },
   aliases: { en: aliasesEn, es: aliasesEs },
 });
 
-function freezeDeep(value) {
+function freezeDeep<T>(value: T): T {
   if (value && typeof value === 'object') {
     Object.values(value).forEach(freezeDeep);
     Object.freeze(value);
@@ -13,7 +21,7 @@ function freezeDeep(value) {
   return value;
 }
 
-export const taxonomy = freezeDeep({
+export const taxonomy: Taxonomy = freezeDeep({
   schemaVersion: 1,
   groups: {
     disciplines: {
@@ -394,13 +402,17 @@ export const taxonomy = freezeDeep({
 });
 
 // Unknown keys never turn into plausible-looking labels or inherited properties.
-export function getTerm(group, key) {
+export function getTerm(group: TaxonomyGroup, key: string): Term | undefined {
   if (!Object.hasOwn(taxonomy.groups, group)) return undefined;
-  const terms = taxonomy.groups[group];
+  const terms: Readonly<Record<string, Term>> = taxonomy.groups[group];
   return Object.hasOwn(terms, key) ? terms[key] : undefined;
 }
 
-export function getLabel(group, key, language = 'en') {
+export function getLabel(
+  group: TaxonomyGroup,
+  key: string,
+  language: Language = 'en',
+): string | undefined {
   if (language !== 'en' && language !== 'es') return undefined;
   return getTerm(group, key)?.labels[language];
 }

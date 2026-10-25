@@ -1,18 +1,19 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import Ajv2020 from 'ajv/dist/2020.js';
-import addFormats from 'ajv-formats';
-import { schema, validateCatalogue } from '../scripts/lib.mjs';
+import { Ajv2020, addFormats } from '../scripts/ajv.ts';
+import { schema, validateCatalogue } from '../scripts/lib.ts';
 import {
   envelopeSchema,
   catalogueSchema,
   bundleCatalogueSchema,
   validateEnvelope,
   createDistribution,
-} from '../scripts/catalogue-contract.mjs';
-import { exerciseFixture } from './fixtures/exercises.mjs';
+} from '../scripts/catalogue-contract.ts';
+import { exerciseFixture } from './fixtures/exercises.ts';
 
-const envelope = (exercises = [], channel = 'preview') => ({
+import type { Exercise } from '../src/exercise.generated.js';
+
+const envelope = (exercises: readonly unknown[] = [], channel = 'preview') => ({
   schemaVersion: 2,
   version: '0.2.1',
   channel,
@@ -20,7 +21,7 @@ const envelope = (exercises = [], channel = 'preview') => ({
   exercises,
 });
 // Synthetic evidence exercises the gate; it is never authored/public content.
-const approvedFixture = () => ({
+const approvedFixture = (): Exercise => ({
   ...exerciseFixture(),
   id: 'grv_test00000009',
   slug: 'synthetic-approved-movement',
@@ -49,8 +50,8 @@ test('both channels accept empty collections while source authoring still requir
 });
 
 test('envelope rejects missing, unknown and wrongly typed metadata without coercion', () => {
-  for (const key of ['schemaVersion', 'version', 'channel', 'license', 'exercises']) {
-    const value = envelope();
+  for (const key of ['schemaVersion', 'version', 'channel', 'license', 'exercises'] as const) {
+    const value: Partial<ReturnType<typeof envelope>> = envelope();
     delete value[key];
     assert(validateEnvelope(value).length, `Missing ${key}`);
   }
@@ -92,16 +93,19 @@ test('published channel rejects drafts and retains all record publication requir
 
 test('canonical record refs enforce taxonomy, translations, dates and record versions', () => {
   const changes = [
-    (e) => {
+    (e: Exercise) => {
+      // @ts-expect-error Deliberately invalid input exercises the runtime validation boundary.
       e.equipment = ['unknown'];
     },
-    (e) => {
+    (e: Exercise) => {
+      // @ts-expect-error Deliberately invalid input exercises the runtime validation boundary.
       delete e.names.es;
     },
-    (e) => {
+    (e: Exercise) => {
       e.review.reviewedAt = '2026-02-30';
     },
-    (e) => {
+    (e: Exercise) => {
+      // @ts-expect-error Deliberately invalid input exercises the runtime validation boundary.
       e.schemaVersion = 1;
     },
   ];
