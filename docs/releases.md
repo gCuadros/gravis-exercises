@@ -37,8 +37,8 @@ It does not publish to npm, deploy the site or publish the draft release automat
 
 ## Validation commands
 
-- `npm ci`: restore the locked development tools.
-- `npm run check`: formatting, lint, schema/domain validation, unit tests, build, consumer types and actual package installation.
-- `npm run test:e2e`: Chromium desktop/mobile flows, browser runtime, language persistence, private path isolation and narrow-screen layout.
+- `pnpm install --frozen-lockfile`: restore the locked development tools.
+- `pnpm run check`: formatting, lint, schema/domain validation, unit tests, build, consumer types and actual package installation.
+- `pnpm run test:e2e`: Chromium desktop/mobile flows, browser runtime, language persistence, private path isolation and narrow-screen layout.
 
 The `CI gate` fails when either the Node matrix or browser job fails or is cancelled. Workflow runs use minimal permissions and pinned Action commits. Dependency updates are reviewed as PRs; there is no auto-merge policy.

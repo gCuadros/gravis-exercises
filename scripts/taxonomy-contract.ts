@@ -72,6 +72,6 @@ export function assertTaxonomyContract(schema: ExerciseSchema) {
   if (errors.length) throw new Error(errors.join('\n'));
   if (JSON.stringify(schema) !== JSON.stringify(schemaWithTaxonomy(schema)))
     throw new Error(
-      'Taxonomy/schema drift. Run npm run taxonomy:sync and review the contract change.',
+      'Taxonomy/schema drift. Run pnpm run taxonomy:sync and review the contract change.',
     );
 }
