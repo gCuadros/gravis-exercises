@@ -10,11 +10,11 @@ This does not rewrite the consumer runtime in Go or Rust. Consumers receive stan
 
 ## Clean checkout and build
 
-1. Restore the pinned development dependencies with `npm ci`.
-2. `npm run generate:types` validates source contracts and generates declarations directly from the schemas. It runs with Node type stripping, so missing generated type-only imports do not create a bootstrap cycle.
-3. `npm run typecheck` generates those declarations then checks runtime, scripts, website, tests and Playwright configuration with `tsconfig.json`.
-4. `npm run build` regenerates declarations and uses `tsconfig.runtime.json` to compile browser/library sources to ignored `.local/compiled/`, rewriting relative `.ts` imports to `.js`. Packaging copies only the expected runtime and declaration files into `dist/package/`; website output is separate.
-5. `npm run check` gates formatting, lint, strict implementation checking, validation, unit tests, build, public consumer types and actual isolated archive installation. Browser tests exercise the compiled JavaScript on desktop/mobile.
+1. Restore the pinned development dependencies with `pnpm install --frozen-lockfile`.
+2. `pnpm run generate:types` validates source contracts and generates declarations directly from the schemas. It runs with Node type stripping, so missing generated type-only imports do not create a bootstrap cycle.
+3. `pnpm run typecheck` generates those declarations then checks runtime, scripts, website, tests and Playwright configuration with `tsconfig.json`.
+4. `pnpm run build` regenerates declarations and uses `tsconfig.runtime.json` to compile browser/library sources to ignored `.local/compiled/`, rewriting relative `.ts` imports to `.js`. Packaging copies only the expected runtime and declaration files into `dist/package/`; website output is separate.
+5. `pnpm run check` gates formatting, lint, strict implementation checking, validation, unit tests, build, public consumer types and actual isolated archive installation. Browser tests exercise the compiled JavaScript on desktop/mobile.
 
 Node tools/tests use `--experimental-strip-types`, compatible with the existing Node 22.13 minimum. Stripping types is execution, not type checking; the separate strict gate is required. Playwright transforms its TypeScript configuration/tests. Generated build files are never authored or committed.
 
@@ -24,4 +24,4 @@ Untrusted validation inputs start as `unknown`; Ajv validation narrows their sha
 
 The migration preserves exercise JSON, schema semantics, vocabulary, published/preview separation and public exports. Source paths change from `.js`/`.mjs` to `.ts`; internal contributors must use the documented scripts. The stable consumer entry points do not change.
 
-The maintainer selected pnpm as the next package-manager change. That separate PR must replace the lockfile, migrate scripts/CI/docs, verify frozen installs and retain archive/consumer compatibility tests. npm remains only the executable baseline of this prerequisite commit.
+Package management now uses pinned pnpm; see [package management](package-management.md) for setup, frozen installs and archive compatibility.

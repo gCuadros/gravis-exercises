@@ -17,16 +17,16 @@
     "test:types": "tsc --project tests/types/tsconfig.json",
     "test:package": "node --experimental-strip-types scripts/check-package.ts",
     "test:e2e": "playwright test",
-    "build": "npm run generate:types && tsc --project tsconfig.runtime.json && node --experimental-strip-types scripts/build.ts",
-    "check": "npm run format:check && npm run lint && npm run typecheck && npm run validate && npm test && npm run build && npm run test:types && npm run test:package",
-    "dev": "npm run build && node --experimental-strip-types scripts/serve.ts",
+    "build": "pnpm run generate:types && tsc --project tsconfig.runtime.json && node --experimental-strip-types scripts/build.ts",
+    "check": "pnpm run format:check && pnpm run lint && pnpm run typecheck && pnpm run validate && pnpm test && pnpm run build && pnpm run test:types && pnpm run test:package",
+    "dev": "pnpm run build && node --experimental-strip-types scripts/serve.ts",
     "preview": "node --experimental-strip-types scripts/serve.ts",
-    "prepack": "npm run build",
+    "prepack": "pnpm run build",
     "taxonomy:sync": "node --experimental-strip-types scripts/sync-taxonomy.ts",
     "review:prepare": "node --experimental-strip-types scripts/review-packet.ts prepare",
     "review:verify": "node --experimental-strip-types scripts/review-packet.ts verify",
     "generate:types": "node --experimental-strip-types scripts/generate-types.ts",
-    "typecheck": "npm run generate:types && tsc --project tsconfig.json"
+    "typecheck": "pnpm run generate:types && tsc --project tsconfig.json"
   },
   "devDependencies": {
     "@playwright/test": "1.64.1",
@@ -80,5 +80,5 @@
     "LICENSE",
     "README.md"
   ],
-  "packageManager": "npm@10.9.2"
+  "packageManager": "pnpm@12.15.0"
 }

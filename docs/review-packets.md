@@ -4,10 +4,10 @@ Generate an offline handoff for a movement professional and animator from the cu
 
 ## Prepare
 
-From the repository root, restore the locked tools with `npm ci`, then:
+From the repository root, restore the locked tools with `pnpm install --frozen-lockfile`, then:
 
 ```sh
-npm run review:prepare -- \
+pnpm run review:prepare \
   --exercise squat-bodyweight \
   --exercise push-up \
   --exercise ring-row \
@@ -36,7 +36,7 @@ Only `review.md` is intended to change inside a packet. Store asset files and se
 ## Verify before recording a decision
 
 ```sh
-npm run review:verify -- --packet .local/reviews/3d-pilot-v1
+pnpm run review:verify --packet .local/reviews/3d-pilot-v1
 ```
 
 Verification compares the packet's generated snapshots, manifest, index and context against the current validated checkout. It fails on changed wording, source status, metric conventions, taxonomy, schema, preserved guidance, package version, deleted snapshot files or tampered fingerprints. It does not require an unchanged Git commit: unrelated changes outside the packet context do not invalidate it. Unselected exercise additions do not change the selection, though changes to shared vocabulary/guidance do.

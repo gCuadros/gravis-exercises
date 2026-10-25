@@ -5,5 +5,5 @@ coverage/
 artifacts/
 playwright-report/
 test-results/
-package-lock.json
+pnpm-lock.yaml
 src/*.generated.d.ts

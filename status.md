@@ -5,12 +5,12 @@ Snapshot date: **2026-10-25 (Europe/Madrid)**. This is a handoff snapshot, not a
 ## Current handoff
 
 - **Repository:** [gCuadros/gravis-exercises](https://github.com/gCuadros/gravis-exercises).
-- **Working branch:** `refactor/typescript-native`; base: `feat/review-production-packets` at `54e0077aaa0ad2dcdc570462d4099119b12d4a1c`.
-- **Scope:** TYP-001: strict TypeScript runtime, scripts, website and tests; Go-native compiler and Rust linting. Schema/content and consumer API remain unchanged.
-- **Dependency:** [PR #11](https://github.com/gCuadros/gravis-exercises/pull/11) targets [PR #10](https://github.com/gCuadros/gravis-exercises/pull/10). Integrate #10 then #11 before this migration, retargeting each dependent PR to main and rechecking its diff/CI. Do not merge child work into prerequisite branches.
-- **Verified prerequisite:** #11 head `54e0077` passed [CI run 39666557565](https://github.com/gCuadros/gravis-exercises/actions/runs/39666557565). This is prerequisite evidence, not migration evidence. Main remains `5b3068e`; PRs #2–#9 are integrated.
+- **Working branch:** `build/pnpm-toolchain`; base: `refactor/typescript-native` at `4af5758e9d0290ff918ce026e1fee610173261e6`.
+- **Scope:** PKG-001 only: pnpm lockfile/toolchain, scripts, Actions and documentation, with isolated pnpm/npm package compatibility. No exercise, schema, public runtime or API changes.
+- **Dependency:** [PR #12](https://github.com/gCuadros/gravis-exercises/pull/12) contains the strict TypeScript migration and depends on #11 → #10. Integrate #10, #11, #12, then this PR; retarget each dependent PR to main and recheck its diff/CI. Do not merge child work into prerequisite branches.
+- **Verified prerequisite:** #12 head `4af5758e9d0290ff918ce026e1fee610173261e6` passed [CI run 40199991984](https://github.com/gCuadros/gravis-exercises/actions/runs/40199991984): Node 22/24, browser, changelog policy and gate. This is prerequisite evidence, not pnpm migration evidence. Main remains `5b3068e`.
 - **Production decision:** maintainer chose uniform 3D animation on 2026-10-21. Proposed initial visual cohort: bodyweight squat, floor push-up and ring row. No character/rig, animator or technical reviewer has been selected; no assets exist.
-- **Next action:** finish and verify TYP-001's scoped PR, then execute PKG-001 (pnpm) in a new branch/PR. The maintainer made toolchain quality the priority; resume media work afterwards.
+- **Next action:** verify PKG-001's scoped PR and exact-head CI, then review the dependency chain before integration. Toolchain priority is implemented; resume the uniform 3D pilot after integration. Regenerate review packets into a new destination because preserved context/commands changed; retain previous notes.
 
 ## Task states
 
@@ -22,8 +22,8 @@ Snapshot date: **2026-10-25 (Europe/Madrid)**. This is a handoff snapshot, not a
 | TAX-001  | done        | Controlled vocabulary and exports integrated through PR #5; Group B adds scoped terms                               |
 | DATA-001 | done        | Versioned envelope integrated through PR #6                                                                         |
 | CAT-001  | done        | Planning audit and B001 specification integrated through PR #7; source-equivalence holds remain                     |
-| TYP-001  | in_progress | Strict TypeScript migration; verify this branch and exact remote-head checks                                        |
-| PKG-001  | planned     | Approved pnpm migration; separate branch/PR after TYP-001                                                           |
+| TYP-001  | in_review   | PR #12, strict TypeScript implemented, exact-head CI green; merge pending                                           |
+| PKG-001  | in_review   | pnpm migration verified locally; inspect scoped PR and exact-head CI                                                |
 | MED-001  | in_progress | Uniform 3D pilot and review tools prepared; no original assets or human approval                                    |
 | CAT-002  | in_progress | Group A drafts merged via PR #8; Group B implemented under review; local checks passed (36 unit / 24 browser tests) |
 | WEB-001  | not_started | Responsive preview exists; reviewed-media and wider launch validation remain                                        |
@@ -40,11 +40,24 @@ Snapshot date: **2026-10-25 (Europe/Madrid)**. This is a handoff snapshot, not a
 - **Contract:** JSON Schema draft 2020-12 executed by Ajv; domain validation adds identity, filename, metric and media-URL checks. Record types are generated from version 2 of the schema. The catalogue envelope schema reuses that record contract and is bundled without external refs; its generated readonly type replaces the handwritten model. Empty distributions are valid and published-channel drafts are rejected. Taxonomy JSON shape version 1 is independently validated; explicit enum synchronization and drift checks keep the standalone record contract aligned.
 - **Build:** `dist/package/` and `dist/site/` are separate. The archive excludes the website, tests and private research. Verified archives/checksums are generated under `artifacts/`.
 - **Reference site:** bilingual catalogue, search, combined filters, exercise pages, JSON downloads, visible draft/review states and responsive layouts. It has no production demonstrations and remains `noindex,nofollow`.
-- **Repository tooling:** locked development tools, formatting, Oxlint, strict TypeScript implementation checking, unit/type/package tests, Playwright desktop/mobile tests, Node 22/24 CI, Dependabot configuration, CODEOWNERS, templates and a draft-release workflow.
+- **Repository tooling:** pnpm 12.15.0, frozen lockfile installs, formatting, Oxlint, strict TypeScript implementation checking, unit/type/package tests, Playwright desktop/mobile tests, Node 22/24 CI, Dependabot configuration, CODEOWNERS, templates and a draft-release workflow.
 - **Coverage planning:** [CAT-001 matrix](docs/catalogue-coverage.md) accounts for all 517 candidates, 22 review groups and explicit unresolved evidence. [B001](docs/batches/001-foundations.md) specifies 16 new variations in two groups of eight; both groups are authored as drafts. The 517-candidate audit is a historical planning snapshot, not a live content count.
 - **Private research:** the optional `.local/research/gravis-catalogue-v0.1.json` contains 517 candidates (457 references plus 60 proposals). `.local/research/reconciliation-2026-10-19.json` records per-row planning dispositions, flags, proposed batch scope links and a source checksum; `.local/research/reconcile-cat001.py` reproduces that local audit. These are ignored and not distributed. No source identities were merged or verified as equivalent; a fresh clone will not contain these files.
 
 ## Verification evidence and its limits
+
+### PKG-001 — pnpm migration, 2026-10-25
+
+Local evidence covers this change from `4af5758`; the new PR requires its own exact-head CI.
+
+- Pinned pnpm 12.15.0, imported the lockfile and removed `package-lock.json`. All **67 prior dependency versions and integrity values** remain in the imported lockfile; pnpm/platform pins are additional tool-manager metadata.
+- Fresh dependency directory restored with `pnpm install --offline --frozen-lockfile`: 30 platform-relevant packages reused, zero downloads. `pnpm run check` then passed with **43 unit tests**, strict types, lint/format, schema checks, builds and consumer type checks.
+- Archive verification packs with pnpm, hashes each tarball, checks the allowlist, then installs offline into **two independent consumers (pnpm and npm)**. Both passed runtime, JSON, types, immutability and channel checks. No runtime dependency or public API change.
+- Deliberately changed TypeScript's manifest version in an isolated fixture: frozen installation failed with `ERR_PNPM_OUTDATED_LOCKFILE`, and the lockfile remained byte-identical.
+- `PLAYWRIGHT_CHANNEL=chrome pnpm run test:e2e`: **24 passed**. Compared 40 generated JSON/HTML/CSS files with the pre-TypeScript baseline: all byte-identical.
+- Real pnpm review commands prepared and verified squat/push-up/ring-row at ignored `.local/reviews/3d-pilot-2026-10-25-pnpm/`. Earlier packets and notes were preserved; no approval was imported.
+- Actions use commit-pinned pnpm setup, the manifest version, pnpm store caching and frozen installs. Release workflow changes are static configuration only; no release/tag/deployment was triggered.
+- Local Corepack was incompatible with pnpm 12's native entry point. Validation used an isolated pinned pnpm installation without replacing global tools; portable bootstrap instructions are in `docs/package-management.md`.
 
 ### TYP-001 — strict implementation migration, 2026-10-25
 
@@ -191,9 +204,9 @@ The npm registry publication guard remains `private: true`. Draft-release automa
 
 1. Read `AGENTS.md` → `plan.md` → this file → `docs/architecture.md`.
 2. Confirm branch, worktree and actual PR base/head. Use `docs/pr-workflow.md` to locate the scoped change. PR #1 is superseded. Start a new branch and PR for a new task; only corrections within the same declared scope reuse a PR.
-3. Run `npm ci` and inspect the package scripts. Do not depend on this machine's caches or SSH aliases.
+3. Run `pnpm install --frozen-lockfile` and inspect the package scripts. Do not depend on this machine's caches or SSH aliases.
 4. Verify the PR dependency/base and current CI. Complete TYP-001 then PKG-001 before resuming media. Both B001 groups are authored. Use `docs/animation-pilot.md` and `docs/review-packets.md` to prepare the three selected 3D prototypes with a qualified reviewer. Regenerate stale packets in a new destination; never copy approval across changed content by assumption. A later B002 needs its own bounded specification and PR.
-5. Run `npm run check` and `npm run test:e2e`; review the diff/package boundary.
+5. Run `pnpm run check` and `pnpm run test:e2e`; review the diff/package boundary.
 6. Update task states and evidence, then commit/push the relevant branch and inspect its CI. Leave merge/release decisions to the maintainer.
 
 ## Continuity notes

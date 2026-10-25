@@ -16,6 +16,6 @@ Before work, read [plan.md](plan.md) and [status.md](status.md). These are the t
 - Source text/code is MIT licensed. Media requires its own truthful provenance, permission and technical review. Never invent approval, copy competitor media or commit private research/account exports.
 - Keep generated outputs, `.local/`, secrets and large production media out of Git and the package. Audit the actual archive, not only the source directory.
 - Author implementation, tooling and tests in strict TypeScript. Generate record types from the schemas; never silence checking globally or use `any` to complete a migration.
-- Use `npm ci`. Before completing a change, run `npm run check`; run `npm run test:e2e` for changes to the website/browser runtime. Fix failures rather than bypassing a gate. Report checks that could not run.
+- Use `pnpm install --frozen-lockfile`. Before completing a change, run `pnpm run check`; run `pnpm run test:e2e` for changes to the website/browser runtime. Fix failures rather than bypassing a gate. Report checks that could not run.
 - Pin workflow actions to immutable commits, use minimal permissions and maintain lockfile consistency. Do not add auto-merge, deploy or registry publication without a defined release decision.
 - Keep changes reviewable through a pull request. Do not merge, push to main, create a release tag or publish a package as part of ordinary implementation work.

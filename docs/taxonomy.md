@@ -38,8 +38,8 @@ Search includes equipment, muscle, discipline and family keys, labels and aliase
 1. Look for an existing term and read its definition before proposing another. A wording synonym normally belongs in aliases, not a new key.
 2. Add a term in `src/taxonomy.ts`, including both labels, both definitions and explicit bilingual alias lists (empty lists are valid).
 3. Preserve existing keys. Equipment/muscle keys use hyphens; existing family/metric compound keys use underscores. Continue each group's convention. Do not silently normalize persisted keys or translate them.
-4. Run `npm run taxonomy:sync` to update only the vocabulary-controlled parts of `schema/exercise.schema.json`. Review and commit the schema diff. Builds and validation fail on drift; they do not rewrite source files.
+4. Run `pnpm run taxonomy:sync` to update only the vocabulary-controlled parts of `schema/exercise.schema.json`. Review and commit the schema diff. Builds and validation fail on drift; they do not rewrite source files.
 5. Update records with canonical keys, check migration/version impact and document it. IDs and slugs must not change just because a term's wording changes. Unknown legacy terms require an explicit editorial mapping or a new reviewed term, never a guessed substitution.
-6. Run `npm run check` and browser tests. Consumer record and filter types derive from the schema, and taxonomy types reuse those keys. Update relevant semantic tests for the addition.
+6. Run `pnpm run check` and browser tests. Consumer record and filter types derive from the schema, and taxonomy types reuse those keys. Update relevant semantic tests for the addition.
 
 Labels and aliases may be corrected without changing identity. Renaming/removing a key or changing its meaning requires a migration and compatibility decision. Adding keys also requires checking exhaustive consumer logic and catalogue coverage; do not assume all consumers accept new categories automatically.

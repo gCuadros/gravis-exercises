@@ -40,7 +40,7 @@ const server = http.createServer(async (req, res) => {
     res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
     res.end(
       await readFile(path.join(dir, '404.html')).catch(() =>
-        Buffer.from('Not found. Run npm run build first.'),
+        Buffer.from('Not found. Run pnpm run build first.'),
       ),
     );
   }

@@ -26,9 +26,9 @@ The fitness application, accounts, user sessions, subscriptions, AI coaching and
 1. Open the repository root. Read `AGENTS.md`, `plan.md`, `status.md`, then the documents linked by the selected task.
 2. Inspect `git status --short`, `git branch --show-current` and `git log -5 --oneline`. Preserve uncommitted work. Reuse an existing branch only for corrections inside that PR's exact scope. Start every new task or authoring batch on a new focused branch, normally from updated `main`. For an unmerged dependency, explicitly document it and use its branch as the PR base so the diff includes only the new change. Never reset, overwrite or merge another person's changes to make the setup convenient.
 3. Compare the checkout with the evidence in `status.md`. If there are newer commits, recheck the relevant facts rather than treating the snapshot as live state.
-4. Use Node from `.nvmrc` (minimum package version is in `package.json`) and run `npm ci`. Keep `package-lock.json`; do not substitute unpinned tools.
+4. Use Node from `.nvmrc` (minimum package version is in `package.json`) and run `pnpm install --frozen-lockfile`. Keep `pnpm-lock.yaml`; do not substitute unpinned tools.
 5. Select the first ready task in dependency order below. Mark it `in_progress` in `status.md`, describing the intended outcome. Do not reopen completed work without a concrete defect or requirement.
-6. Implement a bounded change and its meaningful checks. Run `npm run check`. For website/browser-runtime changes, also run `npm run test:e2e` after installing Chromium with `npx playwright install chromium`.
+6. Implement a bounded change and its meaningful checks. Run `pnpm run check`. For website/browser-runtime changes, also run `pnpm run test:e2e` after installing Chromium with `pnpm exec playwright install chromium`.
 7. Inspect the diff and package boundary. Update the status, relevant documentation and changelog; commit on the working branch. Open the new task's own PR, including its `CHANGELOG.md` update. Update an existing PR only for corrections within that PR's scope. Verify base/head and changed files against the declared scope. Recheck CI on the resulting commit.
 8. Leave a handoff with completed work, evidence, remaining risks and the exact next action. Do not merge, tag, publish or deploy without a release/merge decision from the maintainer.
 
@@ -64,7 +64,7 @@ Task IDs are permanent. The table defines order and dependencies; `status.md` is
 
 Complete TYP-001 first: strict TypeScript implementation/tooling/tests, current stable native compiler, Rust-based linting, generated schema types and compiled dependency-free JavaScript. Verify source checking, unit/browser tests, isolated package installation and output-data parity. See [toolchain](docs/typescript-toolchain.md).
 
-Then complete PKG-001 in its own branch/PR: pin pnpm, replace the npm lockfile, migrate Actions/scripts/documentation, require frozen installs, and test the actual archive with independent consumers. Preserve dependency versions unless a concrete compatibility issue requires a separate decision. Resume the uniform 3D pilot after this priority work.
+PKG-001 follows in its own branch/PR (see [package management](docs/package-management.md)): pin pnpm, replace the npm lockfile, migrate Actions/scripts/documentation, require frozen installs, and test the actual archive with independent consumers. Preserve dependency versions unless a concrete compatibility issue requires a separate decision. Resume the uniform 3D pilot after this priority work.
 
 ### TST-001 — Catalogue growth regression coverage
 
@@ -75,7 +75,7 @@ Tests must tolerate multiple exercises matching `dominada` and select a delibera
 - Make browser assertions test useful results and deliberate selection of an exercise identity, without assuming the production catalogue has only one matching result or exactly eight records.
 - Ensure expected results are not simply computed by the same function being tested.
 - Validate a temporary extra matching fixture in tests; do not add fictitious records to the released catalogue.
-- Run `npm run check` and both browser projects. Preserve current behavior and the package allowlist.
+- Run `pnpm run check` and both browser projects. Preserve current behavior and the package allowlist.
 
 ### TAX-001 and DATA-001 — Contracts before scaling
 
