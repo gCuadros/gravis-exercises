@@ -10,3 +10,4 @@ artifacts/
 playwright-report/
 test-results/
 *.tgz
+src/*.generated.d.ts

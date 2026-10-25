@@ -1,5 +1,6 @@
+import type { Exercise } from '../../src/exercise.generated.js';
 // Synthetic, schema-valid records for tests only. Never write these into exercises/.
-export function exerciseFixture(overrides = {}) {
+export function exerciseFixture(overrides: Partial<Exercise> = {}): Exercise {
   return structuredClone({
     schemaVersion: 2,
     id: 'grv_test00000001',

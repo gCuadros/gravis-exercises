@@ -4,13 +4,19 @@ import { mkdtemp, mkdir, readFile, writeFile, rm } from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
 import assert from 'node:assert/strict';
-import Ajv2020 from 'ajv/dist/2020.js';
-import addFormats from 'ajv-formats';
+import { Ajv2020, addFormats } from './ajv.ts';
 import { createRequire } from 'node:module';
-import { exerciseFixture } from '../tests/fixtures/exercises.mjs';
+import { exerciseFixture } from '../tests/fixtures/exercises.ts';
 import { createHash } from 'node:crypto';
-import { root, loadCatalogue } from './lib.mjs';
+import { root, loadCatalogue } from './lib.ts';
 
+import type { Catalogue } from '../src/catalogue.generated.js';
+import type { Schema } from 'ajv';
+interface PackResult {
+  integrity: string;
+  filename: string;
+  files: { path: string }[];
+}
 const exec = promisify(execFile);
 const manifest = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'));
 assert(!manifest.dependencies, 'The consumer package must have no runtime dependencies');
@@ -18,7 +24,7 @@ const destination = path.join(root, 'artifacts');
 await mkdir(destination, { recursive: true });
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 const env = { ...process.env, npm_config_cache: path.join(root, '.local/npm-cache') };
-const pack = async () =>
+const pack = async (): Promise<PackResult> =>
   JSON.parse(
     (
       await exec(npm, ['pack', '--ignore-scripts', '--json', '--pack-destination', destination], {
@@ -79,11 +85,12 @@ try {
   // Validate files extracted from the installed archive, with no source-schema
   // registration or remote resolver. The validator is a development tool only.
   const installed = createRequire(path.join(consumer, 'check.cjs'));
-  const readExport = async (name) => JSON.parse(await readFile(installed.resolve(name), 'utf8'));
+  const readExport = async (name: string): Promise<unknown> =>
+    JSON.parse(await readFile(installed.resolve(name), 'utf8'));
   const installedSchema = await readExport('gravis-exercises/schema/catalogue');
   const validator = new Ajv2020({ strict: true, allErrors: true });
   addFormats(validator);
-  const validate = validator.compile(installedSchema);
+  const validate = validator.compile<Catalogue>(installedSchema as Schema);
   for (const [channel, name] of [
     ['published', 'gravis-exercises/data'],
     ['preview', 'gravis-exercises/data/preview'],
@@ -106,7 +113,9 @@ try {
     installedSchema,
     JSON.parse(await readFile(path.join(root, 'dist/site/schema/catalogue.schema.json'), 'utf8')),
   );
-  const tampered = await readExport('gravis-exercises/data');
+  const original = await readExport('gravis-exercises/data');
+  assert(validate(original));
+  const tampered: Omit<Catalogue, 'license'> & { license: string } = { ...original };
   tampered.exercises = [exerciseFixture()];
   assert.equal(
     validate(tampered),

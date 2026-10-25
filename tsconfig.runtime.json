@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "noEmitOnError": true,
+    "rewriteRelativeImportExtensions": true,
+    "rootDir": ".",
+    "outDir": ".local/compiled",
+    "types": []
+  },
+  "include": ["src/**/*.ts", "website/**/*.ts"],
+  "exclude": ["node_modules", "dist", ".local"]
+}

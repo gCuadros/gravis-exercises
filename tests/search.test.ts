@@ -1,10 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { filterExercises } from '../src/catalogue.js';
-import { validateCatalogue } from '../scripts/lib.mjs';
-import { searchFixtures } from './fixtures/exercises.mjs';
+import { filterExercises } from '../src/catalogue.ts';
+import { validateCatalogue } from '../scripts/lib.ts';
+import { searchFixtures } from './fixtures/exercises.ts';
 const fixtures = searchFixtures();
-const ids = (options) => filterExercises(fixtures, options).map((exercise) => exercise.id);
+const ids = (options: import('../src/index.js').SearchOptions) =>
+  filterExercises(fixtures, options).map((exercise) => exercise.id);
 const band = 'grv_test00000001';
 const bodyweight = 'grv_test00000002';
 const functional = 'grv_test00000003';

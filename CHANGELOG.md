@@ -2,6 +2,8 @@
 
 ## Unreleased — 0.4.0 foundation preview
 
+- Migrate runtime, website, Node tools and tests to strict TypeScript with stable Go-native TypeScript 7.0.2 and Rust-based Oxlint 1.89.0. Check implementation/public-declaration compatibility and compile portable JavaScript for consumers. Generated record types still derive from the canonical schemas; no exercise data or public API behavior changes. Package-manager migration follows separately.
+
 - Add offline review-packet preparation and drift verification for selected exercise identities, with complete bilingual snapshots, preserved schema/vocabulary/production context and separate pending human review forms. No source approvals or consumer APIs change.
 - Define the maintainer-selected uniform 3D direction and a three-movement visual pilot, with full-sequence/loop deliverables and distinct visual, technical and rights decisions. No animation assets are included.
 

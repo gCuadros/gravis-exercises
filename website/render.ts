@@ -1,8 +1,20 @@
-import { label, filterExercises, taxonomy } from './catalogue.js';
-export const escapeHTML = (value) =>
+import type { Exercise, SearchOptions } from '../src/index.js';
+import type { Language } from '../src/taxonomy.types.ts';
+export interface PageState extends SearchOptions {
+  lang: Language;
+  version?: string;
+}
+import { label, filterExercises, taxonomy } from './catalogue.ts';
+export const escapeHTML = (value: unknown) =>
   String(value).replace(
     /[&<>"']/g,
-    (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c],
+    (c) =>
+      (
+        ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }) as Record<
+          string,
+          string
+        >
+      )[c],
   );
 const E = escapeHTML;
 export const copy = {
@@ -118,19 +130,19 @@ export const copy = {
     readDocs: 'Leer documentación',
   },
 };
-export function header(lang) {
+export function header(lang: Language) {
   const t = copy[lang];
   return `<a class="skip" href="#main">${lang === 'es' ? 'Ir al contenido' : 'Skip to content'}</a><header class="header"><a class="brand" href="/" aria-label="Gravis home">gravis<span class="brand-dot"></span><span class="brand-sub">/ exercises</span></a><nav aria-label="${lang === 'es' ? 'Principal' : 'Main'}"><a href="/#library">${t.library}</a><a class="dev-nav" href="/#developers">${t.developers}</a><button id="language" class="lang" aria-label="${lang === 'en' ? 'Cambiar a español' : 'Switch to English'}">${lang === 'en' ? 'ES' : 'EN'}</button><a class="github-nav" href="https://github.com/gCuadros/gravis-exercises" target="_blank" rel="noreferrer">GitHub ↗</a></nav></header>`;
 }
-export function footer(lang) {
+export function footer(lang: Language) {
   const t = copy[lang];
   return `<footer class="footer"><a class="brand" href="/">gravis<span class="brand-dot"></span></a><span>${t.credit}</span><span>${t.footer}</span></footer>`;
 }
-export function card(e, index, lang) {
+export function card(e: Exercise, index: number, lang: Language) {
   const t = copy[lang];
   return `<a class="exercise-card" href="/exercises/${E(e.slug)}/"><div class="card-top"><span class="index">${String(index + 1).padStart(2, '0')}</span><span class="draft">${e.status === 'published' ? (lang === 'es' ? 'Revisado' : 'Reviewed') : t.draft}</span></div><div class="card-body"><p class="category">${e.disciplines.map((d) => E(label('disciplines', d, lang))).join(' / ')}</p><h3>${E(e.names[lang])}</h3><p>${E(e.summary[lang])}</p></div><div class="card-bottom"><span>${e.equipment.map((d) => E(label('equipment', d, lang))).join(' · ')}</span><span class="arrow" aria-hidden="true">↗</span></div></a>`;
 }
-export function resultGrid(exercises, state) {
+export function resultGrid(exercises: readonly Exercise[], state: PageState) {
   const { lang } = state,
     t = copy[lang],
     filtered = filterExercises(exercises, state);
@@ -141,7 +153,7 @@ export function resultGrid(exercises, state) {
       : `<div class="empty"><h3>${t.empty}</h3><p>${t.emptyText}</p><button class="button" data-clear>${t.clear}</button></div>`,
   };
 }
-export function cataloguePage(exercises, state) {
+export function cataloguePage(exercises: readonly Exercise[], state: PageState) {
   const { lang } = state,
     t = copy[lang],
     result = resultGrid(exercises, state);
@@ -168,7 +180,7 @@ export function cataloguePage(exercises, state) {
       '',
     )}</select></label><label><span class="sr-only">${t.equipment}</span><select id="equipment" name="equipment"><option value="all">${t.equipment}</option>${equipments.map((d) => `<option value="${E(d)}" ${state.equipment === d ? 'selected' : ''}>${E(label('equipment', d, lang))}</option>`).join('')}</select></label><button type="button" class="clear" data-clear>${t.clear}</button></form><div class="grid" id="results">${result.html}</div></section><section class="developers" id="developers"><div class="wrap developers-inner"><div><p class="eyebrow">OPEN DATA / MIT</p><h2>${t.builderTitle}</h2><p>${t.builderText}</p><div class="dev-actions"><a class="button primary" href="/data/catalogue.preview.json" download>${t.download} ↓</a><a href="https://github.com/gCuadros/gravis-exercises#readme">${t.readDocs} ↗</a></div></div><div class="dev-code"><div class="code-heading"><span>${t.overview}</span><span>${E(state.version || 'development')}</span></div><pre><code>${E(JSON.stringify({ version: state.version || 'development', channel: 'preview', exerciseCount: exercises.length, languages: ['en', 'es'], publishedCount: exercises.filter((e) => e.status === 'published').length }, null, 2))}</code></pre><div class="code-links"><a href="/schema/catalogue.schema.json">${t.catalogueSchema} ↗</a><a href="/schema/exercise.schema.json">${t.schema} ↗</a><a href="/data/catalogue.published.json">${t.published} ↗</a></div>${exercises.some((e) => e.status === 'published') ? '' : `<p class="code-note">${t.zero}</p>`}</div></div></section></main>${footer(lang)}`;
 }
-function demonstration(e, lang) {
+function demonstration(e: Exercise, lang: Language) {
   const t = copy[lang],
     m = e.media.find(
       (m) => m.reviewStatus === 'approved' && ['video', 'animation'].includes(m.type),
@@ -177,7 +189,7 @@ function demonstration(e, lang) {
     return `<div class="media-placeholder"><span class="media-mark" aria-hidden="true">G / ${E(e.id.slice(-3))}</span><div><p class="eyebrow">${t.preview}</p><h2>${t.media}</h2><p>${t.mediaText}</p></div></div>`;
   return `<figure class="demonstration">${m.type === 'video' ? `<video controls playsinline preload="metadata" src="${E(m.url)}" aria-label="${E(m.alt[lang])}"></video>` : `<a class="button" href="${E(m.url)}" target="_blank" rel="noreferrer">${lang === 'es' ? 'Abrir demostración' : 'Open demonstration'} ↗</a>`}<figcaption>${E(m.alt[lang])}<br>${E(m.creator)} · ${E(m.license)}</figcaption></figure>`;
 }
-export function detailPage(e, lang) {
+export function detailPage(e: Exercise, lang: Language) {
   const t = copy[lang];
   return `${header(lang)}<main id="main" class="wrap detail"><a class="back" href="/#library">← ${t.back}</a><div class="detail-heading"><div><p class="eyebrow">${e.disciplines.map((d) => E(label('disciplines', d, lang))).join(' / ')}</p><h1>${E(e.names[lang])}</h1><p class="intro">${E(e.summary[lang])}</p></div><button class="button" id="copy-link">${t.copy} ↗</button></div><p id="copy-status" class="sr-only" role="status"></p><div class="detail-layout"><div>${demonstration(e, lang)}<section class="instructions"><h2>${t.steps}</h2><ol>${e.instructions[lang].map((x) => `<li>${E(x)}</li>`).join('')}</ol><h3>${t.cues}</h3><ul>${e.cues[lang].map((x) => `<li>${E(x)}</li>`).join('')}</ul></section></div><aside class="facts"><div class="review-note"><span class="status-dot"></span><strong>${e.review.technical === 'approved' ? (lang === 'es' ? 'Revisión técnica completada' : 'Technical review complete') : t.review}</strong><p>${e.review.technical === 'approved' ? `${E(e.review.reviewer)} · ${E(e.review.reviewedAt)}` : t.reviewText}</p></div><section><h3>${t.equipmentLabel}</h3><div class="tags">${e.equipment.map((k) => `<span>${E(label('equipment', k, lang))}</span>`).join('')}</div></section><section><h3>${t.tracking}</h3><p class="small-label">${t.required}</p><div class="tags">${e.tracking.required.map((k) => `<span>${E(label('metrics', k, lang))}</span>`).join('')}</div>${e.tracking.optional.length ? `<p class="small-label">${t.optional}</p><div class="tags">${e.tracking.optional.map((k) => `<span>${E(label('metrics', k, lang))}</span>`).join('')}</div>` : ''}<p>${E(e.tracking.notes[lang])}</p></section><section><h3>${t.primary}</h3><p>${e.muscles.primary.map((k) => E(label('muscles', k, lang))).join(', ')}</p><h3>${t.secondary}</h3><p>${e.muscles.secondary.map((k) => E(label('muscles', k, lang))).join(', ')}</p><small>${e.review.technical === 'approved' ? '' : t.muscleNote}</small></section></aside></div></main>${footer(lang)}`;
 }

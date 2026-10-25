@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises';
-import { createDistribution } from './catalogue-contract.mjs';
-import { loadCatalogue } from './lib.mjs';
+import { createDistribution } from './catalogue-contract.ts';
+import { loadCatalogue } from './lib.ts';
 const entries = await loadCatalogue();
 const { version } = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'));
 createDistribution(entries, version);

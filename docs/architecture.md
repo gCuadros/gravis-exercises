@@ -25,7 +25,7 @@ This repository intentionally remains one package with one reference website. A 
 
 ## Current boundaries
 
-The catalogue has 24 drafts (eight pilot records plus B001 Groups A and B) and no media. The [controlled vocabulary](taxonomy.md) is authored in `src/taxonomy.js`, shared by runtime and website and exported as plain JSON. Its structure has a separate schema; record enums are synchronized explicitly and drift fails validation/build. Vocabulary TypeScript keys reuse generated record types. The data is distributed in full and searched in memory, which suits the current catalogue. Benchmark payload size and search latency before expanding to very large collections.
+The catalogue has 24 drafts (eight pilot records plus B001 Groups A and B) and no media. The [controlled vocabulary](taxonomy.md) is authored in `src/taxonomy.ts`, shared by runtime and website and exported as plain JSON. Its structure has a separate schema; record enums are synchronized explicitly and drift fails validation/build. Vocabulary TypeScript keys reuse generated record types. The data is distributed in full and searched in memory, which suits the current catalogue. Benchmark payload size and search latency before expanding to very large collections.
 
 Build tooling is allowed development dependencies; consumers have zero runtime dependencies. The supported JavaScript API is ESM, with Node 22.13+ and modern browser/bundler consumption tested. JSON is the language-independent interchange format. Other runtimes, CommonJS-only toolchains and assistive technologies are not implied to have been exhaustively tested.
 

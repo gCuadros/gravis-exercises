@@ -53,10 +53,18 @@ Task IDs are permanent. The table defines order and dependencies; `status.md` is
 | TAX-001  | Controlled bilingual taxonomy                   | TST-001                                                          | Equipment/muscle/family keys have documented semantics and labels; validation rejects unknown or inconsistent references                           |
 | DATA-001 | Versioned catalogue-envelope contract           | TAX-001                                                          | JSON consumers can validate the envelope as well as each record; exported schema/types/docs and package tests agree                                |
 | CAT-001  | Coverage reconciliation and batch plan          | TAX-001                                                          | Candidate groups, duplicates, exact variations, unresolved items and the next authoring batch are documented without private metadata              |
+| TYP-001  | Strict TypeScript and native quality tools      | Current authored catalogue and review tooling                    | Strict source gate, compiled ESM, output parity and passing unit/browser/package checks                                                            |
+| PKG-001  | pnpm package management                         | TYP-001                                                          | Frozen lockfile install, updated Actions/docs, deterministic archive and isolated consumption                                                      |
 | MED-001  | Pilot visual specification and production       | FND-002                                                          | Style/format conventions are documented; actual pilot assets have creator, rights, bilingual descriptions and technical review                     |
 | CAT-002  | Author and review successive batches            | CAT-001, DATA-001                                                | Each batch has valid original bilingual content, recording conventions and explicit review status; publish only entries with approved media        |
 | WEB-001  | Catalogue readiness for broader public use      | TAX-001, actual reviewed entries from CAT-002/MED-001            | Accurate mixed draft/published states, usable mobile/keyboard flows, reviewed media behavior and measured payload/search performance               |
 | REL-001  | First deliberate public distribution            | FND-001–002, TST-001, TAX-001, DATA-001; approved launch content | Maintainer selects name/ownership, release scope and channels; versioned artifacts and license review completed; publication explicitly authorized |
+
+### TYP-001 and PKG-001 — Maintainer priority before media production
+
+Complete TYP-001 first: strict TypeScript implementation/tooling/tests, current stable native compiler, Rust-based linting, generated schema types and compiled dependency-free JavaScript. Verify source checking, unit/browser tests, isolated package installation and output-data parity. See [toolchain](docs/typescript-toolchain.md).
+
+Then complete PKG-001 in its own branch/PR: pin pnpm, replace the npm lockfile, migrate Actions/scripts/documentation, require frozen installs, and test the actual archive with independent consumers. Preserve dependency versions unless a concrete compatibility issue requires a separate decision. Resume the uniform 3D pilot after this priority work.
 
 ### TST-001 — Catalogue growth regression coverage
 

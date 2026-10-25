@@ -1,7 +1,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { format } from 'prettier';
-import { taxonomy } from '../src/taxonomy.js';
-import { schemaWithTaxonomy, validateTaxonomy } from './taxonomy-contract.mjs';
+import { taxonomy } from '../src/taxonomy.ts';
+import { schemaWithTaxonomy, validateTaxonomy } from './taxonomy-contract.ts';
 
 const errors = validateTaxonomy(taxonomy);
 if (errors.length) throw new Error(errors.join('\n'));

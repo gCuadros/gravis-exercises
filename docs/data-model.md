@@ -31,7 +31,7 @@ The future app should store canonical units alongside numeric values and convert
 
 A band-assisted pull-up is distinct from a machine-assisted pull-up. A foot-assisted rope climb is distinct from a legless rope climb. These can share a family while retaining separate instructions, demonstrations and metrics. Do not turn a generic research label into a precise canonical variation without an editorial decision.
 
-Equipment, muscles, families, disciplines and metrics use the [controlled bilingual vocabulary](taxonomy.md). Author terms in `src/taxonomy.js` and run `npm run taxonomy:sync` to update the standalone record schema enums. Validation and builds reject unknown keys and schema/vocabulary drift. Exact primary/secondary muscle overlap is rejected; broad and narrow muscle groups remain distinct, pending technical review.
+Equipment, muscles, families, disciplines and metrics use the [controlled bilingual vocabulary](taxonomy.md). Author terms in `src/taxonomy.ts` and run `npm run taxonomy:sync` to update the standalone record schema enums. Validation and builds reject unknown keys and schema/vocabulary drift. Exact primary/secondary muscle overlap is rejected; broad and narrow muscle groups remain distinct, pending technical review.
 
 ## Validation and release
 

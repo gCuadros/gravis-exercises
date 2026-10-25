@@ -78,11 +78,13 @@ npm run check
 npm run dev
 ```
 
+Implementation, tooling and tests use strict TypeScript 7.0.2 (the stable Go-native compiler). Oxlint 1.89.0 provides Rust-based linting. See [the toolchain](docs/typescript-toolchain.md) for clean-checkout generation and distribution boundaries. The approved next tooling change is pnpm; it has its own branch/PR.
+
 Open http://127.0.0.1:4371. Development builds once and starts a local server; restart after source changes. `PORT=4372 npm run dev` selects another port.
 
 ```sh
 npm run format         # Apply repository formatting
-npm run check          # Format, lint, schema, unit tests, build, types, package consumer
+npm run check          # Format, lint, strict source types, schema, tests, build, consumer checks
 npx playwright install chromium
 npm run test:e2e       # Desktop/mobile browser tests; starts and stops its own server
 ```
@@ -115,7 +117,7 @@ Use `npm run review:prepare -- --exercise push-up --output .local/reviews/push-u
 
 ## Quality and contribution
 
-CI requires formatting, ESLint, canonical schema validation, unit tests, type checks and isolated package consumption on Node 22/24, plus desktop/mobile browser tests. A single `CI gate` aggregates these results for branch protection. Actions use immutable commit pins and minimal permissions; Dependabot proposes dependency and Action updates weekly.
+CI requires formatting, Oxlint, strict TypeScript source checking, canonical schema validation, unit tests, type checks and isolated package consumption on Node 22/24, plus desktop/mobile browser tests. A single `CI gate` aggregates these results for branch protection. Actions use immutable commit pins and minimal permissions; Dependabot proposes dependency and Action updates weekly.
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md), [architecture](docs/architecture.md), [data model](docs/data-model.md), [catalogue contract](docs/catalogue-contract.md), [taxonomy](docs/taxonomy.md), [release policy](docs/releases.md) and [media production](docs/media-production.md). [The expansion plan](docs/catalogue-expansion.md) explains how the eight-entry pilot grows into the broader library.
 

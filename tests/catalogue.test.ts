@@ -1,9 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { loadCatalogue, validateCatalogue, validateExercise } from '../scripts/lib.mjs';
-import { exerciseFixture } from './fixtures/exercises.mjs';
-import { escapeHTML, detailPage, cataloguePage } from '../website/render.js';
-import { createCatalogue, filterExercises } from '../src/catalogue.js';
+import { loadCatalogue, validateCatalogue, validateExercise } from '../scripts/lib.ts';
+import { exerciseFixture } from './fixtures/exercises.ts';
+import { escapeHTML, detailPage, cataloguePage } from '../website/render.ts';
+import { createCatalogue, filterExercises } from '../src/catalogue.ts';
 const entries = await loadCatalogue();
 const fixture = exerciseFixture;
 test('related authored variations remain distinct through discovery and identity lookup', () => {
@@ -48,12 +48,14 @@ test('authored records have unique identities and no private source fields', () 
 });
 test('missing translation, duplicate tracking metrics and source injection fail validation', () => {
   const a = fixture();
+  // @ts-expect-error Deliberately invalid input exercises the runtime validation boundary.
   delete a.instructions.es;
   assert(validateExercise(a).length);
   const b = fixture();
   b.tracking.optional.push(b.tracking.required[0]);
   assert(validateExercise(b).some((x) => x.includes('repeated')));
   const c = fixture();
+  // @ts-expect-error Deliberately invalid input exercises the runtime validation boundary.
   c.hevy_account_id = 'private';
   assert(validateExercise(c).some((x) => x.includes('additional properties')));
 });
@@ -93,6 +95,7 @@ test('invalid calendar dates and unsafe slugs fail', () => {
 test('malformed records and media return errors instead of throwing', () => {
   assert(validateCatalogue([null]).length);
   const e = fixture();
+  // @ts-expect-error Deliberately invalid input exercises the runtime validation boundary.
   e.media = [null];
   e.status = 'published';
   assert(validateExercise(e).length);
@@ -112,6 +115,7 @@ test('authored strings are escaped in HTML', () => {
   });
   assert(!catalogue.includes('<img src=x'));
   assert(catalogue.includes('&lt;img'));
+  // @ts-expect-error Deliberately invalid input exercises the runtime validation boundary.
   e.equipment = ['" onfocus="alert(1)'];
   assert.throws(
     () =>
@@ -131,6 +135,7 @@ test('rowing discovery separates resistance variants from the ergometer', () => 
   const ring = api.getExerciseBySlug('ring-row');
   const bar = api.getExerciseBySlug('bent-over-row-barbell');
   const erg = api.getExerciseBySlug('rowing-ergometer');
+  assert(ring && bar && erg);
   for (const e of [ring, bar, erg]) assert(rows.includes(e));
   assert.equal(new Set([ring.id, bar.id, erg.id]).size, 3);
   assert.equal(ring.family, 'horizontal_row');
@@ -144,9 +149,11 @@ test('rowing discovery separates resistance variants from the ergometer', () => 
 test('chin-up discovery preserves supinated, pronated and assisted identities', () => {
   const api = createCatalogue({ exercises: entries });
   const matches = api.findExercises({ query: 'dominada' });
-  const variations = ['chin-up-strict', 'pull-up-strict', 'band-assisted-pull-up'].map((slug) =>
-    api.getExerciseBySlug(slug),
-  );
+  const variations = ['chin-up-strict', 'pull-up-strict', 'band-assisted-pull-up'].map((slug) => {
+    const entry = api.getExerciseBySlug(slug);
+    assert(entry);
+    return entry;
+  });
   assert.equal(new Set(variations.map((e) => e.id)).size, 3);
   for (const e of variations) {
     assert(matches.includes(e));
@@ -167,9 +174,10 @@ test('carry consumers receive distance and single-load conventions instead of re
   assert.deepEqual(carry.tracking.optional, ['duration']);
   assert.equal(carry.tracking.loadConvention, 'external_load');
   const press = api.getExerciseBySlug('bench-press-dumbbell');
+  assert(press);
   assert(press.tracking.required.includes('repetitions'));
   assert(!press.tracking.required.includes('distance'));
-  for (const lang of ['en', 'es']) {
+  for (const lang of ['en', 'es'] as const) {
     const html = detailPage(carry, lang);
     assert(html.includes(escapeHTML(carry.tracking.notes[lang])));
     assert(!html.includes('<video'));

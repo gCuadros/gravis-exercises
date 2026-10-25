@@ -1,13 +1,15 @@
-import { test, expect } from '@playwright/test';
-import { loadCatalogue, validateCatalogue } from '../../scripts/lib.mjs';
-import Ajv2020 from 'ajv/dist/2020.js';
-import addFormats from 'ajv-formats';
-import { searchFixtures } from '../fixtures/exercises.mjs';
+import assert from 'node:assert/strict';
+import type { Exercise } from '../../src/exercise.generated.js';
+import type { Catalogue } from '../../src/catalogue.generated.js';
+import { test, expect, type Page } from '@playwright/test';
+import { loadCatalogue, validateCatalogue } from '../../scripts/lib.ts';
+import { Ajv2020, addFormats } from '../../scripts/ajv.ts';
+import { searchFixtures } from '../fixtures/exercises.ts';
 const entries = await loadCatalogue();
 // Select a real, stable identity; translations and the number/order of matches can change.
 const target = entries.find((exercise) => exercise.id === 'grv_000000000002');
 if (!target) throw new Error('The band-assisted pull-up reference identity is missing');
-const card = (page, exercise) =>
+const card = (page: Page, exercise: Exercise) =>
   page.locator(`.exercise-card[href="/exercises/${exercise.slug}/"]`);
 
 test('new equipment filters lead to the correct bilingual draft at mobile width', async ({
@@ -15,6 +17,7 @@ test('new equipment filters lead to the correct bilingual draft at mobile width'
 }) => {
   const squat = entries.find((entry) => entry.slug === 'back-squat-high-bar-barbell');
   const press = entries.find((entry) => entry.slug === 'bench-press-dumbbell');
+  assert(squat && press);
   await page.setViewportSize({ width: 320, height: 812 });
   await page.goto('/');
   await page.getByRole('button', { name: 'Cambiar a español' }).click();
@@ -56,6 +59,7 @@ for (const expanded of [false, true]) {
             /(<script id="page-data" type="application\/json">)([\s\S]*?)(<\/script>)/;
           const match = html.match(pattern);
           expect(match, 'The real page must expose its embedded catalogue').not.toBeNull();
+          assert(match);
           const payload = JSON.parse(match[2]);
           payload.exercises.push(...additions);
           expect(validateCatalogue(payload.exercises)).toEqual([]);
@@ -71,7 +75,7 @@ for (const expanded of [false, true]) {
     test('search, combined filters, reload, empty state and clearing work together', async ({
       page,
     }) => {
-      const errors = [];
+      const errors: string[] = [];
       page.on('pageerror', (error) => errors.push(error.message));
       await page.goto('/');
       await expect(page.locator('.exercise-card')).toHaveCount(entries.length + additions.length);
@@ -148,7 +152,9 @@ for (const expanded of [false, true]) {
       request,
     }) => {
       await page.goto('/');
-      const preview = await (await request.get('/data/catalogue.preview.json')).json();
+      const preview = (await (
+        await request.get('/data/catalogue.preview.json')
+      ).json()) as Catalogue;
       const published = await (await request.get('/data/catalogue.published.json')).json();
       const schemaResponse = await request.get('/schema/catalogue.schema.json');
       expect(schemaResponse.status()).toBe(200);
@@ -179,8 +185,11 @@ for (const expanded of [false, true]) {
     test('package utilities run in a browser with multiple matching records', async ({ page }) => {
       await page.goto('/');
       const ids = await page.evaluate(async (extra) => {
-        const { createCatalogue } = await import('/assets/catalogue.js');
-        const data = await (await fetch('/data/catalogue.preview.json')).json();
+        const moduleURL = '/assets/catalogue.js';
+        const { createCatalogue }: typeof import('../../src/catalogue.ts') = await import(
+          moduleURL
+        );
+        const data = (await (await fetch('/data/catalogue.preview.json')).json()) as Catalogue;
         data.exercises.push(...extra);
         return createCatalogue(data)
           .findExercises({ query: 'dominada' })
@@ -201,6 +210,7 @@ test('Group B filters and tracking remain usable in both languages at narrow wid
   const ring = entries.find((e) => e.slug === 'ring-row');
   const swing = entries.find((e) => e.slug === 'kettlebell-swing-chest-height');
   const carry = entries.find((e) => e.slug === 'suitcase-carry-dumbbell');
+  assert(ring && swing && carry);
   await page.setViewportSize({ width: 320, height: 812 });
   await page.goto('/?q=remo&equipment=rings');
   await page.getByRole('button', { name: 'Cambiar a español' }).click();
@@ -214,7 +224,7 @@ test('Group B filters and tracking remain usable in both languages at narrow wid
   for (const [query, equipment, entry] of [
     ['swing', 'kettlebell', swing],
     ['maleta', 'dumbbell', carry],
-  ]) {
+  ] as const) {
     await page.goto(`/?q=${query}&equipment=${equipment}`);
     await card(page, entry).click();
     await expect(page.getByRole('heading', { name: entry.names.es, exact: true })).toBeVisible();

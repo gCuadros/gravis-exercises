@@ -1,23 +1,29 @@
-import test from 'node:test';
+import test, { type TestContext } from 'node:test';
+import type { Exercise } from '../src/exercise.generated.js';
 import assert from 'node:assert/strict';
 import { mkdtemp, readFile, writeFile, rm, access } from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
-import { exerciseFixture } from './fixtures/exercises.mjs';
-import { root, loadCatalogue } from '../scripts/lib.mjs';
+import { exerciseFixture } from './fixtures/exercises.ts';
+import { root, loadCatalogue } from '../scripts/lib.ts';
 import {
   buildReviewPacket,
   writeReviewPacket,
   verifyReviewPacket,
   parseReviewArgs,
   loadReviewContext,
-} from '../scripts/review-packet.mjs';
+} from '../scripts/review-packet.ts';
 
+function requiredFile(files: Map<string, string>, key: string): string {
+  const value = files.get(key);
+  assert(value !== undefined, `Missing packet file: ${key}`);
+  return value;
+}
 const context = await loadReviewContext();
 const entry = exerciseFixture();
-const temporary = async (t) => {
+const temporary = async (t: TestContext) => {
   const dir = await mkdtemp(path.join(os.tmpdir(), 'gravis-review-test-'));
   t.after(() => rm(dir, { recursive: true, force: true }));
   return dir;
@@ -39,11 +45,11 @@ test('packets are deterministic, complete bilingual snapshots with separate pend
   assert.deepEqual(entries, before);
   for (const e of entries) {
     const dir = `exercises/${e.slug}`;
-    assert.deepEqual(JSON.parse(a.files.get(`${dir}/exercise.json`)), e);
-    const text = a.files.get(`${dir}/snapshot.md`);
+    assert.deepEqual(JSON.parse(requiredFile(a.files, `${dir}/exercise.json`)), e);
+    const text = requiredFile(a.files, `${dir}/snapshot.md`);
     assert(text.includes('## English') && text.includes('## Español'));
     assert(text.includes(e.tracking.notes.en) && text.includes(e.tracking.notes.es));
-    assert(a.forms.get(`${dir}/review.md`).includes('Status: pending'));
+    assert(requiredFile(a.forms, `${dir}/review.md`).includes('Status: pending'));
     assert(!a.files.has(`${dir}/review.md`));
   }
   assert(a.files.has('context/taxonomy.json'));
@@ -56,6 +62,7 @@ test('selection and CLI reject ambiguous, unknown or malformed input before writ
   assert.throws(() => buildReviewPacket([entry], context, ['missing']), /Unknown/);
   assert.throws(() => buildReviewPacket([entry], context, [entry.id, entry.slug]), /Duplicate/);
   const invalid = structuredClone(entry);
+  // @ts-expect-error Deliberately invalid input exercises the runtime validation boundary.
   delete invalid.instructions.es;
   assert.throws(() => buildReviewPacket([invalid], context, [entry.id]), /es/);
   assert.throws(
@@ -98,10 +105,10 @@ test('verification rejects stale text, tracking, taxonomy and production guidanc
   const destination = path.join(parent, 'packet');
   await writeReviewPacket(destination, buildReviewPacket([entry], context, [entry.id]));
   for (const change of [
-    (e) => {
+    (e: Exercise) => {
       e.instructions.es[0] += ' Changed.';
     },
-    (e) => {
+    (e: Exercise) => {
       e.tracking.notes.en += ' Changed.';
     },
   ]) {
@@ -130,14 +137,14 @@ test('verification rejects edited or missing snapshots and untrusted manifest pa
   ]) {
     const destination = path.join(parent, `packet-${path.basename(filename)}`);
     await writeReviewPacket(destination, packet);
-    await writeFile(path.join(destination, filename), `${packet.files.get(filename)}\n`);
+    await writeFile(path.join(destination, filename), `${requiredFile(packet.files, filename)}\n`);
     await assert.rejects(verifyReviewPacket(destination, [entry], context), /stale/);
   }
   const destination = path.join(parent, 'missing');
   await writeReviewPacket(destination, packet);
   await rm(path.join(destination, `exercises/${entry.slug}/snapshot.md`));
   await assert.rejects(verifyReviewPacket(destination, [entry], context), { code: 'ENOENT' });
-  const manifest = JSON.parse(packet.files.get('manifest.json'));
+  const manifest = JSON.parse(requiredFile(packet.files, 'manifest.json'));
   manifest.exercises[0].id = '../outside';
   await writeFile(path.join(destination, 'manifest.json'), JSON.stringify(manifest));
   await assert.rejects(verifyReviewPacket(destination, [entry], context), /Unknown exercise/);
@@ -151,15 +158,15 @@ test('record markup is rendered as text and internal packet links resolve offlin
   const packet = buildReviewPacket([changed], context, [changed.id]);
   const destination = path.join(parent, 'packet');
   await writeReviewPacket(destination, packet);
-  const report = packet.files.get(`exercises/${changed.slug}/snapshot.md`);
+  const report = requiredFile(packet.files, `exercises/${changed.slug}/snapshot.md`);
   assert(!report.includes('<script>') && !report.includes('<img'));
   assert(report.includes('&#60;script&#62;'));
   assert.deepEqual(
-    JSON.parse(packet.files.get(`exercises/${changed.slug}/exercise.json`)),
+    JSON.parse(requiredFile(packet.files, `exercises/${changed.slug}/exercise.json`)),
     changed,
   );
   for (const filename of ['README.md', `exercises/${changed.slug}/snapshot.md`]) {
-    for (const match of packet.files.get(filename).matchAll(/\]\(([^)]+)\)/g))
+    for (const match of requiredFile(packet.files, filename).matchAll(/\]\(([^)]+)\)/g))
       await access(path.resolve(destination, path.dirname(filename), match[1]));
   }
 });
@@ -167,25 +174,41 @@ test('record markup is rendered as text and internal packet links resolve offlin
 test('CLI prepares and verifies real selected records outside the repository cwd', async (t) => {
   const parent = await temporary(t);
   const run = promisify(execFile);
-  const script = path.join(root, 'scripts/review-packet.mjs');
+  const script = path.join(root, 'scripts/review-packet.ts');
   const entries = await loadCatalogue();
   const target = entries.find((e) => e.slug === 'ring-row');
   assert(target);
   const before = await readFile(path.join(root, 'exercises/ring-row.json'));
   const result = await run(
     process.execPath,
-    [script, 'prepare', '--exercise', target.id, '--output', 'packet'],
+    [
+      '--experimental-strip-types',
+      script,
+      'prepare',
+      '--exercise',
+      target.id,
+      '--output',
+      'packet',
+    ],
     { cwd: parent },
   );
   assert.match(result.stdout, /Prepared 1 review forms/);
-  const checked = await run(process.execPath, [script, 'verify', '--packet', 'packet'], {
-    cwd: parent,
-  });
+  const checked = await run(
+    process.execPath,
+    ['--experimental-strip-types', script, 'verify', '--packet', 'packet'],
+    {
+      cwd: parent,
+    },
+  );
   assert.match(checked.stdout, /Verified 1 snapshots/);
   await assert.rejects(
-    run(process.execPath, [script, 'prepare', '--exercise', 'unknown', '--output', 'bad'], {
-      cwd: parent,
-    }),
+    run(
+      process.execPath,
+      ['--experimental-strip-types', script, 'prepare', '--exercise', 'unknown', '--output', 'bad'],
+      {
+        cwd: parent,
+      },
+    ),
   );
   await assert.rejects(access(path.join(parent, 'bad')), { code: 'ENOENT' });
   assert.deepEqual(await readFile(path.join(root, 'exercises/ring-row.json')), before);

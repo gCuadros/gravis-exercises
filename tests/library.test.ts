@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createCatalogue } from '../src/catalogue.js';
-import { validateExercise } from '../scripts/lib.mjs';
-import { searchFixtures } from './fixtures/exercises.mjs';
+import { createCatalogue } from '../src/catalogue.ts';
+import { validateExercise } from '../scripts/lib.ts';
+import { searchFixtures } from './fixtures/exercises.ts';
 const entries = searchFixtures();
 const make = () =>
   createCatalogue({
@@ -22,12 +22,14 @@ test('lookups use stable identities and never return a fallback for unknown valu
 test('consumer mutation cannot corrupt shared catalogue, nested arrays or search results', () => {
   const api = make();
   assert.throws(() => {
+    // @ts-expect-error Deliberately invalid input exercises the runtime validation boundary.
     api.exercises[0].instructions.es.push('injected');
   }, TypeError);
   assert.throws(() => {
+    // @ts-expect-error Deliberately invalid input exercises the runtime validation boundary.
     api.findExercises().pop();
   }, TypeError);
-  assert.equal(api.getExerciseById(entries[0].id).names.en, entries[0].names.en);
+  assert.equal(api.getExerciseById(entries[0].id)?.names.en, entries[0].names.en);
 });
 test('empty published channels are valid consumers', () => {
   const api = createCatalogue({ exercises: [], channel: 'published' });
