@@ -12,7 +12,7 @@ Start with three existing variations before producing the full catalogue. This i
 | `grv_000000000014` — `push-up`          | Closed-chain support and ground clearance              | Side/three-quarter main view showing both hands and feet. Verify chest clearance, body moving as one unit, extended-arm return and no knee contact or wrist penetration.              |
 | `grv_000000000021` — `ring-row`         | Suspended equipment, grip and body-angle consistency   | Three-quarter main view plus side check. Show ring straps and anchors in a supplementary setup view. Check neutral grip, stable heels, ring-to-rib endpoint and straight body line.   |
 
-The ring row depends on the content delivered in PR #10. Before these records are used as final animation scripts, a qualified reviewer must resolve their existing technical questions in the B001 specification. The prototype may expose problems in those drafts; correct the source and regenerate its packet before signing off.
+The ring-row draft is available in main through integrated PR #10. Before these records are used as final animation scripts, a qualified reviewer must resolve their existing technical questions in the B001 specification. The prototype may expose problems in those drafts; correct the source and regenerate its packet before signing off.
 
 ## Shared art direction
 

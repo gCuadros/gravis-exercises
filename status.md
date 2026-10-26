@@ -1,33 +1,33 @@
 # Project status — Gravis Exercise Library
 
-Snapshot date: **2026-10-25 (Europe/Madrid)**. This is a handoff snapshot, not a live dashboard. Read [plan.md](plan.md) for acceptance criteria and execution order, and verify the checkout/PR before acting. Newer commits are not automatically covered by older test evidence.
+Snapshot date: **2026-10-26 (Europe/Madrid)**. This is a handoff snapshot, not a live dashboard. Read [plan.md](plan.md) for acceptance criteria and execution order, and verify the checkout/PR before acting. Newer commits are not automatically covered by older test evidence.
 
 ## Current handoff
 
 - **Repository:** [gCuadros/gravis-exercises](https://github.com/gCuadros/gravis-exercises).
-- **Working branch:** `build/pnpm-toolchain`; base: `refactor/typescript-native` at `4af5758e9d0290ff918ce026e1fee610173261e6`.
-- **Scope:** PKG-001 only: pnpm lockfile/toolchain, scripts, Actions and documentation, with isolated pnpm/npm package compatibility. No exercise, schema, public runtime or API changes.
-- **Dependency:** [PR #12](https://github.com/gCuadros/gravis-exercises/pull/12) contains the strict TypeScript migration and depends on #11 → #10. Integrate #10, #11, #12, then this PR; retarget each dependent PR to main and recheck its diff/CI. Do not merge child work into prerequisite branches.
-- **Verified prerequisite:** #12 head `4af5758e9d0290ff918ce026e1fee610173261e6` passed [CI run 40199991984](https://github.com/gCuadros/gravis-exercises/actions/runs/40199991984): Node 22/24, browser, changelog policy and gate. This is prerequisite evidence, not pnpm migration evidence. Main remains `5b3068e`.
-- **Production decision:** maintainer chose uniform 3D animation on 2026-10-21. Proposed initial visual cohort: bodyweight squat, floor push-up and ring row. No character/rig, animator or technical reviewer has been selected; no assets exist.
-- **Next action:** verify PKG-001's scoped PR and exact-head CI, then review the dependency chain before integration. Toolchain priority is implemented; resume the uniform 3D pilot after integration. Regenerate review packets into a new destination because preserved context/commands changed; retain previous notes.
+- **Integration baseline:** `main` at `7cecfd7e5239ffeeda6d6d0249589cf359fa73ff`. PRs #10, #11, #12 and #13 are merged in dependency order; their validation heads and integrated commits are recorded below.
+- **Handoff change:** `docs/integrated-toolchain-handoff`, based on that main revision. This documentation-only PR records the completed integration; inspect its live PR state before resuming. No runtime, contract, exercise record or dependency changes are included.
+- **Working-tree evidence:** each rebased dependency tree was compared byte-for-byte with its previously reviewed tree. Every PR retained its own incremental scope/changelog and passed its required checks against the integration base. Branch protection was not bypassed.
+- **Production decision:** uniform 3D animation, selected on 2026-10-21. Initial cohort: bodyweight squat, floor push-up and ring row. No character/rig, animator or technical reviewer has been selected; no prototype assets or approvals exist.
+- **Next action:** start a new focused media-prototype branch from updated main. Prepare an original editable character/rig and a clearly labeled draft squat sequence first; assess its contact/framing before extending the same rig to push-up and ring row. Follow `docs/animation-pilot.md`; select a qualified technical reviewer before approval. Technical quality, art direction and rights evidence remain separate decisions.
+- **Packet continuity:** `.local/reviews/3d-pilot-2026-10-25-pnpm/` is local preparation evidence only. Context references changed during integration; generate a new destination before review, preserving earlier notes. Fresh clones can reproduce a packet from `docs/review-packets.md` without private research.
 
 ## Task states
 
-| ID       | State       | Evidence / next action                                                                                              |
-| -------- | ----------- | ------------------------------------------------------------------------------------------------------------------- |
-| FND-001  | done        | Foundation integrated through PR #2; package and CI evidence below                                                  |
-| FND-002  | done        | Portable handoff integrated through PR #3                                                                           |
-| TST-001  | done        | Growth regression coverage integrated through PR #4                                                                 |
-| TAX-001  | done        | Controlled vocabulary and exports integrated through PR #5; Group B adds scoped terms                               |
-| DATA-001 | done        | Versioned envelope integrated through PR #6                                                                         |
-| CAT-001  | done        | Planning audit and B001 specification integrated through PR #7; source-equivalence holds remain                     |
-| TYP-001  | in_review   | PR #12, strict TypeScript implemented, exact-head CI green; merge pending                                           |
-| PKG-001  | in_review   | pnpm migration verified locally; inspect scoped PR and exact-head CI                                                |
-| MED-001  | in_progress | Uniform 3D pilot and review tools prepared; no original assets or human approval                                    |
-| CAT-002  | in_progress | Group A drafts merged via PR #8; Group B implemented under review; local checks passed (36 unit / 24 browser tests) |
-| WEB-001  | not_started | Responsive preview exists; reviewed-media and wider launch validation remain                                        |
-| REL-001  | deferred    | No publication or deployment decision                                                                               |
+| ID       | State       | Evidence / next action                                                                          |
+| -------- | ----------- | ----------------------------------------------------------------------------------------------- |
+| FND-001  | done        | Foundation integrated through PR #2; package and CI evidence below                              |
+| FND-002  | done        | Portable handoff integrated through PR #3                                                       |
+| TST-001  | done        | Growth regression coverage integrated through PR #4                                             |
+| TAX-001  | done        | Controlled vocabulary and exports integrated through PR #5; Group B adds scoped terms           |
+| DATA-001 | done        | Versioned envelope integrated through PR #6                                                     |
+| CAT-001  | done        | Planning audit and B001 specification integrated through PR #7; source-equivalence holds remain |
+| TYP-001  | done        | PR #12 integrated; strict TypeScript and Go-native compiler checks passed                       |
+| PKG-001  | done        | PR #13 integrated; pnpm frozen installs and two isolated consumers passed                       |
+| MED-001  | in_progress | Uniform 3D pilot and review tools prepared; no original assets or human approval                |
+| CAT-002  | in_progress | Groups A/B draft authorship merged (#8/#10); all 24 records still need technical/media review   |
+| WEB-001  | not_started | Responsive preview exists; reviewed-media and wider launch validation remain                    |
+| REL-001  | deferred    | No publication or deployment decision                                                           |
 
 `done` above refers to the named software/planning work, not content approval or release. The scoped-PR/changelog workflow was integrated through PR #9. Historical evidence below retains original pre-rebase commit IDs; use the current baseline above to resume.
 
@@ -45,6 +45,21 @@ Snapshot date: **2026-10-25 (Europe/Madrid)**. This is a handoff snapshot, not a
 - **Private research:** the optional `.local/research/gravis-catalogue-v0.1.json` contains 517 candidates (457 references plus 60 proposals). `.local/research/reconciliation-2026-10-19.json` records per-row planning dispositions, flags, proposed batch scope links and a source checksum; `.local/research/reconcile-cat001.py` reproduces that local audit. These are ignored and not distributed. No source identities were merged or verified as equivalent; a fresh clone will not contain these files.
 
 ## Verification evidence and its limits
+
+### Maintainer-authorized integration — 2026-10-26
+
+| PR                                                          | Validated PR head                          | Integrated commit                          | CI                                                                              |
+| ----------------------------------------------------------- | ------------------------------------------ | ------------------------------------------ | ------------------------------------------------------------------------------- |
+| [#10](https://github.com/gCuadros/gravis-exercises/pull/10) | `3112b770ae01cad26274414fc0df00c603bdb82d` | `d7648360f20420416537d60bc6a882a4ebfc9249` | [Passed](https://github.com/gCuadros/gravis-exercises/actions/runs/39463226886) |
+| [#11](https://github.com/gCuadros/gravis-exercises/pull/11) | `44ca3451543dd60e707143dcc75f50ee4a8a3b49` | `a37f591ba67ace929060ec8358302dea55f0636e` | [Passed](https://github.com/gCuadros/gravis-exercises/actions/runs/40305606063) |
+| [#12](https://github.com/gCuadros/gravis-exercises/pull/12) | `5b61f9ff910976033277cf18cd9f93ca30206961` | `a60b6b4d283e5f987ac109bcffc0a2229b1c0556` | [Passed](https://github.com/gCuadros/gravis-exercises/actions/runs/40305890640) |
+| [#13](https://github.com/gCuadros/gravis-exercises/pull/13) | `341b589e5da3770aa3534f637f7d77d6a17cd946` | `7cecfd7e5239ffeeda6d6d0249589cf359fa73ff` | [Passed](https://github.com/gCuadros/gravis-exercises/actions/runs/40306142340) |
+
+- #10 already targeted the unchanged main baseline and had green required checks. #11–#13 were rebased onto each newly integrated prerequisite, retargeted to main, and passed fresh Node 22/24, browser, changelog-policy and aggregate checks before merging.
+- The latest implementation runs cover **43 unit tests and 24 browser tests**, strict source/consumer types, schema validation and actual offline package installs with empty caches for pnpm and npm. Earlier #10 has its own 36-unit baseline; counts are not retroactively assigned to it.
+- Final implementation content is identical to the previously reviewed pnpm tip. Integration does not grant technique/media approval: **24 drafts, zero published records, zero media**.
+- Documentation handoff validation: frozen offline pnpm install and `pnpm run check` passed locally (43 unit tests, strict types, schema/build and both isolated consumers). No runtime changed, so local browser tests were not repeated; this documentation PR still runs the browser suite in CI.
+- Historical sections below describe earlier working-tree states and CI attempts; they are superseded by this integration table for merge status. No release tag, registry publication or deployment was created.
 
 ### PKG-001 — pnpm migration, 2026-10-25
 
@@ -206,7 +221,7 @@ The npm registry publication guard remains `private: true`. Draft-release automa
 1. Read `AGENTS.md` → `plan.md` → this file → `docs/architecture.md`.
 2. Confirm branch, worktree and actual PR base/head. Use `docs/pr-workflow.md` to locate the scoped change. PR #1 is superseded. Start a new branch and PR for a new task; only corrections within the same declared scope reuse a PR.
 3. Run `pnpm install --frozen-lockfile` and inspect the package scripts. Do not depend on this machine's caches or SSH aliases.
-4. Verify the PR dependency/base and current CI. Complete TYP-001 then PKG-001 before resuming media. Both B001 groups are authored. Use `docs/animation-pilot.md` and `docs/review-packets.md` to prepare the three selected 3D prototypes with a qualified reviewer. Regenerate stale packets in a new destination; never copy approval across changed content by assumption. A later B002 needs its own bounded specification and PR.
+4. Verify the current main baseline and CI. TYP-001 and PKG-001 are integrated; resume MED-001 in a new branch. Both B001 groups are authored. Use `docs/animation-pilot.md` and `docs/review-packets.md` to prepare the three selected 3D prototypes with a qualified reviewer. Regenerate stale packets in a new destination; never copy approval across changed content by assumption. A later B002 needs its own bounded specification and PR.
 5. Run `pnpm run check` and `pnpm run test:e2e`; review the diff/package boundary.
 6. Update task states and evidence, then commit/push the relevant branch and inspect its CI. Leave merge/release decisions to the maintainer.
 

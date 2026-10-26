@@ -60,11 +60,13 @@ Task IDs are permanent. The table defines order and dependencies; `status.md` is
 | WEB-001  | Catalogue readiness for broader public use      | TAX-001, actual reviewed entries from CAT-002/MED-001            | Accurate mixed draft/published states, usable mobile/keyboard flows, reviewed media behavior and measured payload/search performance               |
 | REL-001  | First deliberate public distribution            | FND-001–002, TST-001, TAX-001, DATA-001; approved launch content | Maintainer selects name/ownership, release scope and channels; versioned artifacts and license review completed; publication explicitly authorized |
 
-### TYP-001 and PKG-001 — Maintainer priority before media production
+### TYP-001 and PKG-001 — Integrated tooling prerequisite
 
-Complete TYP-001 first: strict TypeScript implementation/tooling/tests, current stable native compiler, Rust-based linting, generated schema types and compiled dependency-free JavaScript. Verify source checking, unit/browser tests, isolated package installation and output-data parity. See [toolchain](docs/typescript-toolchain.md).
+TYP-001 and PKG-001 were integrated on 2026-10-26 through PRs #12 and #13; exact validation/integration revisions are in `status.md`. Their acceptance criteria remain:
 
-PKG-001 follows in its own branch/PR (see [package management](docs/package-management.md)): pin pnpm, replace the npm lockfile, migrate Actions/scripts/documentation, require frozen installs, and test the actual archive with independent consumers. Preserve dependency versions unless a concrete compatibility issue requires a separate decision. Resume the uniform 3D pilot after this priority work.
+TYP-001: strict TypeScript implementation/tooling/tests, current stable native compiler, Rust-based linting, generated schema types and compiled dependency-free JavaScript. Verify source checking, unit/browser tests, isolated package installation and output-data parity. See [toolchain](docs/typescript-toolchain.md).
+
+PKG-001 (see [package management](docs/package-management.md)): pin pnpm, replace the npm lockfile, migrate Actions/scripts/documentation, require frozen installs, and test the actual archive with independent consumers. Preserve dependency versions unless a concrete compatibility issue requires a separate decision. The next implementation work is MED-001: an editable rig and draft squat prototype, then push-up/ring-row using the same style. Record actual asset/reviewer evidence before completing any approval gate.
 
 ### TST-001 — Catalogue growth regression coverage
 

@@ -1,6 +1,6 @@
 # B001 — Foundation authoring batch
 
-**State:** Group A draft authoring merged in version 0.3.0; Group B `implemented_under_review` as eight original bilingual drafts in version 0.4.0. Both groups have been authored: **16 new variations** plus the eight-record pilot, for 24 drafts. No technical approvals or media have been produced; these are not 24 launch-ready exercises.
+**State:** Group A draft authoring merged in version 0.3.0; Group B draft authoring merged through PR #10 in version 0.4.0. Both groups have been authored: **16 new variations** plus the eight-record pilot, for 24 drafts. No technical approvals or media have been produced; these are not 24 launch-ready exercises.
 
 Priority is coverage, not a claimed popularity ranking. B001 work-item numbers are planning references, **not** exercise IDs. Suggested slugs must be checked for collisions when authoring. Allocate stable `grv_…` IDs only when a record is created; never use source-app identifiers. Names and descriptions below are editorial specifications, not copied instructions or verified coaching scripts.
 

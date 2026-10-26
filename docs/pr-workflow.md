@@ -34,3 +34,16 @@ The process correction itself is a separate change on `chore/scoped-change-workf
 The `Change policy` CI job checks the PR's three-dot diff for an added or modified `CHANGELOG.md`; deletion, an unchanged inherited changelog or unrelated inherited history do not satisfy it. The required `CI gate` also requires that job to succeed on pull requests. Push/manual/reusable release runs keep the software gates and skip the PR-only check.
 
 Scope quality still needs review: CI cannot decide whether a PR contains one coherent change or whether its changelog is meaningful. The PR template records scope, base, dependency and changelog evidence. No automation merges, retargets, releases or publishes changes.
+
+## Integration checkpoint — 2026-10-26
+
+The maintainer-authorized follow-up stack has been integrated into main, one PR at a time:
+
+| PR                                                          | Validated PR head                          | Integrated commit                          | CI                                                                              |
+| ----------------------------------------------------------- | ------------------------------------------ | ------------------------------------------ | ------------------------------------------------------------------------------- |
+| [#10](https://github.com/gCuadros/gravis-exercises/pull/10) | `3112b770ae01cad26274414fc0df00c603bdb82d` | `d7648360f20420416537d60bc6a882a4ebfc9249` | [Passed](https://github.com/gCuadros/gravis-exercises/actions/runs/39463226886) |
+| [#11](https://github.com/gCuadros/gravis-exercises/pull/11) | `44ca3451543dd60e707143dcc75f50ee4a8a3b49` | `a37f591ba67ace929060ec8358302dea55f0636e` | [Passed](https://github.com/gCuadros/gravis-exercises/actions/runs/40305606063) |
+| [#12](https://github.com/gCuadros/gravis-exercises/pull/12) | `5b61f9ff910976033277cf18cd9f93ca30206961` | `a60b6b4d283e5f987ac109bcffc0a2229b1c0556` | [Passed](https://github.com/gCuadros/gravis-exercises/actions/runs/40305890640) |
+| [#13](https://github.com/gCuadros/gravis-exercises/pull/13) | `341b589e5da3770aa3534f637f7d77d6a17cd946` | `7cecfd7e5239ffeeda6d6d0249589cf359fa73ff` | [Passed](https://github.com/gCuadros/gravis-exercises/actions/runs/40306142340) |
+
+The #11–#13 branches were rebased only after their prerequisite merged, with tree equality checked against the reviewed tips and guarded updates to those owned branches. Each retargeted PR kept its original scope and passed fresh CI. No protected-branch checks were bypassed. Future implementation starts on a new branch from updated main; do not reuse these merged PRs. See `status.md` for the next task and content-review limitations.
