@@ -2,6 +2,8 @@
 
 ## Unreleased — 0.4.0 foundation preview
 
+- Reconcile the portable plan/status and PR index after integrating #10–#13 individually. Record tested and integrated revisions, close the TypeScript/pnpm prerequisites, and identify the first 3D prototype work. Exercise records remain drafts; this documentation update grants no approval and changes no runtime/API or release state.
+
 - Adopt pinned pnpm 12.15.0 with a single imported lockfile, frozen installs, pnpm caching in CI/release preparation and updated contributor/review commands. Preserve existing dependency versions and consumer exports. Verify pnpm-packed archives in both pnpm and npm isolated offline consumers; no runtime dependency, registry release or deployment is added.
 
 - Migrate runtime, website, Node tools and tests to strict TypeScript with stable Go-native TypeScript 7.0.2 and Rust-based Oxlint 1.89.0. Check implementation/public-declaration compatibility and compile portable JavaScript for consumers. Generated record types still derive from the canonical schemas; no exercise data or public API behavior changes. Package-manager migration follows separately.
