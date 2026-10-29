@@ -17,7 +17,9 @@
     "scripts/**/*.ts",
     "website/**/*.ts",
     "tests/**/*.ts",
-    "playwright.config.ts"
+    "playwright.config.ts",
+    "prototypes/**/*.ts",
+    "playwright.media.config.ts"
   ],
   "exclude": ["tests/types", "node_modules", "dist", ".local"]
 }

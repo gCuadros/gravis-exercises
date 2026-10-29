@@ -30,3 +30,7 @@ The catalogue has 24 drafts (eight pilot records plus B001 Groups A and B) and n
 Build tooling is allowed development dependencies; consumers have zero runtime dependencies. The supported JavaScript API is ESM, with Node 22.13+ and modern browser/bundler consumption tested. JSON is the language-independent interchange format. Other runtimes, CommonJS-only toolchains and assistive technologies are not implied to have been exhaustively tested.
 
 The [catalogue contract](catalogue-contract.md) keeps authored schemas reusable: the envelope references the exercise contract, while the build rebases those references into a single offline schema. Conditional publication requirements are enforced by validation, not assumed from TypeScript types.
+
+## Local media production sandbox
+
+`prototypes/squat/` is an unreviewed production study, outside both the library and reference website builds. Its strict TypeScript uses Three.js only as a development dependency. `tsconfig.media.json` emits into ignored `.local/media-preview/`; a separate loopback viewer supports frame inspection and animated GLB export. CI checks geometry/clip invariants and desktop/mobile controls. No prototype is linked from records or published exports. See [the prototype handoff](squat-prototype.md).

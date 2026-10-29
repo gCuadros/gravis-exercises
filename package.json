@@ -26,16 +26,21 @@
     "review:prepare": "node --experimental-strip-types scripts/review-packet.ts prepare",
     "review:verify": "node --experimental-strip-types scripts/review-packet.ts verify",
     "generate:types": "node --experimental-strip-types scripts/generate-types.ts",
-    "typecheck": "pnpm run generate:types && tsc --project tsconfig.json"
+    "typecheck": "pnpm run generate:types && tsc --project tsconfig.json",
+    "media:build": "tsc --project tsconfig.media.json && node --experimental-strip-types scripts/build-media.ts",
+    "media:dev": "pnpm run media:build && node --experimental-strip-types scripts/serve.ts --media",
+    "test:media": "playwright test --config playwright.media.config.ts"
   },
   "devDependencies": {
     "@playwright/test": "1.64.1",
     "@types/node": "22.20.5",
+    "@types/three": "0.186.0",
     "ajv": "8.20.0",
     "ajv-formats": "3.0.1",
     "json-schema-to-typescript": "16.0.0",
     "oxlint": "1.89.0",
     "prettier": "3.9.10",
+    "three": "0.186.1",
     "typescript": "7.0.2"
   },
   "repository": {

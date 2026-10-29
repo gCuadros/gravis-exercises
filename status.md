@@ -1,33 +1,35 @@
 # Project status — Gravis Exercise Library
 
-Snapshot date: **2026-10-26 (Europe/Madrid)**. This is a handoff snapshot, not a live dashboard. Read [plan.md](plan.md) for acceptance criteria and execution order, and verify the checkout/PR before acting. Newer commits are not automatically covered by older test evidence.
+Snapshot date: **2026-10-29 (Europe/Madrid)**. This is a handoff snapshot, not a live dashboard. Read [plan.md](plan.md) for acceptance criteria and execution order, and verify the checkout/PR before acting. Newer commits are not automatically covered by older test evidence.
 
 ## Current handoff
 
 - **Repository:** [gCuadros/gravis-exercises](https://github.com/gCuadros/gravis-exercises).
-- **Integration baseline:** `main` at `7cecfd7e5239ffeeda6d6d0249589cf359fa73ff`. PRs #10, #11, #12 and #13 are merged in dependency order; their validation heads and integrated commits are recorded below.
-- **Handoff change:** `docs/integrated-toolchain-handoff`, based on that main revision. This documentation-only PR records the completed integration; inspect its live PR state before resuming. No runtime, contract, exercise record or dependency changes are included.
-- **Working-tree evidence:** each rebased dependency tree was compared byte-for-byte with its previously reviewed tree. Every PR retained its own incremental scope/changelog and passed its required checks against the integration base. Branch protection was not bypassed.
-- **Production decision:** uniform 3D animation, selected on 2026-10-21. Initial cohort: bodyweight squat, floor push-up and ring row. No character/rig, animator or technical reviewer has been selected; no prototype assets or approvals exist.
-- **Next action:** start a new focused media-prototype branch from updated main. Prepare an original editable character/rig and a clearly labeled draft squat sequence first; assess its contact/framing before extending the same rig to push-up and ring row. Follow `docs/animation-pilot.md`; select a qualified technical reviewer before approval. Technical quality, art direction and rights evidence remain separate decisions.
-- **Packet continuity:** `.local/reviews/3d-pilot-2026-10-25-pnpm/` is local preparation evidence only. Context references changed during integration; generate a new destination before review, preserving earlier notes. Fresh clones can reproduce a packet from `docs/review-packets.md` without private research.
+- **Integration baseline:** `main` at `a2c2def464df93854cc5a1186b92275753e4fb0f`; PRs #10–#14 are merged. Latest baseline push CI was verified successful on 2026-10-29.
+- **Current change:** `feat/squat-3d-prototype`, based on that main revision; a separate focused PR for MED-001's first original blocking study. Inspect live Git/PR state before resuming.
+- **Implemented:** procedural rigid mannequin, two full squat repetitions plus separate loop, three fixed camera angles, paused-by-default frame controls and animated GLB export. Strict TypeScript; pinned Three.js development dependencies only. See [prototype source and reproduction](docs/squat-prototype.md).
+- **Review status:** no visual, technical or generated-asset rights approval; no finished anatomical/skinned character or MP4 master. All 24 records remain unchanged drafts with empty media arrays. MED-001 stays in progress.
+- **Next action:** review/refine squat proportions, articulation, motion and balance before extending the same rig to push-up/ring-row. Obtain a qualified technique reviewer before approval. Produce neutral-pose sheet, encoded full/loop masters, poster and provenance hashes after iteration. Do not publish the blocking study as exercise guidance.
+- **Packet continuity:** earlier packets are stale after context changes. Generate `.local/reviews/3d-pilot-2026-10-29-v1` as documented, or a new destination if it exists; preserve previous notes.
+- **Validation (2026-10-29 working tree):** `pnpm run check` passed, including 47 unit tests and separate pnpm/npm offline package consumers; `pnpm run test:e2e` passed all 24 catalogue cases; `pnpm run test:media` passed desktop and mobile cases, including GLB structure/animation export. Final PR CI must still be checked at its actual head.
+- **Local review evidence:** `.local/reviews/3d-pilot-2026-10-29-v1` prepared and verified against the current production context. `.local/media-evidence/squat-v1/` contains captured front/side/three-quarter stills, an animated GLB, a browser-captured review WebM and a SHA-256 manifest. These ignored artifacts are not fresh-clone dependencies or production masters. Visual inspection of standing/bottom views is not human technique approval.
 
 ## Task states
 
-| ID       | State       | Evidence / next action                                                                          |
-| -------- | ----------- | ----------------------------------------------------------------------------------------------- |
-| FND-001  | done        | Foundation integrated through PR #2; package and CI evidence below                              |
-| FND-002  | done        | Portable handoff integrated through PR #3                                                       |
-| TST-001  | done        | Growth regression coverage integrated through PR #4                                             |
-| TAX-001  | done        | Controlled vocabulary and exports integrated through PR #5; Group B adds scoped terms           |
-| DATA-001 | done        | Versioned envelope integrated through PR #6                                                     |
-| CAT-001  | done        | Planning audit and B001 specification integrated through PR #7; source-equivalence holds remain |
-| TYP-001  | done        | PR #12 integrated; strict TypeScript and Go-native compiler checks passed                       |
-| PKG-001  | done        | PR #13 integrated; pnpm frozen installs and two isolated consumers passed                       |
-| MED-001  | in_progress | Uniform 3D pilot and review tools prepared; no original assets or human approval                |
-| CAT-002  | in_progress | Groups A/B draft authorship merged (#8/#10); all 24 records still need technical/media review   |
-| WEB-001  | not_started | Responsive preview exists; reviewed-media and wider launch validation remain                    |
-| REL-001  | deferred    | No publication or deployment decision                                                           |
+| ID       | State       | Evidence / next action                                                                                   |
+| -------- | ----------- | -------------------------------------------------------------------------------------------------------- |
+| FND-001  | done        | Foundation integrated through PR #2; package and CI evidence below                                       |
+| FND-002  | done        | Portable handoff integrated through PR #3                                                                |
+| TST-001  | done        | Growth regression coverage integrated through PR #4                                                      |
+| TAX-001  | done        | Controlled vocabulary and exports integrated through PR #5; Group B adds scoped terms                    |
+| DATA-001 | done        | Versioned envelope integrated through PR #6                                                              |
+| CAT-001  | done        | Planning audit and B001 specification integrated through PR #7; source-equivalence holds remain          |
+| TYP-001  | done        | PR #12 integrated; strict TypeScript and Go-native compiler checks passed                                |
+| PKG-001  | done        | PR #13 integrated; pnpm frozen installs and two isolated consumers passed                                |
+| MED-001  | in_progress | First editable squat blocking study and local review studio; human review and production masters pending |
+| CAT-002  | in_progress | Groups A/B draft authorship merged (#8/#10); all 24 records still need technical/media review            |
+| WEB-001  | not_started | Responsive preview exists; reviewed-media and wider launch validation remain                             |
+| REL-001  | deferred    | No publication or deployment decision                                                                    |
 
 `done` above refers to the named software/planning work, not content approval or release. The scoped-PR/changelog workflow was integrated through PR #9. Historical evidence below retains original pre-rebase commit IDs; use the current baseline above to resume.
 
@@ -221,7 +223,7 @@ The npm registry publication guard remains `private: true`. Draft-release automa
 1. Read `AGENTS.md` → `plan.md` → this file → `docs/architecture.md`.
 2. Confirm branch, worktree and actual PR base/head. Use `docs/pr-workflow.md` to locate the scoped change. PR #1 is superseded. Start a new branch and PR for a new task; only corrections within the same declared scope reuse a PR.
 3. Run `pnpm install --frozen-lockfile` and inspect the package scripts. Do not depend on this machine's caches or SSH aliases.
-4. Verify the current main baseline and CI. TYP-001 and PKG-001 are integrated; resume MED-001 in a new branch. Both B001 groups are authored. Use `docs/animation-pilot.md` and `docs/review-packets.md` to prepare the three selected 3D prototypes with a qualified reviewer. Regenerate stale packets in a new destination; never copy approval across changed content by assumption. A later B002 needs its own bounded specification and PR.
+4. Verify the current branch/PR and CI. TYP-001 and PKG-001 are integrated; continue MED-001 from the squat prototype handoff, keeping later logical changes in separate branches/PRs. Both B001 groups are authored. Use `docs/animation-pilot.md` and `docs/review-packets.md` to prepare the three selected 3D prototypes with a qualified reviewer. Regenerate stale packets in a new destination; never copy approval across changed content by assumption. A later B002 needs its own bounded specification and PR.
 5. Run `pnpm run check` and `pnpm run test:e2e`; review the diff/package boundary.
 6. Update task states and evidence, then commit/push the relevant branch and inspect its CI. Leave merge/release decisions to the maintainer.
 
