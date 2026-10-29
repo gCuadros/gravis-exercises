@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "noEmitOnError": true,
+    "rewriteRelativeImportExtensions": true,
+    "rootDir": "prototypes/squat",
+    "outDir": ".local/media-preview",
+    "types": []
+  },
+  "include": ["prototypes/squat/**/*.ts"],
+  "exclude": ["node_modules", "dist", ".local"]
+}

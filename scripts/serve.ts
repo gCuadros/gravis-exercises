@@ -2,8 +2,9 @@ import http from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { root } from './lib.ts';
-const dir = path.join(root, 'dist/site');
-const port = Number(process.env.PORT || 4371);
+const media = process.argv.includes('--media');
+const dir = path.join(root, media ? '.local/media-preview' : 'dist/site');
+const port = Number(process.env.PORT || (media ? 4372 : 4371));
 const types: Record<string, string> = {
   '.html': 'text/html; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8',

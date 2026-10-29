@@ -1,10 +1,10 @@
 # Original demonstration workflow
 
-No demonstration assets are included in this version. Empty media arrays and visible placeholders are intentional. Do not copy competitor GIFs or publish generated movement imagery without frame-by-frame technical review.
+No approved demonstration assets are included in this version. A separate [local squat blocking prototype](squat-prototype.md) is available for production review. Empty media arrays and visible placeholders are intentional. Do not copy competitor GIFs or publish generated movement imagery without frame-by-frame technical review.
 
 ## Selected production direction
 
-On 2026-10-21 the maintainer selected **uniform 3D animation**. The [pilot specification](animation-pilot.md) defines shared art direction and the first three prototype variations; those assets have not been produced. Prepare [versioned review packets](review-packets.md) so technical and visual decisions refer to the exact source and actual asset version.
+On 2026-10-21 the maintainer selected **uniform 3D animation**. The [pilot specification](animation-pilot.md) defines shared art direction and the first three prototype variations; the first squat blocking study exists separately from the catalogue; production assets and the other two movements remain pending. Prepare [versioned review packets](review-packets.md) so technical and visual decisions refer to the exact source and actual asset version.
 
 ## Production standard
 

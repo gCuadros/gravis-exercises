@@ -1,6 +1,6 @@
 # Uniform 3D demonstration pilot
 
-Production direction selected by the maintainer on **2026-10-21**: uniform 3D animation. The visual details below are a proposed production specification, not a claim that a character, rig, animation or reviewed asset exists. No renderer, paid service or production supplier has been selected.
+Production direction selected by the maintainer on **2026-10-21**: uniform 3D animation. The visual details below are a proposed production specification, not a claim of a reviewed production asset. An initial [squat blocking prototype](squat-prototype.md) now uses Three.js for local inspection; no paid service or production supplier has been selected.
 
 ## First production cohort
 
@@ -50,4 +50,4 @@ If the text, anatomy labels, recording conventions, guidance or asset changes, c
 - A real consumer has been tested for mobile framing, normal-speed playback, controls and the difference between full sequence and loop.
 - The maintainer accepts the pilot's visual direction and production cost/time before commissioning the wider catalogue.
 
-Current state: **specification prepared; no prototype assets or human approvals**. The next production action is to select/create a rig and prepare the three prototype sequences with a named technical reviewer. This document does not authorize purchases, commissioning or publication.
+Current state: **an editable, unreviewed squat blocking rig and full/loop sequences are implemented**. See [source, reproduction and limitations](squat-prototype.md). The character is a rigid geometric mannequin, not a finished skinned model; no human approvals exist. Next: review/refine this first rig and motion, then prepare push-up and ring row with a named technical reviewer. This document does not authorize purchases, commissioning or publication.

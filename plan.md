@@ -66,7 +66,7 @@ TYP-001 and PKG-001 were integrated on 2026-10-26 through PRs #12 and #13; exact
 
 TYP-001: strict TypeScript implementation/tooling/tests, current stable native compiler, Rust-based linting, generated schema types and compiled dependency-free JavaScript. Verify source checking, unit/browser tests, isolated package installation and output-data parity. See [toolchain](docs/typescript-toolchain.md).
 
-PKG-001 (see [package management](docs/package-management.md)): pin pnpm, replace the npm lockfile, migrate Actions/scripts/documentation, require frozen installs, and test the actual archive with independent consumers. Preserve dependency versions unless a concrete compatibility issue requires a separate decision. The next implementation work is MED-001: an editable rig and draft squat prototype, then push-up/ring-row using the same style. Record actual asset/reviewer evidence before completing any approval gate.
+PKG-001 (see [package management](docs/package-management.md)): pin pnpm, replace the npm lockfile, migrate Actions/scripts/documentation, require frozen installs, and test the actual archive with independent consumers. Preserve dependency versions unless a concrete compatibility issue requires a separate decision. MED-001 now has an initial editable geometric squat rig and local review studio; see [prototype limitations and next work](docs/squat-prototype.md). Refine its visual/technical quality before push-up/ring-row using the same style. Record actual asset/reviewer evidence before completing any approval gate.
 
 ### TST-001 — Catalogue growth regression coverage
 

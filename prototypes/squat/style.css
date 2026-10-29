@@ -1,0 +1,256 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: #f5f5f0;
+  color: #20322f;
+  font:
+    15px/1.6 system-ui,
+    sans-serif;
+}
+main {
+  max-width: 1280px;
+  margin: auto;
+  padding: 32px 48px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #cfd6cf;
+  padding-bottom: 24px;
+}
+.brand {
+  text-decoration: none;
+  color: inherit;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+}
+.brand span {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: #5e716b;
+}
+.tag,
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 1.6px;
+  font-weight: 700;
+}
+.tag {
+  background: #e3e9db;
+  border: 1px solid #cbd5bf;
+  border-radius: 30px;
+  padding: 6px 13px;
+}
+.intro {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 30px;
+  margin: 35px 0 28px;
+}
+h1 {
+  font-size: 46px;
+  line-height: 1.12;
+  letter-spacing: -2px;
+  margin: 10px 0 0;
+}
+h1 span {
+  display: block;
+  font-weight: 400;
+  color: #64776e;
+}
+.description {
+  max-width: 320px;
+  color: #56675e;
+  font-size: 14px;
+}
+.studio {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  border: 1px solid #cfd6cf;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #edf0e9;
+}
+.viewer {
+  position: relative;
+  aspect-ratio: 1/1;
+  min-width: 0;
+}
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.overlay,
+.frame {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  font:
+    11px/1.4 ui-monospace,
+    monospace;
+  color: #456052;
+  letter-spacing: 1px;
+}
+.overlay {
+  top: 24px;
+}
+.frame {
+  bottom: 24px;
+}
+aside {
+  padding: 27px;
+  background: #fffefa;
+  border-left: 1px solid #cfd6cf;
+}
+h2 {
+  font-size: 24px;
+  line-height: 1.25;
+  letter-spacing: -0.7px;
+  margin: 15px 0 24px;
+}
+label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 15px 0 6px;
+}
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccd4cc;
+  border-radius: 7px;
+  background: #fafbf7;
+  color: #20322f;
+  font: inherit;
+  font-size: 12px;
+}
+.note {
+  font-size: 12px;
+  color: #637368;
+}
+hr {
+  border: 0;
+  border-top: 1px solid #dae0d6;
+  margin: 23px 0;
+}
+.transport {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 20px 0;
+}
+button {
+  border: 0;
+  background: #203e35;
+  color: white;
+  padding: 11px 18px;
+  border-radius: 7px;
+  cursor: pointer;
+  font: 600 12px system-ui;
+}
+button:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  outline: 3px solid #1f9689;
+  outline-offset: 3px;
+}
+.secondary {
+  background: #e9eee6;
+  color: #26483c;
+  width: 100%;
+  padding: 12px 8px;
+}
+.transport input {
+  flex: 1;
+  min-width: 30px;
+  accent-color: #218579;
+}
+.transport span,
+footer {
+  font-size: 11px;
+  color: #637368;
+}
+footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #cfd6cf;
+  padding-top: 10px;
+}
+#export-status {
+  display: block;
+  font-size: 11px;
+  margin-top: 8px;
+}
+#error {
+  position: absolute;
+  inset: 25%;
+  background: white;
+  padding: 20px;
+}
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+@media (max-width: 760px) {
+  main {
+    padding: 20px;
+  }
+  .intro {
+    display: block;
+    margin: 28px 0 20px;
+  }
+  h1 {
+    font-size: 36px;
+  }
+  .description {
+    max-width: none;
+  }
+  .studio {
+    grid-template-columns: 1fr;
+  }
+  aside {
+    border-left: 0;
+    border-top: 1px solid #cfd6cf;
+  }
+  .tag {
+    font-size: 8px;
+    letter-spacing: 0.5px;
+  }
+  .brand {
+    font-size: 25px;
+  }
+  .brand span {
+    display: none;
+  }
+  .transport {
+    gap: 6px;
+  }
+  .transport button {
+    padding: 10px;
+  }
+  .transport span {
+    display: none;
+  }
+  footer {
+    display: block;
+  }
+  .overlay,
+  .frame {
+    left: 15px;
+    right: 15px;
+    font-size: 9px;
+  }
+}

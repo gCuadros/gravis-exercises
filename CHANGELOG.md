@@ -2,6 +2,8 @@
 
 ## Unreleased — 0.4.0 foundation preview
 
+- Add an original editable TypeScript squat blocking rig, local 3D review studio and animated GLB export with full/loop takes. Check limb lengths, fixed contacts, clip replay and desktop/mobile controls in CI. Three.js is development-only; source records, approved-media state and dependency-free consumer exports remain unchanged. Visual, technical and rights review are still pending.
+
 - Reconcile the portable plan/status and PR index after integrating #10–#13 individually. Record tested and integrated revisions, close the TypeScript/pnpm prerequisites, and identify the first 3D prototype work. Exercise records remain drafts; this documentation update grants no approval and changes no runtime/API or release state.
 
 - Adopt pinned pnpm 12.15.0 with a single imported lockfile, frozen installs, pnpm caching in CI/release preparation and updated contributor/review commands. Preserve existing dependency versions and consumer exports. Verify pnpm-packed archives in both pnpm and npm isolated offline consumers; no runtime dependency, registry release or deployment is added.
