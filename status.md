@@ -1,18 +1,26 @@
 # Project status — Gravis Exercise Library
 
-Snapshot date: **2026-10-29 (Europe/Madrid)**. This is a handoff snapshot, not a live dashboard. Read [plan.md](plan.md) for acceptance criteria and execution order, and verify the checkout/PR before acting. Newer commits are not automatically covered by older test evidence.
+Snapshot date: **2026-11-02 (Europe/Madrid)**. This is a handoff snapshot, not a live dashboard. Read [plan.md](plan.md) for acceptance criteria and execution order, and verify the checkout/PR before acting. Newer commits are not automatically covered by older test evidence.
 
 ## Current handoff
 
 - **Repository:** [gCuadros/gravis-exercises](https://github.com/gCuadros/gravis-exercises).
-- **Integration baseline:** `main` at `a2c2def464df93854cc5a1186b92275753e4fb0f`; PRs #10–#14 are merged. Latest baseline push CI was verified successful on 2026-10-29.
-- **Current change:** `feat/squat-3d-prototype`, based on that main revision; a separate focused PR for MED-001's first original blocking study. Inspect live Git/PR state before resuming.
-- **Implemented:** procedural rigid mannequin, two full squat repetitions plus separate loop, three fixed camera angles, paused-by-default frame controls and animated GLB export. Strict TypeScript; pinned Three.js development dependencies only. See [prototype source and reproduction](docs/squat-prototype.md).
-- **Review status:** no visual, technical or generated-asset rights approval; no finished anatomical/skinned character or MP4 master. All 24 records remain unchanged drafts with empty media arrays. MED-001 stays in progress.
-- **Next action:** review/refine squat proportions, articulation, motion and balance before extending the same rig to push-up/ring-row. Obtain a qualified technique reviewer before approval. Produce neutral-pose sheet, encoded full/loop masters, poster and provenance hashes after iteration. Do not publish the blocking study as exercise guidance.
-- **Packet continuity:** earlier packets are stale after context changes. Generate `.local/reviews/3d-pilot-2026-10-29-v1` as documented, or a new destination if it exists; preserve previous notes.
-- **Validation (2026-10-29 working tree):** `pnpm run check` passed, including 47 unit tests and separate pnpm/npm offline package consumers; `pnpm run test:e2e` passed all 24 catalogue cases; `pnpm run test:media` passed desktop and mobile cases, including GLB structure/animation export. Final PR CI must still be checked at its actual head.
-- **Local review evidence:** `.local/reviews/3d-pilot-2026-10-29-v1` prepared and verified against the current production context. `.local/media-evidence/squat-v1/` contains captured front/side/three-quarter stills, an animated GLB, a browser-captured review WebM and a SHA-256 manifest. These ignored artifacts are not fresh-clone dependencies or production masters. Visual inspection of standing/bottom views is not human technique approval.
+- **Integration baseline:** `main` at `090b83e9b4e2dd2e48be23a14942a1f1939b8f92`; PR #15 is merged. Current work is [draft PR #18](https://github.com/gCuadros/gravis-exercises/pull/18) on `feat/realistic-character-pipeline`, targeting `main`. The study remains unmerged and visually unaccepted; inspect the PR checks for its current head.
+- **Accepted direction:** on 2026-10-30 the maintainer approved the hyperrealistic fitness concept and optional red muscle highlighting. The earlier rigid mannequin is not the intended style. A concept still is not a 3D asset or anatomy approval.
+- **Implemented in this working tree:** optional native Blender production recipe with pinned/hash-verified sources, continuous mesh, weighted skeleton, fitted garments, full squat retargeting, broad review-mask toggle, neutral-material GLB export and output manifest. See [reproduction, provenance and limitations](docs/realistic-character.md).
+- **Quality assessment:** development renders remain below the accepted reference. Improve realistic skin/hair, athletic shape, clothing fit/deformation and individual muscle boundaries; do not describe the current sample as hyperrealistic or production-ready.
+- **Review state:** visual target not met; technical and final asset-rights review pending. Broad color masks are not anatomical segmentation or activation measurements. All 24 exercise records remain unchanged drafts with no media.
+- **Next action:** review this pipeline as a draft PR, then address shirt/body intersections at shoulders and back, garment deformation, skin/hair realism and anatomical masks in a separate focused refinement. Re-render and inspect the whole movement before extending to other exercises. Keep this production study separate from the reusable library API.
+- **Validation:** `pnpm install --frozen-lockfile`, `pnpm run check` (48 tests, strict types, format/lint, build and isolated pnpm/npm consumers) and `pnpm run character:syntax` passed on 2026-11-02. The 2026-10-31 native build and Chromium export checks passed (details below); the native recipe is byte-identical to the saved build snapshot. Remote CI must be checked on the resulting PR head. Website/browser runtime is unchanged; its suites are also run by PR CI.
+- **Packet continuity:** the 2026-10-29 packet is stale after the art-direction update. Generate a new packet before technical handoff; preserve previous notes.
+
+## Native character evidence — 2026-10-31; inspected 2026-11-02
+
+- Preserved local build: `.local/character-builds/athlete-v5-2026-10-31/`; a fresh clone can reproduce a new build with [the documented commands](docs/realistic-character.md). Generated assets remain ignored, not shipped in the repository/package.
+- Blender 4.5.15 reopened the saved scene, verified the highlight toggle, sampled 101 foot-bone positions and exported a 301-frame take at 30 fps. Maximum bone drift was below 0.1 mm. This does not test shoe contact, collisions or biomechanics.
+- Chromium/Three.js loaded the actual GLB, found 10 skinned primitives and the 10-second `Squat_full_draft` clip, and verified finite bounds, descent and standing return. GLB SHA-256: `3f82821703b5294fd489299501901164de5e69102f8af302fc6c447f38dfd252`. Native Blender counts seven mesh objects; export splits primitives by material, so these counts differ.
+- Actual front/rear renders show shirt/body intersections at shoulders and back, poor garment deformation, flat skin, coarse hair and overly broad highlighting. The rear highlight is not clearly legible. These defects keep visual acceptance pending despite successful software tests.
+- The native scene has a review-mask toggle; the GLB exports neutral materials without that Blender-specific control. Separate loop, MP4 master and anatomical segmentation are pending. No record or approval state changed.
 
 ## Task states
 
@@ -213,7 +221,7 @@ The npm registry publication guard remains `private: true`. Draft-release automa
 
 1. **Content coverage remains early.** The catalogue contains the eight pilot drafts and both B001 groups. Subsequent batches still need specification and authorship; all current records need technical/media review; 369 other candidates remain in the specification backlog and the explicit holds need evidence. No anatomical hierarchy or exercise suitability inference is implemented.
 2. **Schema checks have explicit limits.** The bundled schema enforces metadata, record structure and channel gates. Duplicate identities, muscle/metric overlap and media delivery constraints also require the documented domain checks when consumers edit their own catalogues. Automated validation never certifies technique or licensing.
-3. **No media production or technical reviewer yet.** Uniform 3D is selected and preparation tooling exists, but briefs and packets do not count as assets or approval. Models can prepare content; actual technical/licensing evidence must come from the appropriate people.
+3. **No approved media or technical reviewer yet.** Unreviewed native character and squat studies exist; neither these assets nor the preparation packets count as approval. Models can prepare content; actual technical/licensing evidence must come from the appropriate people.
 4. **Launch checks are incomplete.** The current tests do not establish full accessibility, all browsers, large-catalogue performance or actual video/animation behavior.
 5. **External distribution decisions remain.** Confirm registry name/scope ownership and publication method, media delivery and website hosting before launch. No paid service or credential setup is implied.
 6. **Source inventory is optional/private.** Its absence blocks reconciliation of those particular references, not build/test work or independent research and authorship.

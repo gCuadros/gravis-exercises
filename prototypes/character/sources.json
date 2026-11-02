@@ -1,0 +1,30 @@
+{
+  "blender": "4.5.15",
+  "mpfb": "2.0.18",
+  "archives": [
+    {
+      "file": "mpfb.tar.gz",
+      "url": "https://github.com/makehumancommunity/mpfb2/archive/refs/tags/v2.0.18.tar.gz",
+      "sha256": "2909fdf3de140d7ba13b024f3316e8c9862b312d80b39469dfeaba25af30d1c8",
+      "kind": "source"
+    },
+    {
+      "file": "system-assets.zip",
+      "url": "https://files.makehumancommunity.org/asset_packs/makehuman_system_assets/makehuman_system_assets_cc0.zip",
+      "sha256": "b542127a8e25547c7c29c19f2d1d2adb9a664c80396ecd694095dbc8028a0107",
+      "kind": "assets"
+    },
+    {
+      "file": "shirts.zip",
+      "url": "https://files.makehumancommunity.org/asset_packs/shirts01/shirts01_cc0.zip",
+      "sha256": "a5a723b0e84a109bb190fcfeac7f1de4138d875da3e30fe5b3340eac9f38bcd3",
+      "kind": "assets"
+    },
+    {
+      "file": "pants.zip",
+      "url": "https://files.makehumancommunity.org/asset_packs/pants01/pants01_cc0.zip",
+      "sha256": "e4e0ec60db34f279be291a83cfd7b342a7c5cf09bb7676682a5f39f4f6ac4ad9",
+      "kind": "assets"
+    }
+  ]
+}

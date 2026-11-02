@@ -29,7 +29,11 @@
     "typecheck": "pnpm run generate:types && tsc --project tsconfig.json",
     "media:build": "tsc --project tsconfig.media.json && node --experimental-strip-types scripts/build-media.ts",
     "media:dev": "pnpm run media:build && node --experimental-strip-types scripts/serve.ts --media",
-    "test:media": "playwright test --config playwright.media.config.ts"
+    "test:media": "playwright test --config playwright.media.config.ts",
+    "character:prepare": "node --experimental-strip-types scripts/character.ts prepare",
+    "character:build": "node --experimental-strip-types scripts/character.ts build",
+    "character:syntax": "python3 -c \"import ast,pathlib; ast.parse(pathlib.Path('prototypes/character/blender_recipe.py').read_text())\"",
+    "character:verify": "node --experimental-strip-types scripts/check-character-export.ts"
   },
   "devDependencies": {
     "@playwright/test": "1.64.1",
