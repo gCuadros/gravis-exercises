@@ -5,7 +5,7 @@ Snapshot date: **2026-11-02 (Europe/Madrid)**. This is a handoff snapshot, not a
 ## Current handoff
 
 - **Repository:** [gCuadros/gravis-exercises](https://github.com/gCuadros/gravis-exercises).
-- **Integration baseline:** `main` at `090b83e9b4e2dd2e48be23a14942a1f1939b8f92`; PR #15 is merged. Current work is a separate change on `feat/realistic-character-pipeline`.
+- **Integration baseline:** `main` at `090b83e9b4e2dd2e48be23a14942a1f1939b8f92`; PR #15 is merged. Current work is [draft PR #18](https://github.com/gCuadros/gravis-exercises/pull/18) on `feat/realistic-character-pipeline`, targeting `main`. The study remains unmerged and visually unaccepted; inspect the PR checks for its current head.
 - **Accepted direction:** on 2026-10-30 the maintainer approved the hyperrealistic fitness concept and optional red muscle highlighting. The earlier rigid mannequin is not the intended style. A concept still is not a 3D asset or anatomy approval.
 - **Implemented in this working tree:** optional native Blender production recipe with pinned/hash-verified sources, continuous mesh, weighted skeleton, fitted garments, full squat retargeting, broad review-mask toggle, neutral-material GLB export and output manifest. See [reproduction, provenance and limitations](docs/realistic-character.md).
 - **Quality assessment:** development renders remain below the accepted reference. Improve realistic skin/hair, athletic shape, clothing fit/deformation and individual muscle boundaries; do not describe the current sample as hyperrealistic or production-ready.
