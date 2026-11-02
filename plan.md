@@ -95,6 +95,8 @@ Resolve exact variations and duplicates before assigning new stable IDs. Work in
 
 ### MED-001 and WEB-001 — Visual assets and real use
 
+The maintainer accepted hyperrealistic fitness styling and optional muscle highlighting on 2026-10-30. Use the [native character pipeline](docs/realistic-character.md) to iterate actual renders; the initial continuous-mesh sample is below the accepted target and does not complete MED-001. Do not scale the current appearance across the catalogue.
+
 Follow [media production](docs/media-production.md), the maintainer-selected [uniform 3D pilot](docs/animation-pilot.md) and [portable review packets](docs/review-packets.md). The first visual cohort is bodyweight squat, floor push-up and ring row; it samples different contact patterns before scaling the same style across the catalogue. Preparation/verification tooling supports the review process but does not complete MED-001. A model can prepare style proposals, scripts and production briefs. Technical approval, performer permissions and license decisions need actual evidence from the appropriate people; elapsed time or a successful build is not approval. Obtain the chosen production method and reviewer before representing anything as approved.
 
 The initial site is editorial preview, with no demonstrations. Before public launch, test mixed review states, video/animation controls, mobile sizing, keyboard access and understandable status labels. Add measurements before proposing pagination, a CDN or other infrastructure; do not invent scale requirements.

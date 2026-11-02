@@ -2,6 +2,8 @@
 
 ## Unreleased — 0.4.0 foundation preview
 
+- Add a reproducible Blender character-development recipe with verified source archives, a continuous skinned human mesh, fitted garments, full squat retargeting, optional review masks and neutral-material GLB export. Record the accepted hyperrealistic visual target and explicitly document that the generated development sample has not met it. Keep native assets and tools outside the package; no content approvals or public exports change.
+
 - Add an original editable TypeScript squat blocking rig, local 3D review studio and animated GLB export with full/loop takes. Check limb lengths, fixed contacts, clip replay and desktop/mobile controls in CI. Three.js is development-only; source records, approved-media state and dependency-free consumer exports remain unchanged. Visual, technical and rights review are still pending.
 
 - Reconcile the portable plan/status and PR index after integrating #10–#13 individually. Record tested and integrated revisions, close the TypeScript/pnpm prerequisites, and identify the first 3D prototype work. Exercise records remain drafts; this documentation update grants no approval and changes no runtime/API or release state.

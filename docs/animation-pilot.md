@@ -14,6 +14,10 @@ Start with three existing variations before producing the full catalogue. This i
 
 The ring-row draft is available in main through integrated PR #10. Before these records are used as final animation scripts, a qualified reviewer must resolve their existing technical questions in the B001 specification. The prototype may expose problems in those drafts; correct the source and regenerate its packet before signing off.
 
+## Accepted refinement — 2026-10-30
+
+The maintainer accepted a hyperrealistic fitness character with optional red muscle highlighting, replacing the primitive mannequin as the intended visual style. The generated still reference is concept evidence only. See [native character production and current quality gaps](realistic-character.md); the current development renders have not achieved this target. Muscle highlighting is now part of the intended design, with anatomical approval still pending.
+
 ## Shared art direction
 
 - One adult character and rig, with neutral expression and consistent proportions across all three movements. Avoid exaggerated musculature. Character appearance does not imply an ideal body type.
@@ -21,7 +25,7 @@ The ring-row draft is available in main through integrated PR #10. Before these 
 - A light neutral studio background, a visible ground plane and soft contact shadows. Lighting, materials and color treatment stay consistent across clips.
 - Fixed camera during each complete cycle. Use perspective with limited distortion; frame the full body, relevant equipment and travel margins. A secondary angle supplements an uninterrupted main take, rather than cutting away at a critical endpoint.
 - Use real scale for the rig and equipment. Show hand-to-handle contact, joint alignment, support points and load path clearly. Do not fake technique by sliding contact points, stretching limbs or moving the camera to hide errors.
-- Optional muscle highlighting is deferred until anatomy review and a consistent highlighting convention are available. Text and numeric overlays are separate localized layers; the base demonstration is language-neutral.
+- Optional muscle highlighting is requested; its exact segmentation and convention require anatomy review before approval. Text and numeric overlays are separate localized layers; the base demonstration is language-neutral.
 
 ## Prototype deliverables per movement
 
@@ -50,4 +54,4 @@ If the text, anatomy labels, recording conventions, guidance or asset changes, c
 - A real consumer has been tested for mobile framing, normal-speed playback, controls and the difference between full sequence and loop.
 - The maintainer accepts the pilot's visual direction and production cost/time before commissioning the wider catalogue.
 
-Current state: **an editable, unreviewed squat blocking rig and full/loop sequences are implemented**. See [source, reproduction and limitations](squat-prototype.md). The character is a rigid geometric mannequin, not a finished skinned model; no human approvals exist. Next: review/refine this first rig and motion, then prepare push-up and ring row with a named technical reviewer. This document does not authorize purchases, commissioning or publication.
+Current state: the earlier [geometric blocking rig](squat-prototype.md) provides full/loop motion studies. The [native character study](realistic-character.md) adds a skinned model, full take and tested GLB export, but remains below the accepted hyperrealistic target. Visible garment intersections, skin/hair quality and broad masks need correction before extending the style to push-up and ring row. No human technical or final asset-rights approval exists. This document does not authorize purchases, commissioning or publication.
